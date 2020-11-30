@@ -9,23 +9,21 @@ module.exports = {
 
     theme: {
         colors: {
-            text: {
-                orange: '#FF6600',
-                darkgray: '#404040',
-                lightgray: '#f2f1f1',
-                bluegray: '#99A2AB',
+            white: '#FFFFFF',
+
+            gray: {
+                100: '#f2f1f1', // body background
+                200: '#E4E4E4', // input background
+                300: '#99A2AB', // paragraphs
+                400: '#707070', // border 
+                500: '#404040', // titles
+                600: '#E9E9E9', // gradient start
+                700: '#F1F1F1',  // gradient end
             },
 
-            input: {
-                background: '#E4E4E4',
-                border: '#707070',
-            },
-
-            gradient: {
-                graystart: '#E9E9E9',
-                grayend: '#F1F1F1',
-                orangestart: '#FF6600',
-                orangeend: '##FB7F21'
+            orange: {
+                100: '#FF6600', // main, gradient start
+                200: '#FB7F21', // gradient end
             },
         },
 
