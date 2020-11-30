@@ -24,3 +24,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/test', function () {
     return view('klusminuten.pages.test');
 });
+
+Route::get('/home', function () {
+    return view('klusminuten.pages.dashboard');
+});
+
+Route::get('/add', function () {
+    return view('klusminuten.pages.addjob');
+});
+
+
