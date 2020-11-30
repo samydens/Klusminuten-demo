@@ -13,9 +13,9 @@ module.exports = {
 
             gray: {
                 100: '#f2f1f1', // body background
-                200: '#E4E4E4', // input background
+                200: '#F8F8F8', // input background
                 300: '#99A2AB', // paragraphs
-                400: '#707070', // border 
+                400: '#DDDDDD', // border 
                 500: '#404040', // titles
                 600: '#E9E9E9', // gradient start
                 700: '#F1F1F1',  // gradient end
