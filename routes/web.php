@@ -41,3 +41,7 @@ Route::get('/show', function () {
     return view('klusminuten.pages.showjob');
 });
 
+Route::get('/timer', function () {
+    return view('klusminuten.pages.timer');
+});
+
