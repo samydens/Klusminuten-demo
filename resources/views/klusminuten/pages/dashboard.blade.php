@@ -38,10 +38,12 @@
             <p class="font-medium text-xl text-kmtitel">Minuten</p>
             {{-- button & minutes --}}
             <div class="flex items-center">
-                <p class="text-xs text-kmparagraph mr-4 text-gray-300">44 min</p>
-                <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
-                    <svg class="fill-current text-orange-100" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                </div>
+                <p class="text-xs mr-4 text-gray-300">44 min</p>
+                <a href="/timer">
+                    <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
+                        <svg class="fill-current text-orange-100" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -53,9 +55,11 @@
             {{-- button & cost in euro's --}}
             <div class="flex items-center">
                 <p class="text-xs text-gray-300 mr-4">€ 400</p>
-                <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
-                    <svg class="fill-current text-orange-100" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                </div>
+                <a href="/material">
+                    <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
+                        <svg class="fill-current text-orange-100" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
