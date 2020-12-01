@@ -6,7 +6,7 @@
 
 @section('content')
     <form action="">
-        <div class="flex flex-col space-y-4">
+        <div class="flex flex-col space-y-4  mb-40">
             <div class="relative bg-white rounded-xl p-4 shadow text-gray-300">
                 <p class="font-medium text-xl text-gray-500 text-center mb-4">Klus</p>
                 <div class="flex flex-col space-y-4">

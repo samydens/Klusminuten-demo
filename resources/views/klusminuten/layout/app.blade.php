@@ -20,17 +20,17 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="antialiased bg-gray-100">
+        {{-- Header --}}
         <div class="bg-gradient-to-tr from-orange-100 to-orange-200  h-1/5 w-full fixed top-0">
-            
-            <!-- View title -->
+            {{-- View title --}}
             <p class="font-ubuntu text-2xl text-white font-bold ml-8 mt-8">@yield('title')</p>
         </div>
 
-        <!-- View content -->
+        {{-- View content --}}
         <div class="container w-80 mx-auto mt-24 font-roboto text-gray-500">
             @yield('content')
         </div>
-
+        @include('klusminuten.inc.nav')    
         @livewireScripts
     </body>
 </html>
