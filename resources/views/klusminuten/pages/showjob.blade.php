@@ -1,11 +1,11 @@
 @extends('klusminuten.layout.app')
 
 @section('title')
-    <a class="text-white font-bold font-xl" href="/pool"><svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 0 24 24" width="36"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21v-2z"/></svg></a>
+    <a href="/pool"><svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 0 24 24" width="36"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21v-2z"/></svg></a>
 @endsection
 
 @section('content')
-<div class="space-y-4">
+<div class="space-y-4 mb-40">
     {{-- Project card --}}
     <div class="relative bg-white rounded-xl p-4 shadow text-gray-300">
         {{-- Project image --}}
