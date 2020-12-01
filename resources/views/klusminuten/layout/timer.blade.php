@@ -19,7 +19,7 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body class="antialiased bg-white w-screen h-screen overflow-hidden">
+    <body class="antialiased bg-white w-screen h-screen overflow-hidden font-roboto">
         @yield('header')
         @yield('content')
         @livewireScripts

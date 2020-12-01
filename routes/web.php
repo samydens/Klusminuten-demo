@@ -45,3 +45,6 @@ Route::get('/timer', function () {
     return view('klusminuten.pages.timer');
 });
 
+Route::get('/material', function () {
+    return view('klusminuten.pages.material');
+});
