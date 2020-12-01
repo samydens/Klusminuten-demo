@@ -33,4 +33,11 @@ Route::get('/add', function () {
     return view('klusminuten.pages.addjob');
 });
 
+Route::get('/pool', function () {
+    return view('klusminuten.pages.pool');
+});
+
+Route::get('/show', function () {
+    return view('klusminuten.pages.showjob');
+});
 
