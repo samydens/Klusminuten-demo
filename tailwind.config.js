@@ -25,6 +25,8 @@ module.exports = {
                 100: '#FF6600', // main, gradient start
                 200: '#FB7F21', // gradient end
             },
+
+            red: '#FF0000',
         },
 
         extend: {
