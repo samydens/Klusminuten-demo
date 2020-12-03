@@ -1,15 +1,19 @@
-@extends('klusminuten.layout.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <script src="{{ mix('js/app.js') }}" defer></script>
+    <title>Test</title>
+    @livewireStyles
+</head>
+<body>
+    @livewire('add-job')
+    @livewireScripts
+</body>
+</html>
 
-@section('content')
-    <a href="/dashboard">Dashboard</a>
-    <div class="container sm mx-auto">
-        <p class="font-title font-bold text-5xl text-kmorange">Font test pagina</p>
 
-        <p class="font-title text-3xl text-kmorange">ubuntu</p>
-        <p class="font-title text-3xl font-medium">ubuntu medium</p>
-        <p class="font-title text-3xl font-bold">ubuntu bold</p>
-        <p class="font-par text-3xl">roboto</p>
-        <p class="font-par text-3xl font-medium">roboto medium</p>
-        <p class="font-par text-3xl font-bold">roboto bold</p>
-    </div>
-@endsection
+
