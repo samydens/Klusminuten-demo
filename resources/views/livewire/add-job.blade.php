@@ -1,6 +1,6 @@
 <div class="relative bg-white rounded-xl p-4 shadow text-gray-300">
     <p class="font-medium text-xl text-gray-500 text-center">klus</p>
-    <form wire:submit.prevent="submit">
+    <form wire:submit.prevent="submit" class="flex flex-col space-y-4">
         <label>Naam klus<input type="text" wire:model="job.title" class="border-gray-400 border bg-gray-200 rounded w-full h-9 py-1 px-4"></label>
         @error('job.title') <span class="text-red text-xs">{{ $message }}</span><br> @enderror
         <label>Omschrijving<textarea type="text" wire:model="job.desc" class="border-gray-400 border bg-gray-200 rounded w-full h-24 py-1 px-4"></textarea></label>
