@@ -15,6 +15,7 @@ class AddJob extends Component
         'job.desc' => 'required|max:200',
         'job.agr_minutes' => 'required|max:999999|numeric',
         'job.agr_material' => 'required|max:999999|numeric',
+        'job.location' => 'required',
     ];
 
     protected $messages = [
@@ -34,6 +35,7 @@ class AddJob extends Component
         $job->desc = $this->job['desc'];
         $job->agr_minutes = $this->job['agr_minutes'];
         $job->agr_material = $this->job['agr_material'];
+        $job->location = $this->job['location'];
         $job->user_id = Auth::id();
         $job->save();
 

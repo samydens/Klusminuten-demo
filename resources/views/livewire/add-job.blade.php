@@ -5,6 +5,8 @@
         @error('job.title') <span class="text-red text-xs">{{ $message }}</span><br> @enderror
         <label>Omschrijving<textarea type="text" wire:model="job.desc" class="border-gray-400 border bg-gray-200 rounded w-full h-24 py-1 px-4"></textarea></label>
         @error('job.desc') <span class="text-red text-xs">{{ $message }}</span><br> @enderror
+        <label>Locatie<input type="text" wire:model="job.location" class="border-gray-400 border bg-gray-200 rounded w-full h-9 py-1 px-4"></label>
+        @error('job.location') <span class="text-red text-xs">{{ $message }}</span><br> @enderror
         <label>Overeengekomen minuten<input type="number" wire:model="job.agr_minutes" class="border-gray-400 border bg-gray-200 rounded w-full h-9 py-1 px-4"></label>
         @error('job.agr_minutes') <span class="text-red text-xs">{{ $message }}</span><br> @enderror
         <label>Overeengekomen materiaal<input type="number" wire:model="job.agr_material" class="border-gray-400 border bg-gray-200 rounded w-full h-9 py-1 px-4"></label>
