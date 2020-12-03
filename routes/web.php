@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,17 +28,14 @@ Route::get('/home', function () {
     return view('klusminuten.pages.dashboard');
 });
 
-Route::get('/add', function () {
-    return view('klusminuten.pages.addjob');
-});
+// Vervangen met multipart form
+Route::middleware('auth')->get('/add', function () {return view('klusminuten.pages.addjob');});
 
-Route::get('/pool', function () {
-    return view('klusminuten.pages.pool');
-});
+// Show job index
+Route::middleware('auth')->get('/jobs', App\Http\Livewire\JobIndex::class);
 
-Route::get('/show', function () {
-    return view('klusminuten.pages.showjob');
-});
+// Show single job
+Route::middleware('auth')->get('/jobs/{id}', App\Http\Livewire\showJob::class);
 
 Route::get('/timer', function () {
     return view('klusminuten.pages.timer');
