@@ -30,6 +30,6 @@
         <p>{{$job->desc}}</p>
     </div>
     <div class="mt-3 text-white font-par font-medium font-lg">
-        <button class="bg-gradient-to-tr from-orange-100 to-orange-200 rounded-xl shadow p-4 w-full">Klus starten</button>
+        <button wire:click="setActive({{$job->id}})" class="bg-gradient-to-tr from-orange-100 to-orange-200 rounded-xl shadow p-4 w-full">Klus starten</button>
     </div>  
 </div>
