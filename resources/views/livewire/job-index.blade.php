@@ -15,5 +15,6 @@
             <p class="text-sm">{{$job->agr_minutes}} min | € {{$job->agr_material}}</p>
         </div>
     </a>
+    
 @endforeach
 </div>

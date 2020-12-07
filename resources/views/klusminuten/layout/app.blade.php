@@ -27,7 +27,7 @@
         </div>
 
         {{-- View content --}}
-        <div class="container w-80 mx-auto mt-24 font-roboto text-gray-500">
+        <div class="container w-80 mx-auto mt-24 font-roboto text-gray-500 mb-40">
             @yield('content')
         </div>
         @include('klusminuten.inc.nav')    
