@@ -2,6 +2,7 @@
 @if (!empty($activeJobs))
 <div class="space-y-4">
     
+    {{-- Display messages --}}
     @if (session()->has('message'))
         <div class="relative bg-white text-orange-100 rounded-xl shadow p-4">
             {{session('message')}}

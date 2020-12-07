@@ -37,6 +37,9 @@ Route::middleware('auth')->get('/jobs', App\Http\Livewire\JobIndex::class);
 // Show single job
 Route::middleware('auth')->get('/jobs/{id}', App\Http\Livewire\showJob::class);
 
+// timer
+Route::middleware('auth')->get('/stopwatch/{id}', App\Http\Livewire\Timer::class);
+
 Route::get('/timer', function () {
     return view('klusminuten.pages.timer');
 });
