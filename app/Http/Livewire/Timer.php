@@ -28,7 +28,7 @@ class Timer extends Component
         $this->jobId = $id;
 
         // get all records with $id
-        $minute = Minute::where('stopped', '=', '0')->get();
+        $minute = Minute::where([['stopped', '=', '0'], ['job_id', '=', $this->jobId]])->get();
 
         // Check if there are records which aren't stopped. If so, resume timer.
         if (isset($minute[0]['id'])) {
