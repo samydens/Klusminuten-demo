@@ -1,15 +1,13 @@
 <div class="space-y-4">
     {{-- Display messages --}}
     @if (session()->has('message'))
-        <div class="relative bg-white text-orange-100 rounded-xl shadow p-4">
-            {{session('message')}}
-        </div>
+        <div class="relative bg-white text-orange-100 rounded-xl shadow p-4">{{session('message')}}</div>
     @endif
     @foreach ($this->getActiveJobs() as $job)
         {{-- Project card --}}
         <div class="relative bg-white rounded-xl p-4 shadow text-gray-300">
             {{-- Project image --}}
-            {{-- <div class="rounded-xl w-full h-36 bg-center bg-cover" style="background-image: url('/img/bathroom.jpg')"></div> --}}
+            <div class="rounded-xl w-full h-36 bg-center bg-cover" style="background-image: url('/img/bathroom.jpg')"></div>
             {{-- Project title --}}
             <div class="my-4">
                 <p class="text-xs">Huidige project</p>
