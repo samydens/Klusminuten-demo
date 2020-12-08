@@ -50,7 +50,7 @@ class CurrentJobs extends Component
     {
         $material = DB::table('materials')->where('job_id', '=', $jobId)->select('amount')->get();
 
-        return $material->sum('amount');
+        return number_format($material->sum('amount'), 2, ',', '.');
     }
 
     public function render()

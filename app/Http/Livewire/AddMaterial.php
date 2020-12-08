@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class AddMaterial extends Component
 {
-    public $m;
+    public $mtrl;
     public $jobId;
 
     protected $rules = [
-        'm.title' => 'required|max:255',
-        'm.amount' => 'required',
-        'm.desc' => 'max:255',
+        'mtrl.title' => 'required|max:255',
+        'mtrl.amount' => 'required',
+        'mtrl.desc' => 'max:255',
     ];
 
     protected $messages = [
@@ -37,15 +37,15 @@ class AddMaterial extends Component
         $material = new Material;
         $material->job_id = $this->jobId;
         $material->user_id = Auth::id();
-        $material->title = $this->m['title'];
-        $material->amount = $this->m['amount'];
-        $material->desc = $this->m['desc'];
+        $material->title = $this->mtrl['title'];
+        $material->amount = str_replace(',', '.', $this->mtrl['amount']);
+        $material->desc = $this->mtrl['desc'];
         $material->save();
 
-        session()->flash('message', 'Kosten toegevoegd');
+        session()->flash('message', 'Kosten toegevoegd!');
 
         // Empty input fields
-        $this->m = "";
+        $this->mtrl = "";
     }
 
     public function render()
