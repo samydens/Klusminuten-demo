@@ -15,7 +15,7 @@
         @endif
     </div>
     <div>
-        <p wire:click="total" class="font-bold text-4xl">{{$this->getTotalMin()}}</p>
+        <p class="font-bold text-4xl">{{$this->getTotalMin()}}</p>
         <p class="text-gray-300">minuten (totaal)</p>
     </div>
     @if ($currentId == NULL)
@@ -27,7 +27,7 @@
 
 <div class="absolute bottom-4 right-4 left-4 flex space-x-4 font-roboto">
     <button class="flex-grow p-4 bg-orange-100 text-white font-medium rounded shadow">bevestig</button>
-    <button wire:click="setEdit" class="flex-grow p-4 bg-orange-100 text-white font-medium rounded shadow">bewerken</button>
+    <button class="flex-grow p-4 bg-orange-100 text-white font-medium rounded shadow">bewerken</button>
 </div>
 
 

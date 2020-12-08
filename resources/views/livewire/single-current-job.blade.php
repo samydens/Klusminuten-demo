@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="mt-6 text-white font-par font-medium font-lg">
-        <button class="bg-gradient-to-tr from-orange-100 to-orange-200 rounded-xl shadow p-4 w-full">Project afronden</button>
+        <button wire:click="completeJob" class="bg-gradient-to-tr from-orange-100 to-orange-200 rounded-xl shadow p-4 w-full">Project afronden</button>
     </div>
 </div>
 

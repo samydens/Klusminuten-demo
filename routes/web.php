@@ -24,9 +24,8 @@ Route::get('/test', function () {
     return view('klusminuten.pages.test');
 });
 
-Route::get('/home', function () {
-    return view('klusminuten.pages.dashboard');
-});
+// Dashboard
+Route::middleware('auth')->get('/home', function () {return view('klusminuten.pages.dashboard');});
 
 // Vervangen met multipart form
 Route::middleware('auth')->get('/add', function () {return view('klusminuten.pages.addjob');});
@@ -40,9 +39,8 @@ Route::middleware('auth')->get('/jobs/{id}', App\Http\Livewire\showJob::class);
 // timer
 Route::middleware('auth')->get('/stopwatch/{id}', App\Http\Livewire\Timer::class);
 
-Route::get('/timer', function () {
-    return view('klusminuten.pages.timer');
-});
+// Material
+Route::middleware('auth')->get('/material/{id}', App\Http\Livewire\AddMaterial::class);
 
 Route::get('/material', function () {
     return view('klusminuten.pages.material');
