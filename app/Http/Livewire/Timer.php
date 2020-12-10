@@ -22,6 +22,14 @@ class Timer extends Component
     // id of the job this component adds minutes to
     public $jobId;
 
+    // boolean, if true you can edit the session minutes
+    public $edit;
+
+    // This is updated by the edit minutes input field
+    public $editedMinutes;
+
+    public $sessionMinutes;
+
     public function mount($id) 
     {
         // Set passed id var to public id far for further use within component.
@@ -70,11 +78,6 @@ class Timer extends Component
 
     public function stopTimer() 
     {
-        // Set stopped to 1, this action automatically updates the 'updated_at' column in our database.
-        $minute = Minute::find($this->currentId);
-        $minute->stopped = 1;
-        $minute->save();
-
         // Save the difference between 'created_at' and 'updated_at' as total (seconds) in minutes table.
         $minute = Minute::find($this->currentId);
         $minute->total = $minute->updated_at->floatDiffInSeconds($minute->created_at);
@@ -83,6 +86,24 @@ class Timer extends Component
         // Set both currentId and startTime to NULL
         $this->currentId = NULL;
         $this->startTime = NULL;
+    }
+
+    public function edit()
+    {
+        $this->edit = True;
+    }
+
+    public function submitEdit()
+    {
+        $this->edit = False;
+    }
+
+    public function pauseTimer()
+    {
+        // Set stopped to 1, this action automatically updates the 'updated_at' column in our database.
+        $minute = Minute::find($this->currentId);
+        $minute->stopped = 1;
+        $minute->save();
     }
 
     public function render()

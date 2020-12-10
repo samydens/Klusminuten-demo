@@ -42,6 +42,12 @@ Route::middleware('auth')->get('/stopwatch/{id}', App\Http\Livewire\Timer::class
 // Material
 Route::middleware('auth')->get('/material/{id}', App\Http\Livewire\AddMaterial::class);
 
+// Edit time
+Route::middleware('auth')->get('/stopwatch/edit/{id}', App\Http\Livewire\EditTimer::class);
+
+// new timer
+Route::middleware('auth')->get('/newtimer/{id}', App\Http\Livewire\NewTimer::class);
+
 Route::get('/material', function () {
     return view('klusminuten.pages.material');
 });
