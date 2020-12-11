@@ -5,9 +5,12 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithFileUploads;
 
 class AddJob extends Component
 {
+    use WithFileUploads;
+
     public $job;
 
     protected $rules = [
@@ -16,6 +19,7 @@ class AddJob extends Component
         'job.agr_minutes' => 'required|max:999999|numeric',
         'job.agr_material' => 'required|max:999999|numeric',
         'job.location' => 'required',
+        'job.photo' => 'image|max:1024',
     ];
 
     protected $messages = [
@@ -30,12 +34,19 @@ class AddJob extends Component
 
         $this->validate();
 
+        
+
         $job = new Job;
         $job->title = $this->job['title'];
         $job->desc = $this->job['desc'];
         $job->agr_minutes = $this->job['agr_minutes'];
         $job->agr_material = $this->job['agr_material'];
         $job->location = $this->job['location'];
+        // if (empty($this->job['photo'])) {
+        //     $job->photo = 'img/bathroom.jpg';
+        // } else {
+        //     $job->photo = $this->job['photo']->store('photos');
+        // }
         $job->user_id = Auth::id();
         $job->save();
 

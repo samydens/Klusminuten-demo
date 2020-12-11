@@ -1,9 +1,16 @@
+@section('title')
+    Dashboard
+@endsection
 <div class="space-y-4">
     {{-- Display messages --}}
     @if (session()->has('message'))
         <div class="relative bg-white text-orange-100 rounded-xl shadow p-4">{{session('message')}}</div>
     @endif
-    @foreach ($this->getActiveJobs() as $job)
+    @if ($activeJobs->isEmpty())
+        {{-- Message for when the archive is empty --}}
+            <p class="w-full text-center mt-56 text-gray-300 text-xl">Geen active klussen <br /> :(</p>
+        @endif
+    @foreach ($this->activeJobs as $job)
         {{-- Project card --}}
         <div class="relative bg-white rounded-xl p-4 shadow text-gray-300">
             {{-- Project image --}}
@@ -36,11 +43,7 @@
                     <p class="text-xs mr-4 text-gray-300">{{$this->getMin($job->id)}} min</p>
                     <a href="/stopwatch/{{$job->id}}">
                         <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
-                            @if ($this->checkActive($job->id))
-                                <svg class="fill-current text-orange-100" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M8 5v14l11-7z"/></svg>
-                            @else
-                                <svg class="fill-current text-orange-100" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                            @endif
+                            <svg class="fill-current text-orange-100" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
                         </div>
                     </a>
                 </div>
@@ -52,7 +55,7 @@
                 {{-- button & cost in euro's --}}
                 <div class="flex items-center">
                     <p class="text-xs text-gray-300 mr-4">€ {{$this->getMaterialCosts($job->id)}}</p>
-                    <a href="/material/{{$job->id}}">
+                    <a href="/materiaal/{{$job->id}}">
                         <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
                             <svg class="fill-current text-orange-100" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
                         </div>

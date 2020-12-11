@@ -18,7 +18,7 @@ module.exports = {
                 400: '#DDDDDD', // border 
                 500: '#404040', // titles
                 600: '#E9E9E9', // gradient start
-                700: '#F1F1F1',  // gradient end
+                700: '#F1F1F1', // gradient end
             },
 
             orange: {

@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 class CurrentJobs extends Component
 {
+    public $activeJobs;
+
+    public function mount()
+    {
+       $this->activeJobs = DB::table('jobs')->where('active', '=', True)->get();
+    }
+
     public function getMin($jobId) 
     {
         // Get all min with job id which are stopped
@@ -22,13 +29,13 @@ class CurrentJobs extends Component
 
     public function checkActive($jobId)
     {
-        // Get minute records where stopped = 0
-        $activeTimer = DB::table('minutes')->where([['stopped', '=', 0], ['job_id', '=', $jobId]])->get();
+        // // Get minute records where stopped = 0
+        // $activeTimer = DB::table('minutes')->where([['stopped', '=', 0], ['job_id', '=', $jobId]])->get();
 
-        // check if first returned id isset
-        if (empty($activeTimer->first()->id)) {
-            return True;
-        }
+        // // check if first returned id isset
+        // if (empty($activeTimer->first()->id)) {
+        //     return True;
+        // }
     }
 
     public function completeJob($jobId)
@@ -38,6 +45,8 @@ class CurrentJobs extends Component
         $jobToComplete->completed = 1;
         $jobToComplete->active = 0;
         $jobToComplete->save();
+
+        session()->flash('message', 'Klus afgerond!');
     }
 
     public function getActiveJobs()
@@ -55,6 +64,8 @@ class CurrentJobs extends Component
 
     public function render()
     {
-        return view('livewire.current-jobs')->layout('klusminuten.layout.app');
+        return view('livewire.current-jobs')
+        ->extends('klusminuten.layout.app')
+        ->section('content');
     }
 }

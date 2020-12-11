@@ -6,11 +6,11 @@
 @endsection
 <div>
     <div class="w-full text-center flex flex-col mt-36 font-roboto space-y-12">
-        <div class="w-56 h-56 rounded-full flex flex-col self-center place-content-center border-4 border-orange-100 shadow">
+        <div class="w-56 h-56 rounded-full flex flex-col self-center place-content-center border-4 border-orange-100 shadow text-center">
             {{-- If currentId is not NULL, display current timer. Else, display 0 minutes passed. --}}
             @if (!empty($recordId))
                 @if ($editMode and !$running)
-                    <input wire:model="total" type="number" class="font-bold text-3xl w-12">
+                    <input wire:model="total" type="number" class="font-bold text-3xl w-12 self-center">
                 @else
                     <p wire:poll.50000ms class="font-bold text-3xl">{{$this->getCurrentMin()}}</p>
                 @endif
@@ -35,14 +35,14 @@
 
     <div class="absolute bottom-4 right-4 left-4 flex space-x-4 font-roboto">
         @if ($editMode)
-            <button wire:click="submitEdit" class="flex-grow p-4 bg-orange-100 text-white font-medium rounded shadow text-center">Bevestig</button>
+            <button wire:click="submitEdit" class="flex-grow p-4 bg-orange-100 text-white font-medium rounded shadow text-center">Opslaan</button>
         @else
             @if ($recordId != NULL)
                 @if (!$running)
                     <button wire:click="editMode" class="flex-grow p-4 bg-orange-100 text-white font-medium rounded shadow text-center">Bewerken</button>
                 @endif
             @endif
-            <button wire:click="submitTimer" class="flex-grow p-4 bg-orange-100 text-white font-medium rounded shadow text-center">Bevestig</button>
+            <button wire:click="submitTimer" class="flex-grow p-4 bg-orange-100 text-white font-medium rounded shadow text-center">Opslaan</button>
         @endif
     </div>
 </div>

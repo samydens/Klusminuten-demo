@@ -17,6 +17,8 @@
         {{-- Agreed material costs --}}
         <label>Overeengekomen materiaal<input type="number" wire:model="job.agr_material" class="border-gray-400 border bg-gray-200 rounded w-full h-9 py-1 px-4"></label>
         @error('job.agr_material') <span class="text-red text-xs">{{ $message }}</span><br> @enderror
+        {{-- <label>Foto<input type="file" wire:model="job.photo" class="border-gray-400 border bg-gray-200 rounded w-full h-9 py-1 px-4"></label>
+        @error('job.photo') <span class="text-red text-xs">{{ $message }}</span><br> @enderror --}}
         <div class="flex flex-col space-y-4 text-center">
             {{-- Submit --}}
             <button type="submit" class="border-2 border-orange-100 text-orange-100 rounded-full mx-auto w-36 h-9 font-medium mt-8">opslaan</button>

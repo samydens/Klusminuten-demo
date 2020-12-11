@@ -75,6 +75,9 @@ class NewTimer extends Component
         $record->save();
 
         $this->recordId = NULL;
+
+        session()->flash('message', 'Minuten toegevoegd aan totaal!');
+        return redirect()->to('/dashboard');
     }
 
     public function getCurrentMin()
@@ -109,6 +112,9 @@ class NewTimer extends Component
         $this->recordId = NULL;
         $this->editMode = 0;
         $this->running = 0;
+
+        session()->flash('message', 'Minuten toegevoegd aan totaal!');
+        return redirect()->to('/dashboard');
     }
 
     public function render()

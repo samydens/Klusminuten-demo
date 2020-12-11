@@ -42,7 +42,9 @@ class AddMaterial extends Component
         $material->desc = $this->mtrl['desc'];
         $material->save();
 
+        // Redirect user to home with message
         session()->flash('message', 'Kosten toegevoegd!');
+        return redirect()->to('/home');
 
         // Empty input fields
         $this->mtrl = "";

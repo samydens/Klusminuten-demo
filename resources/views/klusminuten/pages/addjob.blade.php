@@ -6,9 +6,6 @@
 
 @section('content')
 <div class="flex flex-col space-y-4 mb-40">
-    {{-- @livewire('add-job') --}}
-    {{-- @livewire('add-client') --}}
-    {{-- @livewire('add-employee') --}}
     <livewire:add-job>
     <livewire:add-client>
     <livewire:add-employee>
