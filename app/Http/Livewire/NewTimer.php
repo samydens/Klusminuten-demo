@@ -114,7 +114,7 @@ class NewTimer extends Component
         $this->running = 0;
 
         session()->flash('message', 'Minuten toegevoegd aan totaal!');
-        return redirect()->to('/dashboard');
+        return redirect()->to('/home');
     }
 
     public function render()

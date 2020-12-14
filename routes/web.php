@@ -42,6 +42,12 @@ Route::middleware('auth')->get('/materiaal/{id}', App\Http\Livewire\AddMaterial:
 // Archive
 Route::middleware('auth')->get('/archief', App\Http\Livewire\Archive::class);
 
+// Admin
+Route::middleware('auth')->get('/klusadmin', App\Http\Livewire\JobAdmin::class);
+
+// Edit job
+Route::middleware('auth')->get('/klusadmin/{id}', App\Http\Livewire\Editjob::class);
+
 Route::get('/material', function () {
     return view('klusminuten.pages.material');
 });
