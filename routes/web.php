@@ -20,7 +20,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware('auth')->group(function () { // Checks if user is logged in
     Route::get('/admin/klus', App\Http\Livewire\JobAdmin::class); // Job admin
     Route::get('/admin/klus/{id}', App\Http\Livewire\Editjob::class); // Edit job
-    // Route::get('/', App\Http\Livewire\CurrentJobs::class); // Dashboard
     Route::get('/', function (){return redirect('/home');});
     Route::get('/home', App\Http\Livewire\CurrentJobs::class); // Dashboard
     Route::get('/klusvijver', App\Http\Livewire\JobIndex::class); // Klusvijver
