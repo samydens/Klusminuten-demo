@@ -40,11 +40,15 @@ class Editjob extends Component
 
     public function save()
     {
-        $this->job->title = $this->job['title'];
-        $this->job->agr_materials = $this->job['agr_material'];
-        $this->job->agr_minutes = $this->job['agr_minutes'];
-        $this->job->status = $this->job['status'];
-        $this->job->save();
+        $job = Job::find($this->jobId);
+        $job->title = $this->title;
+        $job->agr_material = $this->agr_material;
+        $job->agr_minutes = $this->agr_minutes;
+        $job->status = $this->status;
+        $job->save();
+
+        session()->flash('message', 'Klus bijgewerkt!');
+        return redirect('/klusadmin');
     }
 
     public function render()

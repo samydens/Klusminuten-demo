@@ -17,8 +17,9 @@ class ShowJob extends Component
     public function setActive($id) 
     {
         $activeJob = Job::find($id);
-        $activeJob->active = 1;
+        $activeJob->status = 1; // Set status to in progress
         $activeJob->save();
+        
         session()->flash('message', 'Uw klus is gestart!');
         return redirect()->to('/home');
     }

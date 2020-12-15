@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Job;
+use App\Models\Minute;
+use App\Models\Material;
 
 class JobAdmin extends Component
 {
@@ -19,8 +21,8 @@ class JobAdmin extends Component
 
     public function mount()
     {
-        // Jobs is all jobs
-        $this->jobs = Job::all();
+        // All jobs
+        $this->jobs = Job::all()->sortByDesc('updated_at');
     }
 
     public function updated($status)
@@ -32,6 +34,18 @@ class JobAdmin extends Component
         if ($this->status == 5) {
             $this->jobs = Job::all();
         }
+    }
+
+    public function totalMinutes($jobId)
+    {
+        $minutes = Minute::where([['job_id', '=', $jobId], ['stopped', '=', 1]])->select('total')->get();
+        return round($minutes->sum('total') / 60);
+    }
+
+    public function totalMaterial($jobId)
+    {
+        $material = Material::where('job_id', '=', $jobId)->select('amount')->get();
+        return number_format($material->sum('amount'), 2, ',', '.');
     }
 
     public function render()
