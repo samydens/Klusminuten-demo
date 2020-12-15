@@ -20,27 +20,33 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/test', function () {
-    return view('klusminuten.pages.test');
-});
 
 // Dashboard
-Route::middleware('auth')->get('/home', function () {return view('klusminuten.pages.dashboard');});
+Route::middleware('auth')->get('/home', App\Http\Livewire\CurrentJobs::class);
 
 // Vervangen met multipart form
-Route::middleware('auth')->get('/add', function () {return view('klusminuten.pages.addjob');});
+Route::middleware('auth')->get('/toevoegen', function () {return view('klusminuten.pages.addjob');});
 
 // Show job index
-Route::middleware('auth')->get('/jobs', App\Http\Livewire\JobIndex::class);
+Route::middleware('auth')->get('/klusvijver', App\Http\Livewire\JobIndex::class);
 
 // Show single job
-Route::middleware('auth')->get('/jobs/{id}', App\Http\Livewire\showJob::class);
+Route::middleware('auth')->get('/klusvijver/{id}', App\Http\Livewire\showJob::class);
 
 // timer
-Route::middleware('auth')->get('/stopwatch/{id}', App\Http\Livewire\Timer::class);
+Route::middleware('auth')->get('/stopwatch/{id}', App\Http\Livewire\NewTimer::class);
 
 // Material
-Route::middleware('auth')->get('/material/{id}', App\Http\Livewire\AddMaterial::class);
+Route::middleware('auth')->get('/materiaal/{id}', App\Http\Livewire\AddMaterial::class);
+
+// Archive
+Route::middleware('auth')->get('/archief', App\Http\Livewire\Archive::class);
+
+// Admin
+Route::middleware('auth')->get('/klusadmin', App\Http\Livewire\JobAdmin::class);
+
+// Edit job
+Route::middleware('auth')->get('/klusadmin/{id}', App\Http\Livewire\Editjob::class);
 
 Route::get('/material', function () {
     return view('klusminuten.pages.material');
