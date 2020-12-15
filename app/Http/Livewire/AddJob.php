@@ -12,6 +12,7 @@ class AddJob extends Component
     use WithFileUploads;
 
     public $job;
+    public $photo;
 
     protected $rules = [
         'job.title' => 'required|max:20',
@@ -19,7 +20,7 @@ class AddJob extends Component
         'job.agr_minutes' => 'required|max:999999|numeric',
         'job.agr_material' => 'required|max:999999|numeric',
         'job.location' => 'required',
-        'job.photo' => 'image|max:1024',
+        'photo' => 'mimes:png,jpg,jpeg|max:2024|nullable',
     ];
 
     protected $messages = [
@@ -28,13 +29,26 @@ class AddJob extends Component
         'max' => 'Meer dan 6 getallen',
         'job.title.max' => 'Naam is te lang',
         'job.desc.max' => 'Omschrijving is te lang',
+        'photo.max' => 'Foto is te groot',
+        'photo.mimes' => 'Upload een JPG of PNG',
     ];
+
+    public function updatedPhoto()
+    {
+        $this->validate([
+            'photo' => 'max:2048|mimes:jpg,png,jpeg|nullable',
+        ]);
+    }
 
     public function submit() {
 
         $this->validate();
 
-        
+        if ($this->photo) {
+            $url = $this->photo->store('photos', 'public');
+        } else {
+            $url = 'photos/bathroom.jpg';
+        }
 
         $job = new Job;
         $job->title = $this->job['title'];
@@ -42,11 +56,7 @@ class AddJob extends Component
         $job->agr_minutes = $this->job['agr_minutes'];
         $job->agr_material = $this->job['agr_material'];
         $job->location = $this->job['location'];
-        // if (empty($this->job['photo'])) {
-        //     $job->photo = 'img/bathroom.jpg';
-        // } else {
-        //     $job->photo = $this->job['photo']->store('photos');
-        // }
+        $job->photo = $url;
         $job->user_id = Auth::id();
         $job->save();
 

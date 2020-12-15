@@ -6,7 +6,7 @@
     {{-- Project card --}}
     <div class="relative bg-white rounded-xl p-4 shadow text-gray-300">
         {{-- Project image --}}
-        <div class="rounded-xl w-full h-36 bg-center bg-cover" style="background-image: url('/img/bathroom.jpg')"></div>
+        <div class="rounded-xl w-full h-36 bg-center bg-cover" style="background-image: url('/storage/{{ $job->photo }}')"></div>
         {{-- Project title --}}
         <p class="my-4 font-medium text-xl text-gray-500">{{$job->title}}</p>
         {{-- Project stats --}}

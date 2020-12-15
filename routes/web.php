@@ -12,42 +12,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// idk wat dit doet
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-
-// Dashboard
-Route::middleware('auth')->get('/home', App\Http\Livewire\CurrentJobs::class);
-
-// Vervangen met multipart form
-Route::middleware('auth')->get('/toevoegen', function () {return view('klusminuten.pages.addjob');});
-
-// Show job index
-Route::middleware('auth')->get('/klusvijver', App\Http\Livewire\JobIndex::class);
-
-// Show single job
-Route::middleware('auth')->get('/klusvijver/{id}', App\Http\Livewire\showJob::class);
-
-// timer
-Route::middleware('auth')->get('/stopwatch/{id}', App\Http\Livewire\NewTimer::class);
-
-// Material
-Route::middleware('auth')->get('/materiaal/{id}', App\Http\Livewire\AddMaterial::class);
-
-// Archive
-Route::middleware('auth')->get('/archief', App\Http\Livewire\Archive::class);
-
-// Admin
-Route::middleware('auth')->get('/klusadmin', App\Http\Livewire\JobAdmin::class);
-
-// Edit job
-Route::middleware('auth')->get('/klusadmin/{id}', App\Http\Livewire\Editjob::class);
-
-Route::get('/material', function () {
-    return view('klusminuten.pages.material');
+Route::middleware('auth')->group(function () { // Checks if user is logged in
+    Route::middleware('auth')->get('/admin/klus', App\Http\Livewire\JobAdmin::class); // Job admin
+    Route::middleware('auth')->get('/admin/klus/{id}', App\Http\Livewire\Editjob::class); // Edit job
+    Route::get('/', App\Http\Livewire\CurrentJobs::class); // Dashboard
+    Route::get('/home', App\Http\Livewire\CurrentJobs::class); // Dashboard
+    Route::get('/klusvijver', App\Http\Livewire\JobIndex::class); // Klusvijver
+    Route::get('/toevoegen', function () {return view('klusminuten.pages.addjob');}); // Add job
+    Route::get('/klusvijver/{id}', App\Http\Livewire\showJob::class); // Show job
+    Route::get('/stopwatch/{id}', App\Http\Livewire\NewTimer::class); // Stopwatch
+    Route::get('/materiaal/{id}', App\Http\Livewire\AddMaterial::class); // Materials
+    Route::get('/archief', App\Http\Livewire\Archive::class); // Archive
 });

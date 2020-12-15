@@ -48,7 +48,7 @@ class Editjob extends Component
         $job->save();
 
         session()->flash('message', 'Klus bijgewerkt!');
-        return redirect('/klusadmin');
+        return redirect('/admin/klus');
     }
 
     public function render()

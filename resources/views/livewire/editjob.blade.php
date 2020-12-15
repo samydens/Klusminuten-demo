@@ -1,7 +1,7 @@
 <form wire:submit.prevent="save">
     {{-- Job card --}}
     <div class="bg-white rounded shadow p-4 rounded-xl flex flex-row font-roboto mb-4">
-        <div class="rounded-xl w-80 bg-cover" style="background-image: url('/img/bathroom.jpg')"></div>
+        <div class="rounded-xl w-80 bg-cover" style="background-image: url('/storage/{{ $job->photo }}')"></div>
         <div class="w-full px-8 space-y-4">
             <div class="flex flex-row justify-between w-full items-center">
                 {{-- Title --}}
