@@ -10,7 +10,7 @@ class Archive extends Component
     public function render()
     {
         return view('livewire.archive', [
-            'jobs' => Job::where([['active', '=', 0], ['completed', '=', 1]])->get(),
+            'jobs' => Job::where('status', '>', 1)->get(),
         ])
         ->extends('klusminuten.layout.app');
     }
