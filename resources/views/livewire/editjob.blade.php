@@ -1,11 +1,14 @@
 <form wire:submit.prevent="save">
     {{-- Job card --}}
-    <div class="bg-white rounded shadow p-4 rounded-xl flex flex-row font-roboto mb-4">
+    <div class="bg-white shadow p-4 rounded-xl flex flex-row font-roboto mb-4">
         <div class="rounded-xl w-80 bg-cover" style="background-image: url('/storage/{{ $job->photo }}')"></div>
         <div class="w-full px-8 space-y-4">
             <div class="flex flex-row justify-between w-full items-center">
                 {{-- Title --}}
-                <input wire:model="title" type="text" class="text-2xl font-ubuntu font-bold text-gray-500">
+                <div class="flex flex-col">
+                    <label class="text-xs text-gray-300" for="title">Title</label>
+                    <input wire:model="title" type="text" class="text-2xl font-ubuntu font-bold text-gray-500" id="title">
+                </div>
                 {{-- Date --}}
                 <p class="text-gray-300 text-sm"> {{ $job->created_at->format('d-m-y') }} </p>
             </div>
@@ -13,13 +16,14 @@
             <div>
                 <label for="agr_material" class="text-gray-300 text-sm">Afgesproken materiaalkosten</label>
                 <div class="flex flex-row">
-                    <p>€</p><input wire:model="agr_material" id="agr_material">
+                    {{-- <p>€</p> --}}
+                    <input wire:model="agr_material" id="agr_material" class="border-b-2 border-white hover:border-orange-100">
                 </div>
             </div>
             {{-- Minutes --}}
             <div class="flex flex-col">
                 <label for="agr_minutes" class="text-gray-300 text-sm">Afgesproken minuten</label>
-                <input wire:model="agr_minutes" id="agr_minutes" class="w-48">
+                <input wire:model="agr_minutes" id="agr_minutes" class="border-b-2 w-48 border-white hover:border-orange-100">
             </div>
             {{-- Status --}}
             <div class="flex flex-col">

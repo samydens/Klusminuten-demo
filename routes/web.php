@@ -16,10 +16,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware('auth')->group(function () { // Checks if user is logged in
+
+ 
+    
+// Admin required routes
+route::group(['middleware' => ['role:admin']], function () {
+    Route::get('/admin/user/{id}', App\Http\Livewire\EditUser::class); // Edit user
     Route::get('/admin/klus', App\Http\Livewire\JobAdmin::class); // Job admin
+    Route::get('/admin/user', App\Http\Livewire\UserAdmin::class); // User admin
     Route::get('/admin/klus/{id}', App\Http\Livewire\Editjob::class); // Edit job
-    Route::get('/', function (){return redirect('/home');});
+});
+
+Route::group(['middleware' => ['role:medewerker']], function () {
+    Route::get('/', function (){return redirect('/home');}); // redirect to /home
     Route::get('/home', App\Http\Livewire\CurrentJobs::class); // Dashboard
     Route::get('/klusvijver', App\Http\Livewire\JobIndex::class); // Klusvijver
     Route::get('/toevoegen', function () {return view('klusminuten.pages.addjob');}); // Add job
