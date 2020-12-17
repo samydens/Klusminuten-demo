@@ -19,12 +19,12 @@
                         {{ __('App') }}
                     </x-jet-nav-link>
                     @can('edit jobs')
-                        <x-jet-nav-link href="{{route('admin/user')}}" :active="request()->routeIs('admin/user')">
+                        <x-jet-nav-link href="{{route('admin/job')}}" :active="request()->routeIs('admin/user')">
                             {{ __('klussen bewerken') }}
                         </x-jet-nav-link>
                     @endcan
                     @can('edit users')
-                        <x-jet-nav-link href="/admin/klus" :active="request()->routeIs('dashboard')">
+                        <x-jet-nav-link href="/admin/user" :active="request()->routeIs('dashboard')">
                             {{ __('gebruikers bewerken') }}
                         </x-jet-nav-link>
                     @endcan
