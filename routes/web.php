@@ -12,26 +12,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () { // idk wat dit doet
+
+// Jetstream zooi??
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () { 
     return view('dashboard');
 })->name('dashboard');
 
 
- 
+ // Check if logged in
+route::middleware('auth')->group( function() {
     
-// Admin required routes
-route::group(['middleware' => ['role:admin']], function () {
-    Route::get('/admin/user/{id}', App\Http\Livewire\EditUser::class); // Edit user
-    Route::get('/admin/klus', App\Http\Livewire\JobAdmin::class); // Job admin
-    Route::get('/admin/user', App\Http\Livewire\UserAdmin::class); // User admin
-    Route::get('/admin/klus/{id}', App\Http\Livewire\Editjob::class); // Edit job
-});
+    // Edit users
+    Route::group(['middleware' => ['permission:edit users']], function () {
+        Route::get('/admin/user', App\Http\Livewire\UserAdmin::class)->name('admin/user'); 
+        Route::get('/admin/user/{id}', App\Http\Livewire\EditUser::class)->name('admin/user/edit'); 
+    });
 
-Route::group(['middleware' => ['role:medewerker']], function () {
-    Route::get('/', function (){return redirect('/home');}); // redirect to /home
+    // Edit jobs
+    Route::group(['middleware' => ['permission:edit jobs']], function () {
+        Route::get('/admin/klus', App\Http\Livewire\JobAdmin::class)->name('admin/job'); 
+        Route::get('/admin/klus/{id}', App\Http\Livewire\Editjob::class)->name('admin/job/edit'); // Edit page
+    });
+    
+    // Accesible without roles or permission
+    Route::get('/', function () { 
+        return redirect('/home'); // redirect to /home
+    }); 
+
+    Route::get('/toevoegen', function () {
+        return view('klusminuten.pages.addjob'); // Add page
+    }); 
+
     Route::get('/home', App\Http\Livewire\CurrentJobs::class); // Dashboard
     Route::get('/klusvijver', App\Http\Livewire\JobIndex::class); // Klusvijver
-    Route::get('/toevoegen', function () {return view('klusminuten.pages.addjob');}); // Add job
     Route::get('/klusvijver/{id}', App\Http\Livewire\showJob::class); // Show job
     Route::get('/stopwatch/{id}', App\Http\Livewire\NewTimer::class); // Stopwatch
     Route::get('/materiaal/{id}', App\Http\Livewire\AddMaterial::class); // Materials

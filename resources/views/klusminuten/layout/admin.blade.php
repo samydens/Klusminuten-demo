@@ -25,6 +25,25 @@
             {{-- Title --}}
             <div class="flex flex-row font-roboto py-8 px-8 container mx-auto">
                 <p class="text-2xl text-orange-100 font-bold">Klusminuten</p><p class="text-2xl text-gray-300">admin</p>
+                <!-- Navigation Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="/home">
+                        {{ __('App') }}
+                    </x-jet-nav-link>
+                    @can('edit jobs')
+                        <x-jet-nav-link href="/admin/user">
+                            {{ __('klussen bewerken') }}
+                        </x-jet-nav-link>
+                    @endcan
+                    @can('edit users')
+                        <x-jet-nav-link href="/admin/klus">
+                            {{ __('gebruikers bewerken') }}
+                        </x-jet-nav-link>
+                    @endcan
+                </div>
             </div>
         </nav>
         {{-- View content --}}
