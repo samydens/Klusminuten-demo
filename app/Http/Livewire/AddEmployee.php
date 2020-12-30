@@ -39,6 +39,8 @@ class AddEmployee extends Component
         session()->flash('message', 'Opgeslagen.');
     }
 
+    
+
     public function render()
     {
         return view('livewire.add-employee');

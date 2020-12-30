@@ -6,6 +6,32 @@
     @if (session()->has('message'))
         <div class="relative bg-white text-orange-100 rounded-xl shadow p-4">{{session('message')}}</div>
     @endif
+    @can('edit jobs')
+        <div class="mt-3 items-center justify-between flex text-gray-500 bg-white relative rounded-xl p-4 shadow">
+            {{-- title --}}
+            <p class="font-par font-medium text-xl text-kmtitel relative">Bewerk klussen</p>
+            <div class="flex items-center">
+                <a href="/admin/klus">
+                    <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
+                        {!! file_get_contents('icons/next.svg') !!}
+                    </div>
+                </a>
+            </div>
+        </div>
+    @endcan
+    @can('edit users')
+    <div class="mt-3 items-center justify-between flex text-gray-500 bg-white relative rounded-xl p-4 shadow">
+        {{-- title --}}
+        <p class="font-par font-medium text-xl text-kmtitel relative">Bewerk gebruikers</p>
+        <div class="flex items-center">
+            <a href="/admin/user">
+                <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
+                    {!! file_get_contents('icons/next.svg') !!}
+                </div>
+            </a>
+        </div>
+    </div>
+    @endcan
     @if ($activeJobs->isEmpty())
         {{-- Message for when the archive is empty --}}
             <p class="w-full text-center mt-56 text-gray-300 text-xl">Geen active klussen <br /> :(</p>
@@ -43,7 +69,7 @@
                     <p class="text-xs mr-4 text-gray-300">{{$this->getMin($job->id)}} min</p>
                     <a href="/stopwatch/{{$job->id}}">
                         <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
-                            <svg class="fill-current text-orange-100" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                            {!! file_get_contents('icons/next.svg') !!}
                         </div>
                     </a>
                 </div>
@@ -57,7 +83,7 @@
                     <p class="text-xs text-gray-300 mr-4">€ {{$this->getMaterialCosts($job->id)}}</p>
                     <a href="/materiaal/{{$job->id}}">
                         <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
-                            <svg class="fill-current text-orange-100" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            {!! file_get_contents('icons/plus.svg') !!}
                         </div>
                     </a>
                 </div>

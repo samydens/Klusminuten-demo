@@ -15,9 +15,19 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="/test">
-                        {{ __('Test') }}
+                    <x-jet-nav-link href="/home" :active="request()->routeIs('dashboard')">
+                        {{ __('App') }}
                     </x-jet-nav-link>
+                    @can('edit jobs')
+                        <x-jet-nav-link href="{{route('admin/job')}}" :active="request()->routeIs('admin/user')">
+                            {{ __('klussen bewerken') }}
+                        </x-jet-nav-link>
+                    @endcan
+                    @can('edit users')
+                        <x-jet-nav-link href="/admin/user" :active="request()->routeIs('dashboard')">
+                            {{ __('gebruikers bewerken') }}
+                        </x-jet-nav-link>
+                    @endcan
                 </div>
             </div>
 

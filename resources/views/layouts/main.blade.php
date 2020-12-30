@@ -19,18 +19,18 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body class="antialiased bg-gray-100 h-screen">
+    <body class="antialiased bg-gray-100">
         {{-- Header --}}
-        <nav class="bg-white shadow">
-            {{-- Title --}}
-            <div class="flex flex-row font-roboto py-8 px-8 container mx-auto">
-                <p class="text-2xl text-orange-100 font-bold">Klusminuten</p><p class="text-2xl text-gray-300">admin</p>
-            </div>
-        </nav>
+        <div class="bg-gradient-to-tr from-orange-100 to-orange-200  h-1/5 w-full fixed top-0">
+            {{-- View title --}}
+            <p class="font-ubuntu text-2xl text-white font-bold ml-8 mt-8">@yield('title')</p>
+        </div>
+
         {{-- View content --}}
-        <div class="container mx-auto mt-8">
+        <div class="container w-80 mx-auto mt-36 font-roboto text-gray-500 mb-40">
             @yield('content')
-        </div>    
+        </div>
+        @include('klusminuten.inc.nav')    
         @livewireScripts
     </body>
 </html>
