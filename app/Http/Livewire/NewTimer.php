@@ -77,7 +77,7 @@ class NewTimer extends Component
         $this->recordId = NULL;
 
         session()->flash('message', 'Minuten toegevoegd aan totaal!');
-        return redirect()->to('/dashboard');
+        return redirect()->to('/home');
     }
 
     public function getCurrentMin()

@@ -32,9 +32,14 @@ route::middleware('auth')->group( function() {
     Route::group(['middleware' => ['permission:edit jobs']], function () {
         Route::get('/admin/klus', App\Http\Livewire\JobAdmin::class)->name('admin/job'); 
         Route::get('/admin/klus/{id}', App\Http\Livewire\Editjob::class)->name('admin/job/edit'); // Edit page
+        Route::get('/resklus', App\Http\Livewire\ResponsiveJobAdmin::class);
+        
+        Route::get('/testadmin', function () {
+            return view('testadmin');
+        });
     });
     
-    // Accesible without roles or permission
+    // Accesible without roles or permissions
     Route::get('/', function () { 
         return redirect('/home'); // redirect to /home
     }); 
@@ -43,6 +48,7 @@ route::middleware('auth')->group( function() {
         return view('klusminuten.pages.addjob'); // Add page
     }); 
 
+    Route::get('/chooseemployee', App\Http\Livewire\ChooseEmployee::class); // Choose employee
     Route::get('/home', App\Http\Livewire\CurrentJobs::class); // Dashboard
     Route::get('/klusvijver', App\Http\Livewire\JobIndex::class); // Klusvijver
     Route::get('/klusvijver/{id}', App\Http\Livewire\showJob::class); // Show job

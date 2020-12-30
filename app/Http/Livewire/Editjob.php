@@ -4,57 +4,67 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Job;
+use App\Models\Minute;
+use App\Models\Material;
 
 class Editjob extends Component
 {
-    public $jobId;
     public $job;
-    
-    // Form
     public $title;
-    public $agr_material;
-    public $agr_minutes;
+    public $minutes;
+    public $material;
     public $status;
-    
-    // Possible statuses for a job
-    public $statuses = [
-        'Nog niet begonnen',
-        'In uitvoering',
-        'Afgerond',
-        'Factuur verzonden',
-        'Factuur betaald',
-    ];
+    public $edit;
 
-
-    public function mount($id)
+    public function mount()
     {
-        $this->jobId = $id;
-
-        $job = Job::find($this->jobId);
-        $this->job = $job;
-        $this->title = $job->title;
-        $this->agr_material = $job->agr_material;
-        $this->agr_minutes = $job->agr_minutes;
-        $this->status = $job->status;
+        // $this->title = $job->title;
+        // $this->minutes = $job->agr_minutes;
+        // $this->material = $job->agr_material;
+        // $this->status = $job->status;   
     }
 
-    public function save()
+    public function totalMinutes()
     {
-        $job = Job::find($this->jobId);
-        $job->title = $this->title;
-        $job->agr_material = $this->agr_material;
-        $job->agr_minutes = $this->agr_minutes;
-        $job->status = $this->status;
-        $job->save();
-
-        session()->flash('message', 'Klus bijgewerkt!');
-        return redirect('/admin/klus');
+        // Get total minutes from database
+        $minutes = Minute::where([['job_id', '=', $this->job->id], ['stopped', '=', 1]])->select('total')->get();
+        return round($minutes->sum('total') / 60);
     }
+
+    public function totalMaterial()
+    {
+        // Get total material costs from database
+        $material = Material::where('job_id', '=', $this->job->id)->select('amount')->get();
+        return number_format($material->sum('amount'), 2, ',', '.');
+    }
+
+    public function updated($job)
+    {
+        $this->job->save();
+    }
+
+    // public function updated($minutes)
+    // {
+    //     $this->job->agr_minutes = $this->minutes;
+    //     $this->job->save();
+    // }
+
+    // public function updated($material)
+    // {
+    //     $this->job->agr_material = $this->material;
+    //     $this->job->save();
+    // }
+
+    // public function updated($status)
+    // {
+    //     $this->job->status = $this->status;
+    //     $this->job->save();
+    // }
 
     public function render()
     {
-        return view('livewire.editjob')
-            ->extends('klusminuten.layout.admin')
+        return view('livewire.admin.editjob')
+            ->extends('layouts.admin')
             ->section('content');
     }
 }

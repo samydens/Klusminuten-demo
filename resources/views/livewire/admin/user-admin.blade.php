@@ -61,7 +61,6 @@
             <label class="text-gray-300 text-xs" for="role">Rol</label>
             <select class="border-b-2 border-orange-100" wire:model="role" id="role">
                 <option value="5" selected="selected">Alle rollen</option>
-                {{-- <option value="Admin">Admin</option> --}}
                 @foreach($roles as $singleRole)
                     <option value="{{$singleRole}}">{{$singleRole}}</option>
                 @endforeach

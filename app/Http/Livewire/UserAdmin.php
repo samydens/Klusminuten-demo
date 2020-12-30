@@ -45,8 +45,8 @@ class UserAdmin extends Component
 
     public function render()
     {
-        return view('livewire.user-admin')
-            ->extends('klusminuten.layout.admin')
+        return view('livewire.admin.user-admin')
+            ->extends('layouts.admin')
             ->section('content');
     }
 }

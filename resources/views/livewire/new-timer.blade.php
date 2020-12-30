@@ -12,7 +12,7 @@
                 @if ($editMode and !$running)
                     <input wire:model="total" type="number" class="font-bold text-3xl w-12 self-center">
                 @else
-                    <p wire:poll.50000ms class="font-bold text-3xl">{{$this->getCurrentMin()}}</p>
+                    <p wire:poll.10000ms class="font-bold text-3xl">{{$this->getCurrentMin()}}</p>
                 @endif
                 
                 <p class="text-gray-300">minuten <br /> (huidige sessie)</p>

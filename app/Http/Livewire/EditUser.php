@@ -43,8 +43,8 @@ class EditUser extends Component
     
     public function render()
     {
-        return view('livewire.edit-user')
-            ->extends('klusminuten.layout.admin') 
+        return view('livewire.admin.edit-user')
+            ->extends('layouts.admin') 
             ->section('content');
     }
 }
