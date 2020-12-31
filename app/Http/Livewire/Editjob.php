@@ -9,19 +9,14 @@ use App\Models\Material;
 
 class Editjob extends Component
 {
-    public $job;
-    public $title;
-    public $minutes;
-    public $material;
-    public $status;
-    public $edit;
+    public $status, $edit, $material, $minutes,  $title, $job;
 
-    public function mount()
+    public function mount($job)
     {
-        // $this->title = $job->title;
-        // $this->minutes = $job->agr_minutes;
-        // $this->material = $job->agr_material;
-        // $this->status = $job->status;   
+        $this->status = $job->status;
+        $this->material = $job->agr_material;
+        $this->minutes = $job->agr_minutes;
+        $this->title = $job->title;
     }
 
     public function totalMinutes()
@@ -42,24 +37,6 @@ class Editjob extends Component
     {
         $this->job->save();
     }
-
-    // public function updated($minutes)
-    // {
-    //     $this->job->agr_minutes = $this->minutes;
-    //     $this->job->save();
-    // }
-
-    // public function updated($material)
-    // {
-    //     $this->job->agr_material = $this->material;
-    //     $this->job->save();
-    // }
-
-    // public function updated($status)
-    // {
-    //     $this->job->status = $this->status;
-    //     $this->job->save();
-    // }
 
     public function render()
     {
