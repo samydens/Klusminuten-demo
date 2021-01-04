@@ -32,8 +32,8 @@ route::middleware('auth')->group( function() {
     Route::group(['middleware' => ['permission:edit jobs']], function () {
         Route::get('/admin/klus', App\Http\Livewire\JobAdmin::class)->name('admin/job'); 
         Route::get('/admin/klus/{id}', App\Http\Livewire\Editjob::class)->name('admin/job/edit'); // Edit page
-        Route::get('/admin/klussers', App\Http\Livewire\EmployeeAdmin::class)->name('admin/klusser'); // Employee admin page
-        Route::get('/resklus', App\Http\Livewire\ResponsiveJobAdmin::class);
+        // Route::get('/admin/klussers', App\Http\Livewire\EmployeeAdmin::class)->name('admin/klusser'); // Employee admin page
+        // Route::get('/resklus', App\Http\Livewire\ResponsiveJobAdmin::class);
         
         Route::get('/testadmin', function () {
             return view('testadmin');

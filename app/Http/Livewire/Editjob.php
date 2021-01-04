@@ -11,6 +11,15 @@ class Editjob extends Component
 {
     public $status, $edit, $material, $minutes,  $title, $job;
 
+    // List of all statuses
+    public $statuses = [
+        'Nog niet begonnen',
+        'In uitvoering',
+        'Afgerond',
+        'Factuur verzonden',
+        'Factuur betaald',
+    ];
+
     public function mount($job)
     {
         $this->status = $job->status;
@@ -36,6 +45,11 @@ class Editjob extends Component
     public function updated($job)
     {
         $this->job->save();
+    }
+
+    public function deleteJob()
+    {
+
     }
 
     public function render()

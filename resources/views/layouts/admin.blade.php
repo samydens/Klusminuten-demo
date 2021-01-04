@@ -23,7 +23,7 @@
         {{-- Header --}}
         <nav class="bg-white shadow">
             {{-- Title --}}
-            <div class="flex flex-row font-roboto py-8 px-8 text-2xl">
+            <div class="flex flex-row font-roboto py-8 px-8 text-2xl container mx-auto">
                 <p class="text-orange-100 font-bold">Klusminuten</p><p class="text-gray-300">admin</p>
             </div>
             

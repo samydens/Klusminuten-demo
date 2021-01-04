@@ -55,16 +55,28 @@
         </div>
     </div>
     {{-- Filter --}}
-    <div class="bg-white rounded-xl shadow w-1/5 h-60 m-4 p-4">
-        <p class="text-2xl font-ubuntu font-bold text-gray-500">Filter</p>
-        <div class="flex flex-col mt-4">
-            <label class="text-gray-300 text-xs" for="role">Rol</label>
-            <select class="border-b-2 border-orange-100" wire:model="role" id="role">
-                <option value="5" selected="selected">Alle rollen</option>
-                @foreach($roles as $singleRole)
-                    <option value="{{$singleRole}}">{{$singleRole}}</option>
-                @endforeach
-            </select>
+    <div>
+        <div class="flex items-center justify-between text-gray-500 bg-white rounded-xl p-4 m-4 shadow h-24">
+            <p class="font-roboto font-medium text-xl relative">Terug naar home</p>
+            <div class="flex items-center">
+                <a href="/">
+                    <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
+                        {!! file_get_contents('icons/next.svg') !!}
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="bg-white rounded-xl shadow h-36 m-4 p-4">
+            <p class="text-2xl font-ubuntu font-bold text-gray-500">Filter</p>
+            <div class="flex flex-col mt-4">
+                <label class="text-gray-300 text-xs" for="role">Rol</label>
+                <select class="border-b-2 border-orange-100" wire:model="role" id="role">
+                    <option value="5" selected="selected">Alle rollen</option>
+                    @foreach($roles as $singleRole)
+                        <option value="{{$singleRole}}">{{$singleRole}}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
     </div>
 </div>

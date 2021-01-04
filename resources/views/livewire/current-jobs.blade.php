@@ -8,7 +8,6 @@
     @endif
     @can('edit jobs')
         <div class="mt-3 items-center justify-between flex text-gray-500 bg-white relative rounded-xl p-4 shadow">
-            {{-- title --}}
             <p class="font-par font-medium text-xl text-kmtitel relative">Bewerk klussen</p>
             <div class="flex items-center">
                 <a href="/admin/klus">
@@ -18,10 +17,9 @@
                 </a>
             </div>
         </div>
-    @endcan
+    @endcan 
     @can('edit users')
     <div class="mt-3 items-center justify-between flex text-gray-500 bg-white relative rounded-xl p-4 shadow">
-        {{-- title --}}
         <p class="font-par font-medium text-xl text-kmtitel relative">Bewerk gebruikers</p>
         <div class="flex items-center">
             <a href="/admin/user">
