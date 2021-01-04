@@ -19,6 +19,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
+Route::get('/', function () { 
+    return view('welcome');
+}); 
+
  // Check if logged in
 route::middleware('auth')->group( function() {
     
@@ -40,11 +44,6 @@ route::middleware('auth')->group( function() {
         });
     });
     
-    // Accesible without roles or permissions
-    Route::get('/', function () { 
-        return redirect('/home'); // redirect to /home
-    }); 
-
     Route::get('/toevoegen', function () {
         return view('klusminuten.pages.addjob'); // Add page
     }); 
