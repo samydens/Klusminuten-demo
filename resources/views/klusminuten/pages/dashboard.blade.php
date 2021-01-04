@@ -6,5 +6,6 @@
 
 
 @section('content')
-<livewire:current-jobs>
+    <livewire:link :link="/admin/klus" :title="Bewerk klussen"> 
+    <livewire:current-jobs>
 @endsection

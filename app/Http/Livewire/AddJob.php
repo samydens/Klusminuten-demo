@@ -15,7 +15,7 @@ class AddJob extends Component
     public $photo;
 
     protected $rules = [
-        'job.title' => 'required|max:20',
+        'job.title' => 'required|max:255',
         'job.desc' => 'required|max:200',
         'job.agr_minutes' => 'required|max:999999|numeric',
         'job.agr_material' => 'required|max:999999|numeric',
