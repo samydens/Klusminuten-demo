@@ -120,7 +120,7 @@ class NewTimer extends Component
     public function render()
     {
         return view('livewire.new-timer')
-        ->extends('klusminuten.layout.timer')
+        ->extends('layouts.timer')
         ->section('content');
     }
 }

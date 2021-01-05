@@ -18,7 +18,7 @@
                     <x-jet-nav-link href="/home" :active="request()->routeIs('dashboard')">
                         {{ __('App') }}
                     </x-jet-nav-link>
-                    @can('edit jobs')
+                    {{-- @can('edit jobs')
                         <x-jet-nav-link href="{{route('admin/job')}}" :active="request()->routeIs('admin/user')">
                             {{ __('klussen bewerken') }}
                         </x-jet-nav-link>
@@ -27,7 +27,7 @@
                         <x-jet-nav-link href="/admin/user" :active="request()->routeIs('dashboard')">
                             {{ __('gebruikers bewerken') }}
                         </x-jet-nav-link>
-                    @endcan
+                    @endcan --}}
                 </div>
             </div>
 

@@ -16,7 +16,6 @@ class JobIndex extends Component
     {
         return view('livewire.job-index', [
             'jobs' => Job::where('status', '=', 0)->get(),
-            ])
-            ->extends('klusminuten.layout.app');
+            ]);
     }
 }

@@ -20,7 +20,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 // welcome page
 Route::get('/', function () {
-    return view('pages.welcome');
+    return view('welcome');
 });
 
 // dashboard
@@ -38,10 +38,15 @@ Route::get('/klusvijver', function() {
     return view('pages.klusvijver');
 });
 
-// archief
-Route::get('/klusvijver/archief', function () {
-    return view('pages.archief');
-});
+Route::get('/klusvijver/{id}', App\Http\Livewire\ShowJob::class);
+
+// // archief
+// Route::get('/klusvijver/archief', function () {
+//     return view('pages.archief');
+// });
+
+
+Route::get('/archief', App\http\Livewire\Archive::class);
 
 // user admin
 Route::get('/admin/gebruikers', function() {
@@ -58,10 +63,14 @@ Route::get('/admin', function () {
     return view('pages.admin.admin');
 });
 
-// timer
-Route::get('/timer/{id}', function () {
-    return view('timer');
-});
+// // timer
+// Route::get('/stopwatch/{id}', function ($id) {
+//     return view('pages.timer');
+// });
+
+
+Route::get('/stopwatch/{id}', App\Http\Livewire\NewTimer::class);
+Route::get('/materiaal/{id}', App\Http\Livewire\AddMaterial::class);
 
 // material
 Route::get('/material/{id}', function () {

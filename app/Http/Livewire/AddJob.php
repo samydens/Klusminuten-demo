@@ -17,8 +17,8 @@ class AddJob extends Component
     protected $rules = [
         'job.title' => 'required|max:20',
         'job.desc' => 'required|max:200',
-        'job.agr_minutes' => 'required|max:999999|numeric',
-        'job.agr_material' => 'required|max:999999|numeric',
+        'job.agr_minutes' => 'required|max:9999|numeric', // max 9999 minutes
+        'job.agr_material' => 'required|max:49999|numeric', // max 49999 material in euros
         'job.location' => 'required',
         'photo' => 'mimes:png,jpg,jpeg|max:2024|nullable',
     ];
