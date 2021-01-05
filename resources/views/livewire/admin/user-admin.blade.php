@@ -59,7 +59,7 @@
         <div class="flex items-center justify-between text-gray-500 bg-white rounded-xl p-4 m-4 shadow h-24">
             <p class="font-roboto font-medium text-xl relative">Terug naar home</p>
             <div class="flex items-center">
-                <a href="/">
+                <a href="/home">
                     <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
                         {!! file_get_contents('icons/next.svg') !!}
                     </div>
