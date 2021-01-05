@@ -53,10 +53,12 @@ Route::get('/admin/gebruikers', function() {
     return view('pages.admin.user');
 });
 
-// job admin
-Route::get('/admin/klus', function () {
-    return view('pages.admin.job');
-});
+// // job admin
+// Route::get('/admin/klus', function () {
+//     return view('pages.admin.job');
+// });
+
+Route::get('/admin/klus', App\Http\Livewire\JobAdmin::class);
 
 // admin home
 Route::get('/admin', function () {
