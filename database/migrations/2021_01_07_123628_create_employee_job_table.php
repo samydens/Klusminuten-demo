@@ -14,8 +14,8 @@ class CreateEmployeeJobTable extends Migration
     public function up()
     {
         Schema::create('employee_job', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->foreignId('employee_id')->constrained();
+            $table->foreignId('job_id')->constrained();
         });
     }
 
