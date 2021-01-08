@@ -54,7 +54,8 @@ route::middleware('auth')->group( function() {
     Route::get('/stopwatch/{id}', App\Http\Livewire\NewTimer::class); // Stopwatch
     Route::get('/materiaal/{id}', App\Http\Livewire\AddMaterial::class); // Materials
     Route::get('/archief', App\Http\Livewire\Archive::class); // Archive
-    Route::get('/newjob', App\Http\Livewire\NewJob::class); // new job test link
-    Route::get('/tester', App\Http\Livewire\EmployeeJobs::class); // test for employeejob relation
+    Route::get('/klus/toevoegen', App\Http\Livewire\NewJob::class); // new job test link
+    Route::get('/klus/werknemers', App\Http\Livewire\EmployeeJobs::class); // test for employeejob relation
+    Route::get('/test/1', App\Http\Livewire\Multipleemployeetest::class);
     
 });

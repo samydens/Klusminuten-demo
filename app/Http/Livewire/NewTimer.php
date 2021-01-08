@@ -10,13 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class NewTimer extends Component
 {
-    public $startTime;
-    public $stopTime;
-    public $running;
-    public $jobId;
-    public $recordId;
-    public $editMode;
-    public $total;
+    public $startTime, $stopTime, $running, $jobId, $recordId, $editMode, $total;
 
     public function mount($id)
     {

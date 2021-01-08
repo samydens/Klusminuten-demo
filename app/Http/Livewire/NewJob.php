@@ -13,7 +13,7 @@ class NewJob extends Component
 {
     use WithFileUploads;
 
-    public $step, $job, $client, $employee, $customerIndex, $employeeIndex, $photo;
+    public $step, $job, $client, $employee, $customerIndex, $employeeIndex, $photo, $employeeIds;
 
     private $stepActions = [
         'submit1', // step 0
@@ -23,12 +23,6 @@ class NewJob extends Component
         'submitClient', // step 4 (step 1)
         'submitEmployee' // step 5 (step 2)
     ];
-
-    // protected $rules = [
-    //     'job.title' => 'required|max:255',
-    //     'job.desc' => 'required|max:200',
-    //     'photo' => 'mimes:png,jpg,jpeg|max:2024|nullable',
-    // ];
 
     protected $messages = [
         'required' => 'Dit veld is verplicht',
@@ -50,12 +44,6 @@ class NewJob extends Component
         $this->employeeIndex = Employee::all();
     }
 
-    public function nextStep()
-    {
-        // increment step
-        $this->step++;
-    }
-
     public function previousStep()
     {
         // decrement step
@@ -71,7 +59,7 @@ class NewJob extends Component
         $this->$action();
     }
 
-    public function updated($photo)
+    public function updatedphoto()
     {
         // Check if image is valid when uploaded.
         $this->validate([
@@ -148,10 +136,24 @@ class NewJob extends Component
         $job->location = $this->job['location'];
         $job->user_id = Auth::id();
         $job->client_id = $this->job['client_id'];
-        $job->employee_id = $this->job['employee_id'];
         $job->agr_minutes = $this->job['agr_minutes'];
         $job->agr_material = $this->job['agr_material'];
         $job->save();
+
+        // // Save relation between job and employee.
+        // $job->employees()->attach($this->job['employee_id']);
+
+        foreach ($this->employeeIds as $employeeId) {
+            $job->employees()->attach($employeeId);
+        }
+        // Set step to 0.
+        $this->step = 0;
+
+        // Empty all modeled variables.
+        $this->job = '';
+        $this->employee = '';
+        $this->client = '';
+        $this->photo = '';
     }
 
     public function newClient()

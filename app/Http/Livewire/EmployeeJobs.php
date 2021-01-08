@@ -17,34 +17,43 @@ class EmployeeJobs extends Component
 
     public function mount()
     {
+        // Get all jobs, sort by date desc.
         $this->jobs = Job::all()->sortByDesc('created_at');
+
+        // Get all employees.
         $this->employees = Employee::all();
     }
 
     public function submit()
     {
+        // Assign variables.
         $employee = $this->selectedEmployee;
         $job = $this->selectedJob;
 
+        // execute attachRelation.
         $this->attachRelation($employee, $job);
+
+        // Unset variables.
+        $this->selectedJob = '';
+        $this->selectedEmployee = '';
     }
     
     public function attachRelation($employeeId, $jobId)
     {
+        // Find job using id.
         $job = Job::find($jobId);
+
+        // Attach job and employee.
         $job->employees()->attach($employeeId);
     }
     
     public function detachRelation($jobId, $employeeId)
     {
+        // Find job using id.
         $job = Job::find($jobId);
-        $job->employees()->detach($employeeId);
-    }
 
-    public function deleteRelation()
-    {
-        $job = Job::find($this->jobId);
-        $job->employees()->detach($this->employeeId);
+        // Detach job and employee.
+        $job->employees()->detach($employeeId);
     }
 
     public function render()
