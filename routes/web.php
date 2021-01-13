@@ -36,18 +36,13 @@ route::middleware('auth')->group( function() {
     Route::group(['middleware' => ['permission:edit jobs']], function () {
         Route::get('/admin/klus', App\Http\Livewire\JobAdmin::class)->name('admin/job'); 
         Route::get('/admin/klus/{id}', App\Http\Livewire\Editjob::class)->name('admin/job/edit'); // Edit page
-        // Route::get('/admin/klussers', App\Http\Livewire\EmployeeAdmin::class)->name('admin/klusser'); // Employee admin page
-        // Route::get('/resklus', App\Http\Livewire\ResponsiveJobAdmin::class);
         
         Route::get('/testadmin', function () {
             return view('testadmin');
         });
     });
     
-    Route::get('/toevoegen', function () {
-        return view('klusminuten.pages.addjob'); // Add page
-    }); 
-
+    Route::get('/toevoegen', App\Http\Livewire\NewJob::class); // Create a new job.
     Route::get('/home', App\Http\Livewire\CurrentJobs::class); // Dashboard
     Route::get('/klusvijver', App\Http\Livewire\JobIndex::class); // Klusvijver
     Route::get('/klusvijver/{id}', App\Http\Livewire\showJob::class); // Show job
@@ -56,6 +51,4 @@ route::middleware('auth')->group( function() {
     Route::get('/archief', App\Http\Livewire\Archive::class); // Archive
     Route::get('/klus/toevoegen', App\Http\Livewire\NewJob::class); // new job test link
     Route::get('/klus/werknemers', App\Http\Livewire\EmployeeJobs::class); // test for employeejob relation
-    Route::get('/test/1', App\Http\Livewire\Multipleemployeetest::class);
-    
 });
