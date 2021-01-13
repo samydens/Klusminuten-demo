@@ -1,3 +1,4 @@
+{{-- Agreements --}}
 <div class="bg-white rounded-xl shadow p-4 mx-4 text-gray-500">
 
     {{-- Form title --}}

@@ -1,3 +1,4 @@
+{{-- New Client --}}
 <div class="bg-white rounded-xl shadow p-4 mx-4 text-gray-500">
 
     {{-- Form title --}}
@@ -37,8 +38,8 @@
     {{-- Client phone --}}
     <div class="mt-4">
         <label for="clientPhone" class="text-sm text-gray-300">telefoonnummer:<br></label>
-        <input wire:model.lazy="client.phone_number" id="clientPhone" class="border border-gray-400 bg-gray-200 rounded w-full p-1" placeholder="bijv. 0612345678" type="text">
-        @error('client.phone') <span class="text-sm text-red">{{$message}}</span> @enderror
+        <input wire:model.lazy="client.client_phone" id="clientPhone" class="border border-gray-400 bg-gray-200 rounded w-full p-1" placeholder="bijv. 0612345678" type="text">
+        @error('client.client_phone') <span class="text-sm text-red">{{$message}}</span> @enderror
     </div>
 
     {{-- Client mail --}}

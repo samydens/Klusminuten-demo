@@ -1,3 +1,4 @@
+{{-- Choose Client --}}
 <div class="bg-white rounded-xl shadow p-4 mx-4 text-gray-500">
 
     {{-- Form title --}}
@@ -8,19 +9,19 @@
     
     {{-- Choose customer --}}
     <div class="mt-8">
-        <label for="customer" class="text-sm text-gray-300">Klant:<br></label>
-        <input wire:model.lazy="job.client_name" list="customers" id="customer" class="border border-gray-400 bg-gray-200 rounded w-full p-1" placeholder="kies een bestaande klant">
-        @error('job.client_name') <span class="text-sm text-red">{{$message}}</span> @enderror
-        <datalist id="customers">
+        <label for="customer" class="text-sm text-gray-300">Klant:</label>
+        <select wire:model.lazy="job.client_id" id="customer" class="border border-gray-400 bg-gray-200 rounded w-full p-1 max-w-">
+            <option value="">Kies een klant:</option>
             @foreach ($customerIndex as $customer)
-                <option value="{{$customer->full_name}}">
+                <option value="{{$customer->id}}">{{$customer->full_name}}</option>
             @endforeach
-        </datalist>
+        </select>
+        @error('job.client_id') <span class="text-sm text-red">{{$message}}</span> @enderror
     </div>
 
     {{-- Link to new customer form --}}
     <div class="mt-4">
-        <p wire:click="newClient" class="text-orange-100 font-medium mt-4"><u>voeg een klant toe</u></p>
+        <a wire:click="newClient" class="text-orange-100 font-medium mt-4"><u>voeg een klant toe</u></a>
     </div>
 
 
