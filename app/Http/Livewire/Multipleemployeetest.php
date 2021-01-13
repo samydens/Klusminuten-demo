@@ -8,52 +8,36 @@ use App\Models\Job;
 
 class Multipleemployeetest extends Component
 {
-    public $employees;
-    public $werknemers;
-    public $fields;
-    public $selectedEmployees = [];
-    public $jobId;
-    public $jobs;
-
-    public function mount()
-    {
-        $this->employees = Employee::all()->sortByDesc('updated_at');
-        $this->fields = 0;
-        $this->jobs = Job::all()->sortByDesc('updated_at');
-    }
-
-    public function updatedjobId()
-    {
-        // If a job is select, automatically make new employee field.
-        if ($this->fields < 1) {
-            $this->fields = 1;
-        }   
-    }
-
-    public function submit()
-    {
-        $job = Job::find($this->jobId);
-
-        foreach ($this->selectedEmployees as $employee) {
-            $job->employees()->attach($employee);
-        }
-
-        $this->fields = 0;
-        $this->selectEmployees = '';
-    }
+    public $selectEmp = []; 
+    public $allEmployees;
+    public $newEmployee;
 
     public function addField()
     {
-        $this->fields++;
+        // Add first field.
+        $this->selectEmp[] = ''; 
+
+        // Get all employees.
+        $this->allEmployees = Employee::all();
     }
 
-    public function deleteField()
+    public function submitNewEmployee()
     {
-        // Delete value of field.
-        $this->selectedEmployees[$this->fields - 1] = '';
+        // Save new employee to database.
+        $employee = new Employee;
+        $employee->name = $this->newEmployee['name'];
+        $employee->vakman_id = $this->newEmployee['vakman_id'];
+        $employee->phone_number = $this->newEmployee['phone'];
+        $employee->save();
+
+        // Refresh all employees.
+        $this->allEmployees = Employee::all();
         
-        // Decrease field count.
-        $this->fields--;
+        // Add ID to selectEmp array.
+        $this->selectEmp[] = $employee->id;
+        
+        // Empty input field.
+        $this->newEmployee = '';
     }
 
     public function render()
