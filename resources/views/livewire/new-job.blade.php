@@ -1,4 +1,7 @@
-<div>
+@section('title')
+    Nieuwe klus
+@endsection
+<div class="relative">
     <form wire:submit.prevent="submit" enctype="multipart/form-data">
         @switch($step)
             @case(0)

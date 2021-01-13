@@ -34,7 +34,9 @@ class NewJob extends Component
         'job.desc.max' => 'Omschrijving is te lang',
         'photo.max' => 'Foto is te groot',
         'photo.mimes' => 'Upload een JPG of PNG',
-        'email' => 'Voer een geldig E-mail adres in'
+        'email' => 'Voer een geldig E-mail adres in',
+        'employee.max' => 'Naam is te lang',
+        'selectEmp.required' => 'Voeg een medewerker toe' 
     ];
 
     public function mount()
@@ -46,10 +48,7 @@ class NewJob extends Component
 
     public function submit()
     {
-        // Get the submit function belonging to current step.
         $action = $this->stepActions[$this->step];
-
-        // Execute function.
         $this->$action();
     }
 
@@ -60,7 +59,6 @@ class NewJob extends Component
 
     public function updatedphoto()
     {
-        // Live image validation
         $this->validate([
             'photo' => 'max:2048|mimes:jpg,png,jpeg|nullable'
         ]);
@@ -74,7 +72,6 @@ class NewJob extends Component
             'photo' => 'max:2048|mimes:jpg,png,jpeg|nullable'
         ]);
 
-        // Set standard image if no image is uploaded.
         if ($this->photo) {
             $this->job['photo_url'] = $this->photo->store('photos', 'public');
         } else {
@@ -98,13 +95,15 @@ class NewJob extends Component
 
     public function submit2()
     {
-        // Hier komt nog validation.
+        $this->validate([
+            'selectEmp' => 'required' 
+        ]);
+
         $this->step++;
     }
 
     public function addField()
     {
-        // Add a new employee field.
         $this->selectEmp[] = '';
     }
 
@@ -135,26 +134,18 @@ class NewJob extends Component
             $job->employees()->attach($employee);
         }
 
-        // unset($this->job);
-        // unset($this->photo);
-        // unset($this->selectEmp);
-
         $this->reset(['job', 'photo', 'selectEmp']);
 
         $this->step = 0;
-        
-        // return redirect()->to('/home');
     }
 
     public function newClient()
     {
-        // Sets step to 4 (new client form.)
         $this->step = 4;
     }
     
     public function newEmployee()
     {
-        // Sets step to 5 (add new employee.)
         $this->step = 5;
     }
 
@@ -182,7 +173,6 @@ class NewJob extends Component
         $this->job['client_id'] = $client->id;
         $this->job['location'] = $client->city;
 
-        // unset($this->client);
         $this->reset('client');
 
         $this->step = 2;
@@ -193,7 +183,7 @@ class NewJob extends Component
         $employee = $this->employee;
 
         $this->validate([
-            'employee.name' => 'required',
+            'employee.name' => 'required|max:255',
             'employee.vakman_id' => 'numeric|required',
             'employee.employee_phone' => 'numeric|required',
         ]);
@@ -207,7 +197,6 @@ class NewJob extends Component
         $this->employeeIndex = Employee::all();
         $this->selectEmp[] = strval($employee->id);
         
-        // unset($this->employee);
         $this->reset('employee');
 
         $this->step = 2;
@@ -215,13 +204,12 @@ class NewJob extends Component
 
     public function backFromNew()
     {
-        // Go back to previous but from new client or employee pages.
         $this->step = $this->step - 3;
     }
 
     public function render()
     {
         return view('livewire.new-job')
-        ->extends('layouts.admin');
+        ->extends('layouts.main');
     }
 }

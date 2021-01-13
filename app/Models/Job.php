@@ -24,4 +24,9 @@ class Job extends Model
     {
         return $this->belongsToMany(Employee::class);
     }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

@@ -1,3 +1,4 @@
+{{-- Select employees --}}
 <div class="bg-white rounded-xl shadow p-4 mx-4 text-gray-500">
 
     {{-- Form title --}}
@@ -15,27 +16,38 @@
     {{-- Loop trough selectEmp --}}
     @foreach ($selectEmp as $key => $employee)
         <div class="mt-4">
+
+            {{-- Label --}}
             <label for="selectEmp.{{$key}}" class="text-sm text-gray-300">Medewerker:<br /></label>
+            
+            {{-- Select with values from selectEmp. When a key has no value, user can set it. --}}
             <div class="flex flex-row items-center">
-                <select wire:model.lazy="selectEmp.{{$key}}" id="selectEmp.{{$key}}" class="bg-gray-200 border border-gray-400 rounded">
+                <select wire:model.lazy="selectEmp.{{$key}}" id="selectEmp.{{$key}}" class="bg-gray-200 border border-gray-400 rounded w-11/12">
+                    
+                    {{-- Standard option --}}
                     <option value="">Kies een medewerker</option>
+                    
+                    {{-- Iterate trough all employees as options. --}}
                     @foreach ($employeeIndex as $employee)
                         <option value="{{$employee->id}}">{{$employee->name}}</option>
                     @endforeach
                 </select>
+                
+                {{-- Delete chosen employee from selectEmp. --}}
                 <button wire:click.prevent="deleteFieldById({{$key}})" class="text-red ml-1">{!! file_get_contents('icons/exit.svg') !!}</button>
+            
             </div>
         </div>
     @endforeach
-
-    {{-- New or excisting employee --}}
-    <button wire:click.prevent="addField" class="text-orange-100 border-2 border-orange-100 flex flex-row rounded px-2 mt-4">bestaande klusser {!! file_get_contents('icons/plus.svg') !!}</button>
-    <button wire:click.prevent="newEmployee" class="bg-orange-100 rounded text-white flex flex-row px-2 mt-4 border-2 border-orange-100">nieuwe klusser {!! file_get_contents('icons/plus.svg') !!} </button>
     
-    {{-- Next & previous buttons --}}
-    <div class="mt-8 flex flex-row space-x-4">
-        <div wire:click="previousStep" class="bg-gradient-to-tr from-orange-100 to-orange-200 p-2 w-full text-white rounded text-center">Terug</div>
-        <button type="submit" class="bg-gradient-to-tr from-orange-100 to-orange-200 p-2 w-full text-white rounded">Volgende</button>
-    </div>
+    @error('selectEmp') <span class="text-red text-sm">{{ $message }}</span> @enderror
+
+    {{-- Add new or excisting employee. --}}
+    <button wire:click.prevent="addField" class="text-orange-100 border-2 border-orange-100 flex flex-row rounded px-2 mt-4 w-full justify-center">bestaande klusser {!! file_get_contents('icons/plus.svg') !!}</button>
+    <p class="w-full text-center text-gray-300 text-sm my-2">of</p>
+    <button wire:click.prevent="newEmployee" class="bg-orange-100 rounded text-white flex flex-row px-2 border-2 border-orange-100 w-full justify-center">nieuwe klusser {!! file_get_contents('icons/plus.svg') !!} </button>
+    
+    {{-- Next and back buttons. --}}
+    @include('livewire.form-inc.next-back')
 
 </div>

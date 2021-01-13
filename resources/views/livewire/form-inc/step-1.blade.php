@@ -21,13 +21,9 @@
 
     {{-- Link to new customer form --}}
     <div class="mt-4">
-        <a wire:click="newClient" class="text-orange-100 font-medium mt-4"><u>voeg een klant toe</u></a>
+        <button wire:click="newClient" class="text-orange-100 font-medium mt-4"><u>voeg een klant toe</u></button>
     </div>
-
 
     {{-- Next & previous buttons --}}
-    <div class="mt-8 flex flex-row space-x-4">
-        <div wire:click="previousStep" class="bg-gradient-to-tr from-orange-100 to-orange-200 p-2 w-full text-white rounded text-center">Terug</div>
-        <button type="submit" class="bg-gradient-to-tr from-orange-100 to-orange-200 p-2 w-full text-white rounded">Volgende</button>
-    </div>
+    @include('livewire.form-inc.next-back')
 </div>
