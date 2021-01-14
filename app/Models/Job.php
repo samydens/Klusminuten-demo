@@ -9,8 +9,24 @@ class Job extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'desc',
+        'photo',
+        'location',
+        'user_id',
+        'client_id',
+        'agr_minutes',
+        'agr_material'
+    ];
+
     public function employees()
     {
         return $this->belongsToMany(Employee::class);
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
     }
 }

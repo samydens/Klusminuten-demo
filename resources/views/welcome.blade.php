@@ -22,26 +22,26 @@
     <body class="antialiased bg-gray-100 font-bold font-ubuntu text-orange-100 text-xl">
         <div class="w-80 mx-auto mt-40">
             <img src="/storage/logo/klusmin.png" alt="logo" class="mb-8">
-            <div class="mt-3 items-center justify-between flex bg-white relative rounded-xl p-4 shadow">
-                <p>inloggen</p>
-                <div class="flex items-center">
-                    <a href="/login">
+            <a href="/login">
+                <div class="mt-3 items-center justify-between flex bg-white relative rounded-xl p-4 shadow">
+                    <p>inloggen</p>
+                    <div class="flex items-center">
                         <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
                             {!! file_get_contents('icons/next.svg') !!}
                         </div>
-                    </a>
+                    </div>
                 </div>
-            </div>
-            <div class="mt-3 items-center justify-between flex bg-white relative rounded-xl p-4 shadow">
-                <p>registreren</p>
-                <div class="flex items-center">
-                    <a href="/register">
+            </a>
+            <a href="/register">
+                <div class="mt-3 items-center justify-between flex bg-white relative rounded-xl p-4 shadow">
+                    <p>registreren</p>
+                    <div class="flex items-center">
                         <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
                             {!! file_get_contents('icons/next.svg') !!}
                         </div>
-                    </a>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         @livewireScripts
     </body>
