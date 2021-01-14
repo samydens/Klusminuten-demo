@@ -4,9 +4,9 @@
 <div class="space-y-4 relative">
     {{-- Display messages --}}
     @if (session()->has('message'))
-        <x-widget>
-            <p class="text-orange-100">{{session('message')}}</p>
-        </x-widget>
+        <x-message>
+            {{ $message }}
+        </x-message>
     @endif
     @can('edit jobs')
         <x-widget>

@@ -5,13 +5,10 @@
     
     {{-- Step count --}}
     <p class="text-gray-300">Stap {{$step + 1}}</p>
-    
+
     {{-- Job title --}}
-    <div class="mt-8">
-        <label for="title" class="text-sm text-gray-300">titel:<br></label>
-        <input wire:model.lazy="job.title" type="text" id="title" class="border border-gray-400 bg-gray-200 rounded w-full p-1" placeholder="typ hier de titel">
-        @error('job.title') <span class="text-sm text-red">{{$message}}</span> @enderror
-    </div>
+    <x-input id="title" label="titel:" type="text" prop="job.title" placeholder="typ hier de titel" />
+    @error('job.desc') <span class="text-sm text-red">{{$message}}</span> @enderror
     
     {{-- Job description --}}
     <div class="mt-4">
@@ -19,6 +16,7 @@
         <textarea wire:model.lazy="job.desc" id="desc" cols="30" rows="5" class="border border-gray-400 bg-gray-200 rounded w-full p-1" placeholder="typ hier de beschrijving"></textarea>
         @error('job.desc') <span class="text-sm text-red">{{$message}}</span> @enderror
     </div>
+
     
     {{-- Image upload --}}
     <div class="mt-4">
@@ -34,10 +32,10 @@
         
         {{-- Temporary image display --}}
         @if ($photo)
-        <div class="mt-4">
-            <span class="text-gray-300 text-sm">Afbeelding:</span>
-            <img src="{{ $photo->temporaryUrl() }}" class="max-h-48 mx-auto">
-        </div>
+            <div class="mt-4">
+                <span class="text-gray-300 text-sm">Afbeelding:</span>
+                <img src="{{ $photo->temporaryUrl() }}" class="max-h-48 mx-auto">
+            </div>
         @endif
     </div>
     

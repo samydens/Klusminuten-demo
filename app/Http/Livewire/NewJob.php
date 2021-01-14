@@ -45,7 +45,6 @@ class NewJob extends Component
 
     public function mount()
     {
-        $this->step = 0;
         $this->customerIndex = Client::all();
         $this->employeeIndex = Employee::all();
     }
@@ -143,29 +142,20 @@ class NewJob extends Component
         $this->step = 0;
     }
 
-    public function newClient()
-    {
-        $this->step = 4;
-    }
     
-    public function newEmployee()
-    {
-        $this->step = 5;
-    }
-
     public function submit4()
     {
         $client = $this->client;
-
+        
         $this->validate([
             'client.full_name' => 'required|max:255',
             'client.adres' => 'required|max:255',
             'client.zip' => 'required|max:255',
             'client.city' => 'required|max:255',
-            'client.client_phone' => 'required|numeric|max:20', 
-            'client.mail' => 'required|email|unique:clients|max:255',
+            'client.client_phone' => 'required|numeric', 
+            'client.mail' => 'required|email|max:255',
         ]);
-
+            
         $client = Client::create([
             'full_name' => $client['full_name'],
             'adres' => $client['adres'],
@@ -174,37 +164,47 @@ class NewJob extends Component
             'phone_number' => $client['client_phone'],
             'mail' => $client['mail'],
         ]);
-
+            
         $this->job['client_id'] = $client->id;
         $this->job['location'] = $client->city;
-
+        
         $this->reset('client');
-
+        
         $this->step = 2;
     }
-
+            
     public function submit5()
     {
         $employee = $this->employee;
-
+        
         $this->validate([
             'employee.name' => 'required|max:255',
             'employee.vakman_id' => 'numeric|required',
             'employee.employee_phone' => 'numeric|required',
         ]);
-        
+            
         $employee = Employee::create([
             'name' => $employee['name'],
             'vakman_id' => $employee['vakman_id'],
             'phone_number' => $employee['employee_phone']
         ]);
-
+                
         $this->employeeIndex = Employee::all();
         $this->selectEmp[] = strval($employee->id);
-        
+                
         $this->reset('employee');
-
+        
         $this->step = 2;
+    }
+
+    public function newClient()
+    {
+        $this->step = 4;
+    }
+    
+    public function newEmployee()
+    {
+        $this->step = 5;
     }
 
     public function backFromNew()

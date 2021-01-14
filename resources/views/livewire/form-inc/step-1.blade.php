@@ -26,4 +26,5 @@
 
     {{-- Next & previous buttons --}}
     @include('livewire.form-inc.next-back')
+    
 </x-widget>

@@ -8,47 +8,29 @@
     <p class="text-gray-300">Stap {{$step - 2}}</p>
     
     {{-- Client name --}}
-    <div class="mt-8">
-        <label for="clientName" class="text-sm text-gray-300">naam:<br></label>
-        <input wire:model.lazy="client.full_name" id="clientName" class="border border-gray-400 bg-gray-200 rounded w-full p-1" placeholder="bijv. Kees Jan" type="text">
-        @error('client.full_name') <span class="text-sm text-red">{{$message}}</span> @enderror
-    </div>
-
+    <x-input id="client_name" label="naam:" type="text" prop="client.full_name" placeholder="bijv. Kees Jan" />
+    @error('client.full_name') <span class="text-sm text-red">{{$message}}</span> @enderror
+    
     {{-- Client adres --}}
-    <div class="mt-4">
-        <label for="clientAdres" class="text-sm text-gray-300">adres:<br></label>
-        <input wire:model.lazy="client.adres" id="clientAdres" class="border border-gray-400 bg-gray-200 rounded w-full p-1" placeholder="bijv. Straat 1" type="text">
-        @error('client.adres') <span class="text-sm text-red">{{$message}}</span> @enderror
-    </div>
-
+    <x-input id="client_adres" label="adres:" type="text" prop="client.adres" placeholder="bijv. Straat 1" />
+    @error('client.adres') <span class="text-sm text-red">{{$message}}</span> @enderror
+    
     {{-- Client ZIP --}}
-    <div class="mt-4">
-        <label for="clientZip" class="text-sm text-gray-300">postcode:<br></label>
-        <input wire:model.lazy="client.zip" id="clientZip" class="border border-gray-400 bg-gray-200 rounded w-full p-1" placeholder="bijv. 1234AB" type="text">
-        @error('client.zip') <span class="text-sm text-red">{{$message}}</span> @enderror
-    </div>
-
+    <x-input id="client_zip" label="postcode:" type="text" prop="client.zip" placeholder="bijv. 1234AB" />
+    @error('client.zip') <span class="text-sm text-red">{{$message}}</span> @enderror
+    
     {{-- Client city --}}
-    <div class="mt-4">
-        <label for="clientCity" class="text-sm text-gray-300">plaats:<br></label>
-        <input wire:model.lazy="client.city" id="clientCity" class="border border-gray-400 bg-gray-200 rounded w-full p-1" placeholder="bijv. Amsterdam" type="text">
-        @error('client.city') <span class="text-sm text-red">{{$message}}</span> @enderror
-    </div>
-
+    <x-input id="client_city" label="plaats:" type="text" prop="client.city" placeholder="bijv. Amsterdam" />
+    @error('client.city') <span class="text-sm text-red">{{$message}}</span> @enderror
+    
     {{-- Client phone --}}
-    <div class="mt-4">
-        <label for="clientPhone" class="text-sm text-gray-300">telefoonnummer:<br></label>
-        <input wire:model.lazy="client.client_phone" id="clientPhone" class="border border-gray-400 bg-gray-200 rounded w-full p-1" placeholder="bijv. 0612345678" type="text">
-        @error('client.client_phone') <span class="text-sm text-red">{{$message}}</span> @enderror
-    </div>
-
+    <x-input id="client_phone" label="telefoonnummer:" type="text" prop="client.client_phone" placeholder="bijv. 0612345678" />
+    @error('client.client_phone') <span class="text-sm text-red">{{$message}}</span> @enderror
+    
     {{-- Client mail --}}
-    <div class="mt-4">
-        <label for="clientMail" class="text-sm text-gray-300">E-mail:<br></label>
-        <input wire:model.lazy="client.mail" id="clientMail" class="border border-gray-400 bg-gray-200 rounded w-full p-1" placeholder="bijv. keesjan@bedrijf.nl" type="text">
-        @error('client.mail') <span class="text-sm text-red">{{$message}}</span> @enderror
-    </div>
-
+    <x-input id="client_mail" label="E-mail:" type="text" prop="client.mail" placeholder="bijv. keesjan@bedrijf.nl" />
+    @error('client.mail') <span class="text-sm text-red">{{$message}}</span> @enderror
+    
     {{-- Next & previous buttons --}}
     <div class="mt-8 flex flex-row space-x-4">
         <div wire:click="backFromNew" class="bg-gradient-to-tr from-orange-100 to-orange-200 p-2 w-full text-white rounded text-center">Terug</div>
