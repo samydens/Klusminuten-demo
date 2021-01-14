@@ -1,5 +1,5 @@
 {{-- Choose Client --}}
-<div class="bg-white rounded-xl shadow p-4 mx-4 text-gray-500">
+<x-widget>
 
     {{-- Form title --}}
     <p class="font-ubuntu font-bold text-xl">Klant</p>
@@ -26,4 +26,4 @@
 
     {{-- Next & previous buttons --}}
     @include('livewire.form-inc.next-back')
-</div>
+</x-widget>

@@ -1,5 +1,5 @@
 {{-- Agreements --}}
-<div class="bg-white rounded-xl shadow p-4 mx-4 text-gray-500">
+<x-widget>
 
     {{-- Form title --}}
     <p class="font-ubuntu font-bold text-xl">Afspraken</p>
@@ -26,4 +26,4 @@
         <button wire:click.prevent="previousStep" class="bg-gradient-to-tr from-orange-100 to-orange-200 p-2 w-full text-white rounded">Terug</button>
         <button type="submit" class="bg-gradient-to-tr from-orange-100 to-orange-200 p-2 w-full text-white rounded">Opslaan</button>
     </div>
-</div>
+</x-widget>

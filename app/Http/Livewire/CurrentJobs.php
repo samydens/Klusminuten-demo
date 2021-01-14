@@ -47,7 +47,7 @@ class CurrentJobs extends Component
     public function render()
     {
         return view('livewire.current-jobs')
-        ->extends('klusminuten.layout.app')
+        ->extends('layouts.main')
         ->section('content');
     }
 }

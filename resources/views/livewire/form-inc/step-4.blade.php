@@ -1,5 +1,5 @@
 {{-- New Client --}}
-<div class="bg-white rounded-xl shadow p-4 mx-4 text-gray-500">
+<x-widget>
 
     {{-- Form title --}}
     <p class="font-ubuntu font-bold text-xl">Nieuwe klant toevoegen</p>
@@ -45,7 +45,7 @@
     {{-- Client mail --}}
     <div class="mt-4">
         <label for="clientMail" class="text-sm text-gray-300">E-mail:<br></label>
-        <input wire:model.lazy="client.mail" id="clientMail" class="border border-gray-400 bg-gray-200 rounded w-full p-1" placeholder="bijv. keesjan@bedrijf.nl" type="email">
+        <input wire:model.lazy="client.mail" id="clientMail" class="border border-gray-400 bg-gray-200 rounded w-full p-1" placeholder="bijv. keesjan@bedrijf.nl" type="text">
         @error('client.mail') <span class="text-sm text-red">{{$message}}</span> @enderror
     </div>
 
@@ -54,4 +54,4 @@
         <div wire:click="backFromNew" class="bg-gradient-to-tr from-orange-100 to-orange-200 p-2 w-full text-white rounded text-center">Terug</div>
         <button type="submit" class="bg-gradient-to-tr from-orange-100 to-orange-200 p-2 w-full text-white rounded">Opslaan</button>
     </div>
-</div>
+</x-widget>

@@ -19,7 +19,7 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body class="antialiased bg-gray-100">
+    <body class="antialiased bg-gray-100 font-roboto text-gray-500">
         {{-- Header --}}
         <div class="bg-gradient-to-tr from-orange-100 to-orange-200 h-1/5 w-full fixed top-0">
             {{-- View title --}}

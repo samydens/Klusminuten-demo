@@ -13,8 +13,11 @@ class NewJob extends Component
 {
     use WithFileUploads;
 
-    public $step, $client, $employee;
-    public $job, $photo;
+    public $employee = '';
+    public $client = '';
+    public $step = 0;
+    public $job = '';
+    public $photo = '';
     public $selectEmp = [];
 
     public $customerIndex, $employeeIndex;
@@ -36,7 +39,8 @@ class NewJob extends Component
         'photo.mimes' => 'Upload een JPG of PNG',
         'email' => 'Voer een geldig E-mail adres in',
         'employee.max' => 'Naam is te lang',
-        'selectEmp.required' => 'Voeg een medewerker toe' 
+        'selectEmp.required' => 'Voeg een medewerker toe',
+        'client.mail.unique' => 'Dit E-mail adres is al in gebruik' 
     ];
 
     public function mount()
@@ -156,9 +160,10 @@ class NewJob extends Component
         $this->validate([
             'client.full_name' => 'required|max:255',
             'client.adres' => 'required|max:255',
-            'client.zip' => 'required|max:9999',
-            'client.city' => 'required|max:100',
-            'client.mail' => 'required|email'
+            'client.zip' => 'required|max:255',
+            'client.city' => 'required|max:255',
+            'client.client_phone' => 'required|numeric|max:20', 
+            'client.mail' => 'required|email|unique:clients|max:255',
         ]);
 
         $client = Client::create([

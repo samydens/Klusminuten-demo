@@ -1,5 +1,5 @@
 {{-- New Employee --}}
-<div class="bg-white rounded-xl shadow p-4 mx-4 text-gray-500">
+<x-widget>
 
     {{-- Form title --}}
     <p class="font-ubuntu font-bold text-xl">Nieuwe medewerker toevoegen</p>
@@ -33,4 +33,4 @@
         <button wire:click.prevent="backFromNew" class="bg-gradient-to-tr from-orange-100 to-orange-200 p-2 w-full text-white rounded mt-8">Terug</button>
         <button type="submit" class="bg-gradient-to-tr from-orange-100 to-orange-200 p-2 w-full text-white rounded mt-8">Opslaan</button>
     </div>
-</div>
+</x-widget>
