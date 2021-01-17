@@ -51,4 +51,5 @@ route::middleware('auth')->group( function() {
     Route::get('/archief', App\Http\Livewire\Archive::class); // Archive
     Route::get('/klus/toevoegen', App\Http\Livewire\NewJob::class); // new job test link
     Route::get('/klus/werknemers', App\Http\Livewire\EmployeeJobs::class); // test for employeejob relation
+    Route::get('/admin', App\Http\Livewire\Admin::class);
 });
