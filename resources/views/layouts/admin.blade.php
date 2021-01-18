@@ -20,18 +20,37 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="antialiased bg-gray-100 h-screen">
+        
+        @yield('content')
+
         {{-- Header --}}
-        <nav class="bg-white shadow">
-            {{-- Title --}}
+        {{-- <nav class="bg-white shadow"> --}}
+            
+            {{-- Title
             <div class="flex flex-row font-roboto py-8 px-8 text-2xl container mx-auto">
                 <p class="text-orange-100 font-bold">Klusminuten</p><p class="text-gray-300">admin</p>
-            </div>
+            </div> --}}
+
+            {{-- <div class="flex justify-between text-gray-300">
+                <button wire:click="$set('slide', 0)" class="text-center w-full">
+                    <p>Klus</p>
+                </button>
+                <button wire:click="$set('slide', 1)" class="text-center w-full">
+                    <p>Klusser</p>
+                </button>
+                <button wire:click="$set('slide', 2)" class="text-center w-full  {{ $slide == 2 ? 'border-b-2 border-orange-100 text-orange-100' : '' }}">
+                    <p>Klant</p>
+                </button>
+            </div> --}}
+            {{-- @yield('nav-links') --}}
             
-        </nav>
-        {{-- View content --}}
+        {{-- </nav> --}}
+        
+        {{-- View content
         <div class="container mt-8 mx-auto">
             @yield('content')
-        </div>    
+        </div>     --}}
+        
         @livewireScripts
     </body>
 </html>
