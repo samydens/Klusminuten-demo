@@ -24,14 +24,10 @@
     <div class="container mt-8 mx-auto">
         @switch($slide)
             @case(0)
-                <x-widget>
-                    <p class="font-ubuntu font-bold text-xl">Klus</p>
-                </x-widget>
+                <livewire:job-admin />
                 @break
             @case(1)
-                <x-widget>
-                    <p class="font-ubuntu font-bold text-xl">Klussers</p>
-                </x-widget>
+                <livewire:employee-admin />
                 @break
             @case(2)
                 <x-widget>
