@@ -22,6 +22,14 @@
     </nav>
     
     <div class="container mt-8 mx-auto">
+        
+        {{-- Display messages --}}
+        @if (session()->has('message'))
+            <x-message>
+                {{ session('message') }}
+            </x-message>
+        @endif
+        
         @switch($slide)
             @case(0)
                 <livewire:job-admin />
@@ -30,9 +38,7 @@
                 <livewire:employee-admin />
                 @break
             @case(2)
-                <x-widget>
-                    <p class="font-ubuntu font-bold text-xl">Klanten</p>
-                </x-widget>
+                <livewire:client-admin />
                 @break
         @endswitch
     </div>
