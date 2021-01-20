@@ -4,11 +4,15 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Job;
+use App\Models\Employee;
 
 class AdminJobEmployees extends Component
 {
     public $jobId;
     public $employees;
+    public $allEmployees;
+    public $newEmployee = False;
+    public $newEmployeeId;
 
     public function mount($jobId)
     {
@@ -17,6 +21,9 @@ class AdminJobEmployees extends Component
         
         // Public employees is employees attached to job.
         $this->employees = Job::find($jobId)->employees;
+
+        // All employees
+        $this->allEmployees = Employee::all();
     }
 
     public function detachEmployee($id)
@@ -26,6 +33,22 @@ class AdminJobEmployees extends Component
 
         // Detach the employee from the job.
         $job->employees()->detach($id);
+        
+        // Refresh employees.
+        $this->employees = $job->employees;
+    }
+
+    public function submit()
+    {
+        // Find job with jobId.
+        $job = Job::find($this->jobId);
+        
+        // Attach new employee to job.
+        $job->employees()->attach($this->newEmployeeId);
+
+        // Reset propeties.
+        $this->newEmployeeId = False;
+        $this->newEmployee = '';
         
         // Refresh employees.
         $this->employees = $job->employees;

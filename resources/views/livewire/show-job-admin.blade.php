@@ -10,4 +10,6 @@
 
     <livewire:admin-job-client :jobId="$jobId" />
 
+    <livewire:admin-job-minutes-material :jobId="$jobId" />
+
 </div>
