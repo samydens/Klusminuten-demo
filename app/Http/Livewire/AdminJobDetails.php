@@ -7,9 +7,9 @@ use App\Models\Job;
 
 class AdminJobDetails extends Component
 {
-    public $job = [];
-    public $showSubmit;
-    public $jobId;
+    public $jobRecord; // from db
+    public $job = []; // input model array
+    public $showSubmit = False; // boolean
 
     protected $messages = [
         'required' => 'Dit veld is verplicht',
@@ -18,7 +18,9 @@ class AdminJobDetails extends Component
 
     public function mount($jobId)
     {
-        $job = Job::find($jobId);
+        $this->jobRecord = Job::find($jobId);
+
+        $job = $this->jobRecord;
 
         $this->job['id'] = $job->id;
         $this->job['title'] = $job->title;
@@ -36,14 +38,13 @@ class AdminJobDetails extends Component
             'job.agr_material' => 'required|max:999999.99'
         ]);
 
-        $job = Job::find($this->job['id']);
-        $job->title = $this->job['title'];
-        $job->desc = $this->job['desc'];
-        $job->agr_minutes = $this->job['agr_minutes'];
-        $job->agr_material = $this->job['agr_material'];
-        $job->save();
+        $this->jobRecord->title = $this->job['title'];
+        $this->jobRecord->desc = $this->job['desc'];
+        $this->jobRecord->agr_minutes = $this->job['agr_minutes'];
+        $this->jobRecord->agr_material = $this->job['agr_material'];
+        $this->jobRecord->save();
 
-        $this->showSubmit = False;
+        $this->reset('showSubmit');
 
         session()->flash('message', 'wijzigingen opgeslagen');
     }

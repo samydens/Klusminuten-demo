@@ -15,4 +15,14 @@ class Minute extends Model
         'start_time',
         'stop_time',
     ];
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

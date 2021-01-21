@@ -21,7 +21,7 @@
     </head>
     <body class="antialiased bg-white font-roboto text-gray-500">
         <div class="flex justify-between items-center m-4">
-            <p class="font-bold text-2xl text-orange-100">@yield('title')</p>
+            <p class="font-bold text-xl text-orange-100">@yield('title')</p>
             <a href="/admin" class="text-orange-100">{!! file_get_contents('icons/exit.svg') !!}</a>
         </div>
         <div class="container mx-auto">
