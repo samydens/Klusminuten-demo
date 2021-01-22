@@ -32,8 +32,7 @@ route::middleware('auth')->group( function() {
     Route::get('/stopwatch/{id}', App\Http\Livewire\NewTimer::class); // Stopwatch
     Route::get('/materiaal/{id}', App\Http\Livewire\AddMaterial::class); // Materials
     Route::get('/archief', App\Http\Livewire\Archive::class); // Archive
-    Route::get('/admin/{s?}', App\Http\Livewire\Admin::class); // Admin panel
-    // Route::get('/admin', App\Http\Livewire\Admin::class); // Admin panel
+    Route::get('/admin', App\Http\Livewire\Admin::class); // Admin panel
     Route::get('/admin/job/{id}', App\Http\Livewire\ShowJobAdmin::class); // Show Job
     Route::get('/admin/minmat/{id}', App\Http\Livewire\MinuteMaterial::class); // Show all minute & material records for job.
     Route::get('/admin/employee/{id}', App\Http\Livewire\ShowEmployeeAdmin::class); // Show employee admin page.
