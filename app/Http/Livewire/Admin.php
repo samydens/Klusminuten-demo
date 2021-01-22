@@ -6,7 +6,9 @@ use Livewire\Component;
 
 class Admin extends Component
 {
-    public $slide = 0; 
+    public $slide;
+
+    protected $queryString = ['slide'];
 
     public function render()
     {
