@@ -12,4 +12,5 @@
 
     <livewire:admin-job-minutes-material :jobId="$jobId" />
 
+    <div class="bg-white w-full h-52"></div>
 </div>

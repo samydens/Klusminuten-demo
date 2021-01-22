@@ -3,30 +3,29 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Material;
 use App\Models\Minute;
+use App\Models\Material;
 use Carbon\Carbon;
-use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
-class AdminJobMinutesMaterial extends Component
+class MinuteMaterial extends Component
 {
     public $minutes;
     public $materials;
     public $jobId;
 
-    public function mount($jobId)
+    public function mount($id)
     {
-
-        // Assign passed $jobId to public $jobId.
-        $this->jobId = $jobId;
+        // Assign passed $id to public $jobId.
+        $this->jobId = $id;
 
         // Set carbon language to nl.
         Carbon::setLocale('nl');
 
-        // Get 2 minute records grouped by date.
-        $this->minutes = Minute::where('job_id', $jobId)
+        // Get all minute records of current job grouped by date.
+        $this->minutes = Minute::where('job_id', $id)
             ->orderByDesc('created_at')
-            ->take(2)
             ->get()
             ->groupBy(function($item) {
                 if ($item->created_at->isToday()) {
@@ -35,30 +34,30 @@ class AdminJobMinutesMaterial extends Component
 
                 if ($item->created_at->isYesterday()) {
                     return 'Gisteren';
-                }
-
+                } 
+                
                 if (!$item->created_at->isToday() && !$item->created_at->isYesterday()) {
-                    return $item->created_at->formatLocalized('%d %B %Y');
+                    return $item->created_at->formatLocalized('%d %B %y');
                 }
             })
             ->toBase();
-
-            // Get 2 material records grouped by date.
-            $this->materials = Material::where('job_id', $jobId)
+        
+        // Get all material records of current job grouped by date.
+        $this->materials = Material::where('job_id', $id)
             ->orderByDesc('created_at')
-            ->take(2)
             ->get()
-            ->groupBy(function($item) {
+            ->groupBy(function($item) { 
+
                 if ($item->created_at->isToday()) {
                     return 'Vandaag';
                 }
 
                 if ($item->created_at->isYesterday()) {
                     return 'Gisteren';
-                }
-
+                } 
+                
                 if (!$item->created_at->isToday() && !$item->created_at->isYesterday()) {
-                    return $item->created_at->formatLocalized('%d %B %Y');
+                    return $item->created_at->formatLocalized('%d %B %y');
                 }
             })
             ->toBase();
@@ -66,6 +65,8 @@ class AdminJobMinutesMaterial extends Component
 
     public function render()
     {
-        return view('livewire.admin-job-minutes-material');
+        return view('livewire.minute-material')
+        ->extends('layouts.show')
+        ->section('content');
     }
 }

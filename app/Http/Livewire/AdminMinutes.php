@@ -13,7 +13,6 @@ class AdminMinutes extends Component
 
     public function mount($recordId)
     {
-        $this->recordId = $recordId;
         $this->record = Minute::find($recordId);
         $this->minutes = round($this->record->total / 60);
     }
@@ -22,7 +21,8 @@ class AdminMinutes extends Component
     {
         $this->record->total = round($this->minutes * 60);
         $this->record->save();
-        $this->edit = False;
+        
+        $this->reset('edit');
     }
     
     public function render()

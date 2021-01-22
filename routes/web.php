@@ -34,4 +34,5 @@ route::middleware('auth')->group( function() {
     Route::get('/archief', App\Http\Livewire\Archive::class); // Archive
     Route::get('/admin', App\Http\Livewire\Admin::class); // Admin panel
     Route::get('/admin/job/{id}', App\Http\Livewire\ShowJobAdmin::class); // Show Job
+    Route::get('/admin/minmat/{id}', App\Http\Livewire\MinuteMaterial::class);
 });
