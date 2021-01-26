@@ -1,0 +1,1 @@
+<option value="{{ $client->id }}">{{ $client->full_name }}</option>

@@ -2,6 +2,10 @@
     Minuten & materiaal
 @endsection
 
+@section('link')
+    <a href="{{ url()->previous() }}" class="text-orange-100">{!! file_get_contents('icons/exit.svg') !!}</a>
+@endsection
+
 <div class="flex flex-col space-y-4 mx-4 mt-16">
 
     @if (!$minutes->isEmpty())

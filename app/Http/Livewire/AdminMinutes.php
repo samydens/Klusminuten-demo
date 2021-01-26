@@ -20,7 +20,7 @@ class AdminMinutes extends Component
         if ($title) {
             $this->title = $record->job->title;
         } else {
-            $this->title = $record->user->name;
+            $this->title = $record->user->employee->name;
         }
     }
 
