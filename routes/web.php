@@ -31,6 +31,7 @@ route::middleware('auth')->group( function() {
         Route::get('/admin/job/{id}', App\Http\Livewire\ShowJobAdmin::class); // Show Job
         Route::get('/admin/minmat/{id}', App\Http\Livewire\MinuteMaterial::class); // Show all minute & material records for job.
         Route::get('/admin/employee/{id}', App\Http\Livewire\ShowEmployeeAdmin::class); // Show employee admin page.
+        Route::get('admin/client/{id}', App\Http\Livewire\ShowClientAdmin::class); // Show client admin
     });
 
     Route::get('/toevoegen', App\Http\Livewire\NewJob::class); // Create a new job.
