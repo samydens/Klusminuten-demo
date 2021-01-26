@@ -41,7 +41,7 @@
         </div>
     
         {{-- Link to all records. --}}
-        <a href="/admin/minmate/user_id/{{ $user_id }}" class="text-orange-100 font-medium"><u>Meer bekijken</u></a>
+        <a href="/admin/minmat/{{ $user_id }}?type=user_id" class="text-orange-100 font-medium"><u>Meer bekijken</u></a>
     
     </div>
 </div>

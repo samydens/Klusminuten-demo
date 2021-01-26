@@ -13,11 +13,14 @@ class AdminEmployeeMinmat extends Component
 {
     public $minutes;
     public $materials;
+    public $user_id;
 
     public function mount($employeeId)
     {
         $user_id = Employee::find($employeeId)->user->id;
-        
+        $this->user_id = $user_id;
+
+
         // Set carbon language to nl.
         Carbon::setLocale('nl');
 

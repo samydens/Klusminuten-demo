@@ -11,47 +11,33 @@ use Illuminate\Support\Facades\Auth;
 
 class MinuteMaterial extends Component
 {
-    public $minutes;
-    public $materials;
-    // public $title;
-    // public $recordId;
-    // public $column;
-    public $type;
-    public $recordId;
+    public $minutes; 
+    public $materials; 
+    public $title; // Boolean
+    
+    public $type; // user_id or job_id
 
     protected $queryString = ['type']; // which column from db look at. (optional)
 
-    protected $queryString = ['recordId']; // the job or user id. (optional)
-
-    public function mount($id, $column)
+    public function mount($id)
     {
-        // Set carbon language to nl.
-        Carbon::setLocale('nl');
+        // if user id titles are showing job, else titles are showing user
+        if ($this->type == 'user_id') {
+            $this->title = True;
+        }
 
-        $this->id = $id;
-        $this->column = $column;
+        if ($this->type == 'job_id') {
+            $this->title = False;
+        }
 
-        // Get all minute records of current job grouped by date.
-        $this->minutes = Minute::where($column, $id)
-            ->orderByDesc('created_at')
-            ->get()
-            ->groupBy(function($item) {
-                if ($item->created_at->isToday()) {
-                    return 'Vandaag';
-                }
+        // Get minutes and materials sorted by date.
+        $this->getMinutes($this->type, $id);
+        $this->getMaterials($this->type, $id);
+    }
 
-                if ($item->created_at->isYesterday()) {
-                    return 'Gisteren';
-                } 
-                
-                if (!$item->created_at->isToday() && !$item->created_at->isYesterday()) {
-                    return $item->created_at->formatLocalized('%d %B %y');
-                }
-            })
-            ->toBase();
-        
-        // Get all material records of current job grouped by date.
-        $this->materials = Material::where($column, $id)
+    public function getMaterials($id)
+    {
+        $this->materials = Material::where('user_id', 1)
             ->orderByDesc('created_at')
             ->get()
             ->groupBy(function($item) { 
@@ -69,14 +55,27 @@ class MinuteMaterial extends Component
                 }
             })
             ->toBase();
-        
-        if ($column == 'user_id') {
-            $this->title = True;
-        } 
+    }
 
-        if ($column == 'job_id') {
-            $this->title = False;
-        }
+    public function getMinutes($id)
+    {
+        $this->minutes = Minute::where('user_id', 1)
+            ->orderByDesc('created_at')
+            ->get()
+            ->groupBy(function($item) {
+                if ($item->created_at->isToday()) {
+                    return 'Vandaag';
+                }
+
+                if ($item->created_at->isYesterday()) {
+                    return 'Gisteren';
+                } 
+                
+                if (!$item->created_at->isToday() && !$item->created_at->isYesterday()) {
+                    return $item->created_at->formatLocalized('%d %B %y');
+                }
+            })
+            ->toBase();
     }
 
     public function render()

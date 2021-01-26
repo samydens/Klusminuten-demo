@@ -41,7 +41,7 @@
         </div>
         
         {{-- Link to all records. --}}
-        <a href="/admin/minmat/job_id/{{ $jobId }}" class="text-orange-100 font-medium"><u>Meer bekijken</u></a>
+        <a href="/admin/minmat/{{ $jobId }}?type=job_id" class="text-orange-100 font-medium"><u>Meer bekijken</u></a>
     
     </div>
     

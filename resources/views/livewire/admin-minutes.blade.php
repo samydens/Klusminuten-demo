@@ -1,7 +1,7 @@
 <div class="flex flex-row justify-between">
     <div class="flex justify-between items-center">
         <p class="text-orange-100 mr-4">{!! file_get_contents('icons/time.svg') !!}</p>
-        <p class="font-medium">{{ $title ? $record->job->title : $record->user->name }}</p>
+        <p class="font-medium">{{ $title }}</p>
     </div>
     <div class="flex justify-between items-center">
         @if ($edit)
@@ -10,7 +10,7 @@
                 <button type="submit" class="text-orange-100 ml-4">{!! file_get_contents('icons/save.svg') !!}</button>
             </form>
         @else   
-            <p class="p-1 bg-gradient-to-tr from-gray-600 to-gray-700 rounded mr-4 font-medium text-sm">{{ round($record->total / 60) }} min</p>
+            <p class="p-1 bg-gradient-to-tr from-gray-600 to-gray-700 rounded mr-4 font-medium text-sm">{{ round($minutes) }} min</p>
             <p wire:click="$toggle('edit')" class="text-orange-100">{!! file_get_contents('icons/edit.svg') !!}</p>
         @endif
     </div>
