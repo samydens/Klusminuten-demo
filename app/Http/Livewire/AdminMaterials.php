@@ -10,11 +10,14 @@ class AdminMaterials extends Component
     public $record;
     public $edit = False;
     public $material;
+    public $title;
 
-    public function mount($materialId)
+    public function mount($materialId, $title)
     {
         $this->record = Material::find($materialId);
         $this->material = $this->record->amount;
+
+        $this->title = $title; 
     }
 
     public function submit()

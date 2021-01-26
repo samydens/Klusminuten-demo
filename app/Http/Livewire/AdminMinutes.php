@@ -10,11 +10,14 @@ class AdminMinutes extends Component
     public $record;
     public $edit = False;
     public $minutes;
+    public $title;
 
-    public function mount($recordId)
+    public function mount($recordId, $title)
     {
         $this->record = Minute::find($recordId);
         $this->minutes = round($this->record->total / 60);
+
+        $this->title = $title;
     }
 
     public function submit()

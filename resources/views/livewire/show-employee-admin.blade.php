@@ -8,6 +8,8 @@
 
     <livewire:admin-employee-jobs :employeeId="$employeeId" />
 
+    <livewire:admin-employee-minmat :employeeId="$employeeId" />
+
     {{-- White space --}}
     <div class="bg-white w-full h-52"></div>
 </div>

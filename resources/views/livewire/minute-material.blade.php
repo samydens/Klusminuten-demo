@@ -17,7 +17,7 @@
             
             {{-- Loop trough records for that day. --}}
             @foreach ($minute_list as $minute)
-                <livewire:admin-minutes :recordId="$minute->id" />
+                <livewire:admin-minutes :recordId="$minute->id" :title="$title"/>
             @endforeach
         
         @endforeach
@@ -37,12 +37,17 @@
                 
             {{-- Loop trough records for that day. --}}
             @foreach ($material_list as $material)
-                <livewire:admin-materials :materialId="$material->id" />
+                <livewire:admin-materials :materialId="$material->id" :title="$title" />
             @endforeach
         
         @endforeach
     
     </div>
-    <a href="/admin/job/{{ $jobId }}" class="text-orange-100 font-medium"><u>Terug</u></a>
+
+    @if ($column == 'job_id')
+        <a href="/admin/job/{{ $recordId }}" class="text-orange-100 font-medium"><u>Terug</u></a>
+    @else
+        <a href="/admin/employee/{{ $recordId }}" class="text-orange-100 font-medium"><u>Terug</u></a>
+    @endif
 
 </div>

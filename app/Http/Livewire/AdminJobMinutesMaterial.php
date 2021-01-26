@@ -45,23 +45,23 @@ class AdminJobMinutesMaterial extends Component
 
             // Get 2 material records grouped by date.
             $this->materials = Material::where('job_id', $jobId)
-            ->orderByDesc('created_at')
-            ->take(2)
-            ->get()
-            ->groupBy(function($item) {
-                if ($item->created_at->isToday()) {
-                    return 'Vandaag';
-                }
+                ->orderByDesc('created_at')
+                ->take(2)
+                ->get()
+                ->groupBy(function($item) {
+                    if ($item->created_at->isToday()) {
+                        return 'Vandaag';
+                    }
 
-                if ($item->created_at->isYesterday()) {
-                    return 'Gisteren';
-                }
+                    if ($item->created_at->isYesterday()) {
+                        return 'Gisteren';
+                    }
 
-                if (!$item->created_at->isToday() && !$item->created_at->isYesterday()) {
-                    return $item->created_at->formatLocalized('%d %B %Y');
-                }
-            })
-            ->toBase();
+                    if (!$item->created_at->isToday() && !$item->created_at->isYesterday()) {
+                        return $item->created_at->formatLocalized('%d %B %Y');
+                    }
+                })
+                ->toBase();
     }
 
     public function render()

@@ -13,18 +13,26 @@ class MinuteMaterial extends Component
 {
     public $minutes;
     public $materials;
-    public $jobId;
+    // public $title;
+    // public $recordId;
+    // public $column;
+    public $type;
+    public $recordId;
 
-    public function mount($id)
+    protected $queryString = ['type']; // which column from db look at. (optional)
+
+    protected $queryString = ['recordId']; // the job or user id. (optional)
+
+    public function mount($id, $column)
     {
-        // Assign passed $id to public $jobId.
-        $this->jobId = $id;
-
         // Set carbon language to nl.
         Carbon::setLocale('nl');
 
+        $this->id = $id;
+        $this->column = $column;
+
         // Get all minute records of current job grouped by date.
-        $this->minutes = Minute::where('job_id', $id)
+        $this->minutes = Minute::where($column, $id)
             ->orderByDesc('created_at')
             ->get()
             ->groupBy(function($item) {
@@ -43,7 +51,7 @@ class MinuteMaterial extends Component
             ->toBase();
         
         // Get all material records of current job grouped by date.
-        $this->materials = Material::where('job_id', $id)
+        $this->materials = Material::where($column, $id)
             ->orderByDesc('created_at')
             ->get()
             ->groupBy(function($item) { 
@@ -61,6 +69,14 @@ class MinuteMaterial extends Component
                 }
             })
             ->toBase();
+        
+        if ($column == 'user_id') {
+            $this->title = True;
+        } 
+
+        if ($column == 'job_id') {
+            $this->title = False;
+        }
     }
 
     public function render()

@@ -1,7 +1,7 @@
 <div class="flex flex-row justify-between">
     <div class="flex justify-between items-center">
         <p class="text-orange-100 mr-4">{!! file_get_contents('icons/time.svg') !!}</p>
-        <p class="font-medium">{{ $record->user->name }}</p>
+        <p class="font-medium">{{ $title ? $record->job->title : $record->user->name }}</p>
     </div>
     <div class="flex justify-between items-center">
         @if ($edit)
