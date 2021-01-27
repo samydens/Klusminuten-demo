@@ -1,4 +1,4 @@
-<div class="flex flex-col space-y-8">
+<div class="flex flex-col space-y-4">
 
     {{-- Header --}}
     <div class="flex justify-between items-center">

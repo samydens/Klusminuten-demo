@@ -2,11 +2,13 @@
     Klus bewerken
 @endsection
 
+{{-- 'X' button --}}
 @section('link')
     <a href="/admin?slide=0" class="text-orange-100">{!! file_get_contents('icons/exit.svg') !!}</a>
 @endsection
 
-<div class="mx-4 flex flex-col space-y-16">
+{{-- All the 'sections' --}}
+<div class="mx-4 flex flex-col space-y-12 mb-8">
 
     {{-- Details of job --}}
     <livewire:admin-job-details :jobId="$jobId" />
@@ -20,6 +22,10 @@
     {{-- Material & minutes. --}}
     <livewire:admin-job-minutes-material :jobId="$jobId" />
 
-    {{-- white space. --}}
-    <div class="bg-white w-full h-52"></div>
+    {{-- Status --}}
+    <livewire:admin-job-status :jobId="$jobId" />
+
+    {{-- Delete job --}}
+    <livewire:admin-job-delete :jobId="$jobId" />
+
 </div>

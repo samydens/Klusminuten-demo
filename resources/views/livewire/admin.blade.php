@@ -23,13 +23,6 @@
     
     <div class="container mt-8 mx-auto">
         
-        {{-- Display messages. --}}
-        @if (session()->has('message'))
-            <x-message>
-                {{ session('message') }}
-            </x-message>
-        @endif
-        
         {{-- switch for which view to display. --}}
         @switch($slide)
             @case(0)
@@ -42,6 +35,7 @@
                 <livewire:client-admin />
                 @break
         @endswitch
+    
     </div>
     
 </div>

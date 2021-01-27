@@ -1,12 +1,9 @@
-<div class="flex flex-col space-y-8">
+<div class="flex flex-col space-y-4">
     <x-regheader>
         Minuten en materiaalkosten
     </x-regheader>
 
     <div class="flex flex-col space-y-4">
-        <p class="font-bold font-ubuntu text-l mt-4">
-            Minuten
-        </p>
         <div class="flex flex-col space-y-2">
 
             {{-- Loop trough days. --}}
@@ -22,8 +19,6 @@
 
             @endforeach
         </div>
-
-        <p class="font-bold font-ubuntu text-l">Materiaalkosten</p>
 
         <div class="flex flex-col space-y-2">
             {{-- Loop trough dates. --}}
@@ -41,7 +36,9 @@
         </div>
     
         {{-- Link to all records. --}}
-        <a href="/admin/minmat/{{ $user_id }}?type=user_id" class="text-orange-100 font-medium"><u>Meer bekijken</u></a>
+        <div class="w-full">
+            <a href="/admin/minmat/{{ $user_id }}?type=user_id" class="text-orange-100 font-medium float-right"><u>Meer bekijken</u></a>
+        </div>
     
     </div>
 </div>

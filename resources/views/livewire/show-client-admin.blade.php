@@ -12,6 +12,8 @@
 
     <livewire:admin-client-jobs :clientId="$clientId" />
 
+    <livewire:admin-client-delete :clientId="$clientId" />
+
     {{-- White space --}}
     <div class="bg-white w-full h-52"></div>
 </div>

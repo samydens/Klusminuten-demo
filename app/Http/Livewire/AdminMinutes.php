@@ -14,13 +14,13 @@ class AdminMinutes extends Component
 
     public function mount($recordId, $title)
     {
-        $record = Minute::find($recordId);
-        $this->minutes = round($record->total / 60);
+        $this->record = Minute::find($recordId);
+        $this->minutes = round($this->record->total / 60);
 
         if ($title) {
-            $this->title = $record->job->title;
+            $this->title = $this->record->job->title;
         } else {
-            $this->title = $record->user->employee->name;
+            $this->title = $this->record->user->employee->name;
         }
     }
 

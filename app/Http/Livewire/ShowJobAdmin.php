@@ -11,7 +11,6 @@ class ShowJobAdmin extends Component
 
     public function mount($id)
     {
-        // Assign public $jobId to passed $id.
         $this->jobId = $id;
     }
 

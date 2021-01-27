@@ -1,4 +1,10 @@
 <div>
+    {{-- Display messages. --}}
+    @if (session()->has('message'))
+        <x-message>
+            {{ session('message') }}
+        </x-message>
+    @endif
 
     <div class="bg-white shadow p-4 pr-0 mb-4 rounded-2xl text-gray-500">
 

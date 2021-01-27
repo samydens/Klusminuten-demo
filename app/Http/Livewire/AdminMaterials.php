@@ -14,13 +14,13 @@ class AdminMaterials extends Component
 
     public function mount($materialId, $title)
     {
-        $record = Material::find($materialId);
-        $this->material = $record->amount;
+        $this->record = Material::find($materialId);
+        $this->material = $this->record->amount;
 
         if ($title) {
-            $this->title = $record->job->title;
+            $this->title = $this->record->job->title;
         } else {
-            $this->title = $record->user->employee->name;
+            $this->title = $this->record->user->employee->name;
         }
     }
 
