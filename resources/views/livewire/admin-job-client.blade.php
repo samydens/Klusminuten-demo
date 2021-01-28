@@ -14,7 +14,7 @@
         @if ($newClient)
             <form wire:submit.prevent="submit" class="flex items-center justify-between">
                 <select wire:model="newClientId" class="border border-gray-400 bg-gray-200 rounded w-11/12">
-                    <option value="">Selecteer een klusser</option>
+                    <option value="">Selecteer een klant</option>
                     @each('livewire.admin-inc.client-option', $allClients, 'client', 'livewire.admin-inc.no-employee-option')
                 </select>
                 <button type="submit" class="text-orange-100 focus:outline-none">{!! file_get_contents('icons/save.svg') !!}</button>

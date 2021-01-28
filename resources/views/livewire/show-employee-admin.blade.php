@@ -10,6 +10,8 @@
 
     <livewire:admin-employee-details :employeeId="$employeeId" />
 
+    <livewire:admin-employee-user :employeeId="$employeeId" />
+
     <livewire:admin-employee-jobs :employeeId="$employeeId" />
 
     @if ($hasUser) <livewire:admin-employee-minmat :employeeId="$employeeId" /> @endif

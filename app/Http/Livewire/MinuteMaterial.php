@@ -14,7 +14,6 @@ class MinuteMaterial extends Component
     public $minutes; 
     public $materials; 
     public $title; // Boolean
-    
     public $type; // user_id or job_id
 
     protected $queryString = ['type']; // which column from db look at. (optional)
@@ -35,9 +34,9 @@ class MinuteMaterial extends Component
         $this->getMaterials($this->type, $id);
     }
 
-    public function getMaterials($id)
+    public function getMaterials($type, $id)
     {
-        $this->materials = Material::where('user_id', 1)
+        $this->materials = Material::where($type, $id)
             ->orderByDesc('created_at')
             ->get()
             ->groupBy(function($item) { 
@@ -57,9 +56,9 @@ class MinuteMaterial extends Component
             ->toBase();
     }
 
-    public function getMinutes($id)
+    public function getMinutes($type, $id)
     {
-        $this->minutes = Minute::where('user_id', 1)
+        $this->minutes = Minute::where($type, $id)
             ->orderByDesc('created_at')
             ->get()
             ->groupBy(function($item) {
