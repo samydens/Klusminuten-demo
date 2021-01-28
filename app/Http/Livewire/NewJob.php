@@ -19,6 +19,7 @@ class NewJob extends Component
     public $job = '';
     public $photo = '';
     public $selectEmp = [];
+    public $selectClient = [];
 
     public $customerIndex, $employeeIndex;
 
@@ -86,12 +87,12 @@ class NewJob extends Component
 
     public function submit1()
     {
-        $this->validate([
-            'job.client_id' => 'required'
-        ]);
+        // $this->validate([
+        //     'job.client_id' => 'required'
+        // ]);
 
-        $client = Client::find($this->job['client_id']);
-        $this->job['location'] = $client->city;
+        // $client = Client::find($this->job['client_id']);
+        // $this->job['location'] = $client->city;
 
         $this->step++;
     }
@@ -110,9 +111,19 @@ class NewJob extends Component
         $this->selectEmp[] = '';
     }
 
+    public function addClientField()
+    {
+        $this->selectClient[] = '';
+    }
+
     public function deleteFieldById($id)
     {
         unset($this->selectEmp[$id]);
+    }
+
+    public function deleteClientFieldById($id)
+    {
+        unset($this->selectClient[$id]);
     }
 
     public function submit3()
@@ -126,15 +137,19 @@ class NewJob extends Component
             'title' => $this->job['title'],
             'desc' => $this->job['desc'],
             'photo' => $this->job['photo_url'],
-            'location' => $this->job['location'],
+            'location' => 'locatie',
             'user_id' => Auth::id(),
-            'client_id' => $this->job['client_id'],
+            // 'client_id' => $this->job['client_id'],
             'agr_minutes' => $this->job['agr_minutes'],
             'agr_material' => $this->job['agr_material']
         ]);
 
         foreach($this->selectEmp as $employee) {
             $job->employees()->attach($employee);
+        }
+
+        foreach ($this->selectClient as $client) {
+            $job->clients()->attach($client);
         }
 
         $this->reset(['job', 'photo', 'selectEmp']);
@@ -164,13 +179,16 @@ class NewJob extends Component
             'phone_number' => $client['client_phone'],
             'mail' => $client['mail'],
         ]);
-            
-        $this->job['client_id'] = $client->id;
+        
+        $this->customerIndex = Client::all();
+        $this->selectClient[] = strval($client->id);
+        
+        // $this->job['client_id'] = $client->id;
         $this->job['location'] = $client->city;
         
         $this->reset('client');
         
-        $this->step = 2;
+        $this->step = 1;
     }
             
     public function submit5()

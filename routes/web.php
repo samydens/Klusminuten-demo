@@ -23,25 +23,17 @@ Route::get('/', function () {
     return view('welcome');
 }); 
 
- // Check if logged in
+// Routes which require a logged in user.
 route::middleware('auth')->group( function() {
-    
-    // Edit users
+
     Route::group(['middleware' => ['permission:edit users']], function () {
-        Route::get('/admin/user', App\Http\Livewire\UserAdmin::class)->name('admin/user'); 
-        Route::get('/admin/user/{id}', App\Http\Livewire\EditUser::class)->name('admin/user/edit'); 
+        Route::get('/admin', App\Http\Livewire\Admin::class); // Admin panel
+        Route::get('/admin/job/{id}', App\Http\Livewire\ShowJobAdmin::class); // Show Job
+        Route::get('/admin/minmat/{id}', App\Http\Livewire\MinuteMaterial::class); // Show all minute & material records for job.
+        Route::get('/admin/employee/{id}', App\Http\Livewire\ShowEmployeeAdmin::class); // Show employee admin page.
+        Route::get('admin/client/{id}', App\Http\Livewire\ShowClientAdmin::class); // Show client admin
     });
 
-    // Edit jobs
-    Route::group(['middleware' => ['permission:edit jobs']], function () {
-        Route::get('/admin/klus', App\Http\Livewire\JobAdmin::class)->name('admin/job'); 
-        Route::get('/admin/klus/{id}', App\Http\Livewire\Editjob::class)->name('admin/job/edit'); // Edit page
-        
-        Route::get('/testadmin', function () {
-            return view('testadmin');
-        });
-    });
-    
     Route::get('/toevoegen', App\Http\Livewire\NewJob::class); // Create a new job.
     Route::get('/home', App\Http\Livewire\CurrentJobs::class); // Dashboard
     Route::get('/klusvijver', App\Http\Livewire\JobIndex::class); // Klusvijver
@@ -49,7 +41,8 @@ route::middleware('auth')->group( function() {
     Route::get('/stopwatch/{id}', App\Http\Livewire\NewTimer::class); // Stopwatch
     Route::get('/materiaal/{id}', App\Http\Livewire\AddMaterial::class); // Materials
     Route::get('/archief', App\Http\Livewire\Archive::class); // Archive
-    Route::get('/klus/toevoegen', App\Http\Livewire\NewJob::class); // new job test link
-    Route::get('/klus/werknemers', App\Http\Livewire\EmployeeJobs::class); // test for employeejob relation
-    Route::get('/admin', App\Http\Livewire\Admin::class);
+    // Route::get('/admin', App\Http\Livewire\Admin::class); // Admin panel
+    // Route::get('/admin/job/{id}', App\Http\Livewire\ShowJobAdmin::class); // Show Job
+    // Route::get('/admin/minmat/{id}', App\Http\Livewire\MinuteMaterial::class); // Show all minute & material records for job.
+    // Route::get('/admin/employee/{id}', App\Http\Livewire\ShowEmployeeAdmin::class); // Show employee admin page.
 });

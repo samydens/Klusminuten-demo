@@ -5,7 +5,7 @@
     {{-- Display messages --}}
     @if (session()->has('message'))
         <x-message>
-            {{ $message }}
+            {{ session('message') }}
         </x-message>
     @endif
     @can('edit jobs')
