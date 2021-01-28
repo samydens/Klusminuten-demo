@@ -28,10 +28,11 @@ route::middleware('auth')->group( function() {
 
     Route::group(['middleware' => ['permission:edit users']], function () {
         Route::get('/admin', App\Http\Livewire\Admin::class); // Admin panel
-        Route::get('/admin/job/{id}', App\Http\Livewire\ShowJobAdmin::class); // Show Job
+        Route::get('/admin/job/{id}', App\Http\Livewire\ShowJobAdmin::class); // Show job admin.
         Route::get('/admin/minmat/{id}', App\Http\Livewire\MinuteMaterial::class); // Show all minute & material records for job.
         Route::get('/admin/employee/{id}', App\Http\Livewire\ShowEmployeeAdmin::class); // Show employee admin page.
-        Route::get('admin/client/{id}', App\Http\Livewire\ShowClientAdmin::class); // Show client admin
+        Route::get('admin/client/{id}', App\Http\Livewire\ShowClientAdmin::class); // Show client admin.
+        Route::get('admin/user/{id}', App\Http\Livewire\ShowUserAdmin::class); // Show user admin.
     });
 
     Route::get('/toevoegen', App\Http\Livewire\NewJob::class); // Create a new job.
