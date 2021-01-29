@@ -7,16 +7,15 @@ use App\Models\Employee;
 
 class EmployeeAdmin extends Component
 {
-    public $query; // models to searchbar.
-    public $employees; // results of search query.
+    public $query; 
+    public $employees;
 
     public function deleteEmployee($id)
     {
         $employee = Employee::find($id);
+        
         if ($employee->jobs) {
-            $jobs = $employee->jobs;
-
-            foreach ($jobs as $job) {
+            foreach ($employee->jobs as $job) {
                 $employee->jobs()->detach($job->id);
             }
         }
@@ -30,7 +29,8 @@ class EmployeeAdmin extends Component
         $query = '%'.$this->query.'%';
         
         // Get all records where name is like query.
-        $this->employees = Employee::where('name', 'like', $query)->get();
+        $this->employees = Employee::where('name', 'like', $query)
+            ->get();
         
         return view('livewire.employee-admin');
     }

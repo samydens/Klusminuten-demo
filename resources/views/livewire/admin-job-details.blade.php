@@ -1,4 +1,4 @@
-<x-admin-details title="Details:">
+<x-admin-details title="Details">
         
     {{-- Job title --}}
     <x-input id="title" label="titel:" type="text" prop="job.title" placeholder="typ hier uw titel" />

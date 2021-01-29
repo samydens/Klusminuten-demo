@@ -1,4 +1,4 @@
-<x-admin-details title="Details:">
+<x-admin-details title="Details">
 
     {{-- Name --}}
     <x-input id="full_name" label="naam:" type="text" prop="client.full_name" placeholder="Bijv. Karel Klant" />

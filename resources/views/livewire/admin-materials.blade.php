@@ -2,7 +2,7 @@
             
     <div class="flex justify-between items-center">
         <p class="text-orange-100 mr-4">{!! file_get_contents('icons/euro.svg') !!}</p>
-        <p class="font-medium">{{  $title }}</p>
+        <p>{{  $title }}</p>
     </div>
     
     <div class="flex justify-between items-center">
