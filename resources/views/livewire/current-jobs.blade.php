@@ -1,41 +1,30 @@
 @section('title')
     Dashboard
 @endsection
+
 <div class="space-y-4 relative">
-    {{-- Display messages --}}
+
     @if (session()->has('message'))
         <x-message>
             {{ session('message') }}
         </x-message>
     @endif
-    @can('edit jobs')
+
+    @can('access admin')
+    <a href="/admin">
         <x-widget>
             <div class="flex items-center justify-between">
-                <p class="text-xl font-medium">Bewerk klussen</p>
+                <p class="text-lg font-medium">Ga naar admin</p>
                 <div class="flex items-center">
-                    <a href="/admin/klus">
-                        <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
-                            {!! file_get_contents('icons/next.svg') !!}
+                        <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3 text-gray-300">
+                            {!! file_get_contents('icons/admin.svg') !!}
                         </div>
-                    </a>
+                    </div>
                 </div>
-            </div>
-        </x-widget>
-    @endcan 
-    @can('edit users')
-        <x-widget>
-            <div class="flex items-center justify-between">
-                <p class="text-xl font-medium">Bewerk gebruikers</p>
-                <div class="flex items-center">
-                    <a href="/admin/user">
-                        <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3">
-                            {!! file_get_contents('icons/next.svg') !!}
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </x-widget>
+            </x-widget>
+        </a>
     @endcan
+
     @if ($activeJobs->isEmpty())
             {{-- Message for when the archive is empty --}}
             <p class="w-full text-center mt-56 text-gray-300 text-xl">Geen active klussen <br /> :(</p>

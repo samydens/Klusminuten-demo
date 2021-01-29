@@ -12,6 +12,7 @@
           
             <form wire:submit.prevent="submit">
                 <select wire:model="userId">
+                    <option value="">Kies een gebruiker</option>
                     @foreach ($allUsers as $user)
                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
