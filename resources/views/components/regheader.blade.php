@@ -1,3 +1,3 @@
-<p class="font-bold font-ubuntu text-xl">
+<p class="font-medium text-l">
     {{ $slot }}
 </p>

@@ -3,13 +3,10 @@
     {{-- Include searchbar. --}}
     @include('livewire.admin-inc.search')
 
-    {{-- Display session messages. --}}
-    @if (session()->has('message'))
-        <x-message>
-            {{ session('message') }}
-        </x-message>
-    @endif
+    <x-admin-message />
 
     {{-- Loop trough all users --}}
-    @each('livewire.admin-inc.user', $users, 'user', 'livewire.admin-inc.empty')
+    <div class="flex flex-col space-y-2 text-gray-500">
+        @each('livewire.admin-inc.gebruiker', $users, 'user', 'livewire.admin-inc.no-results')
+    </div>
 </div>

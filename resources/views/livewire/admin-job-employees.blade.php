@@ -2,7 +2,7 @@
         
     {{-- Header --}}
     <div class="flex justify-between items-center">
-        <x-regheader>Klussers:</x-regheader>
+        <x-regheader>Klussers</x-regheader>
         <p wire:click="$set('newEmployee', 'True')" class="text-orange-100">{!! file_get_contents('icons/plus.svg') !!}</p>
     </div>
 

@@ -8,23 +8,24 @@
 
 <div class="flex flex-col space-y-4 mx-4 mt-16">
 
-    @if (!$minutes->isEmpty())
+    @if ($minutes->isNotEmpty())
 
-        <div class="flex flex-col space-y-2">
+        <div class="flex flex-col space-y-4">
                 
-            {{-- Header --}}
-            <p class="text-xl font-ubuntu font-bold mb-4 mt-6">Minuten</p>
+            <x-regheader>Minuten</x-regheader>
             
             {{-- Loop trough days. --}}
             @foreach ($minutes as $day => $minute_list)
                 
-                {{-- Display day. --}}
-                <p class="text-gray-300 text-sm">{{ $day }}</p>
-                
-                {{-- Loop trough records for that day. --}}
-                @foreach ($minute_list as $minute)
-                    <livewire:admin-minutes :recordId="$minute->id" :title="$title" />
-                @endforeach
+                <div class="flex flex-col space-y-2">
+                    {{-- Display day. --}}
+                    <p class="text-gray-300 text-xs">{{ $day }}</p>
+                    
+                    {{-- Loop trough records for that day. --}}
+                    @foreach ($minute_list as $minute)
+                        <livewire:admin-minutes :recordId="$minute->id" :title="$title" />
+                    @endforeach
+                </div>
 
             @endforeach
         
@@ -32,23 +33,25 @@
         
     @endif
 
-    @if (!$materials->isEmpty())
+    @if ($materials->isNotEmpty())
     
-        <div class="flex flex-col space-y-2">
+        <div class="flex flex-col space-y-4">
                     
             {{-- Header --}}
-            <p class="text-xl font-ubuntu font-bold mb-4 mt-6">Materiaalkosten</p>
+            <x-regheader>Materiaalkosten</x-regheader>
             
             {{-- Loop trough days. --}}
             @foreach ($materials as $day => $material_list)
-                    
-                {{-- Display day. --}}
-                <p class="text-gray-300 text-sm">{{ $day }}</p>
-                    
-                {{-- Loop trough records for that day. --}}
-                @foreach ($material_list as $material)
-                    <livewire:admin-materials :materialId="$material->id" :title="$title" />
-                @endforeach
+                
+                <div class="flex flex-col space-y-2">
+                    {{-- Display day. --}}
+                    <p class="text-gray-300 text-xs">{{ $day }}</p>
+                        
+                    {{-- Loop trough records for that day. --}}
+                    @foreach ($material_list as $material)
+                        <livewire:admin-materials :materialId="$material->id" :title="$title" />
+                    @endforeach
+                </div>
             
             @endforeach
         
