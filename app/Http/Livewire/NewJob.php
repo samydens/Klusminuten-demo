@@ -71,8 +71,8 @@ class NewJob extends Component
     public function submit0()
     {
         $this->validate([
-            'job.title' => 'required|max:255',
-            'job.desc' => 'required',
+            'job.title' => 'max:255',
+            'job.desc' => 'max:500',
             'photo' => 'max:2048|mimes:jpg,png,jpeg|nullable'
         ]);
 
@@ -87,22 +87,11 @@ class NewJob extends Component
 
     public function submit1()
     {
-        // $this->validate([
-        //     'job.client_id' => 'required'
-        // ]);
-
-        // $client = Client::find($this->job['client_id']);
-        // $this->job['location'] = $client->city;
-
         $this->step++;
     }
 
     public function submit2()
     {
-        $this->validate([
-            'selectEmp' => 'required' 
-        ]);
-
         $this->step++;
     }
 
@@ -129,9 +118,21 @@ class NewJob extends Component
     public function submit3()
     {
         $this->validate([
-            'job.agr_minutes' => 'required|max:9999|integer',
-            'job.agr_material' => 'required|max:999999.99'
+            'job.agr_minutes' => 'max:9999|integer',
+            'job.agr_material' => 'max:999999.99'
         ]);
+
+        if (empty($this->job['desc'])) {
+            $this->job['desc'] = '';
+        }
+
+        if (empty($this->job['agr_minutes'])) {
+            $this->job['agr_minutes'] = '';
+        }
+
+        if (empty($this->job['agr_materials'])) {
+            $this->job['agr_material'] = '';
+        }
 
         $job = Job::create([
             'title' => $this->job['title'],
@@ -139,7 +140,6 @@ class NewJob extends Component
             'photo' => $this->job['photo_url'],
             'location' => 'locatie',
             'user_id' => Auth::id(),
-            // 'client_id' => $this->job['client_id'],
             'agr_minutes' => $this->job['agr_minutes'],
             'agr_material' => $this->job['agr_material']
         ]);
@@ -164,13 +164,33 @@ class NewJob extends Component
         
         $this->validate([
             'client.full_name' => 'required|max:255',
-            'client.adres' => 'required|max:255',
-            'client.zip' => 'required|max:255',
-            'client.city' => 'required|max:255',
-            'client.client_phone' => 'required|numeric', 
-            'client.mail' => 'required|email|max:255',
+            'client.adres' => 'max:255',
+            'client.zip' => 'max:255',
+            'client.city' => 'max:255',
+            'client.client_phone' => 'numeric', 
+            'client.mail' => 'email|max:255',
         ]);
-            
+
+        if (empty($client['adres'])) {
+            $client['adres'] = '';
+        }
+
+        if (empty($client['zip'])) {
+            $client['zip'] = '';
+        }
+        
+        if (empty($client['city'])) {
+            $client['city'] = '';
+        }
+
+        if (empty($client['client_phone'])) {
+            $client['client_phone'] = '';
+        }
+
+        if (empty($client['mail'])) {
+            $client['mail'] = '';
+        }
+
         $client = Client::create([
             'full_name' => $client['full_name'],
             'adres' => $client['adres'],
@@ -183,7 +203,6 @@ class NewJob extends Component
         $this->customerIndex = Client::all();
         $this->selectClient[] = strval($client->id);
         
-        // $this->job['client_id'] = $client->id;
         $this->job['location'] = $client->city;
         
         $this->reset('client');
@@ -197,9 +216,17 @@ class NewJob extends Component
         
         $this->validate([
             'employee.name' => 'required|max:255',
-            'employee.vakman_id' => 'numeric|required',
-            'employee.employee_phone' => 'numeric|required',
+            'employee.vakman_id' => 'numeric',
+            'employee.employee_phone' => 'numeric',
         ]);
+
+        if (empty($employee['vakman_id'])) {
+            $employee['vakman_id'] = '';
+        }
+
+        if (empty($employee['employee_phone'])) {
+            $employee['employee_phone'] = '';
+        }
             
         $employee = Employee::create([
             'name' => $employee['name'],
