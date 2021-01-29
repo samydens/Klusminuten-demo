@@ -31,6 +31,8 @@ class CurrentJobs extends Component
         $this->getActiveJobs();
 
         session()->flash('message', 'Klus afgerond!');
+        
+        return redirect()->to('overview/'.$jobId);
     }
 
     public function getActiveJobs()
