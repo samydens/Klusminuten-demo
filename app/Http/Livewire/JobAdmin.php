@@ -3,16 +3,24 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Job;
+use Illuminate\Support\Facades\DB;
 
 class JobAdmin extends Component
 {
+    public $allJobs;
+    
+    public $statuses = [
+        0 => 'Klusvijver',
+        1 => 'In uitvoering',
+        2 => 'Archief'
+    ];
+
     public function render()
     {
-        return view('livewire.job-admin', [
-            'klusvijver' => Job::where('status', '=', 0)->get(),
-            'activeJobs' => Job::where('status', '=', 1)->get(),
-            'archive' => Job::where('status', '>', 1)->get()
-        ]);
+        $this->allJobs = DB::table('jobs')
+            ->get()
+            ->groupBy('status');
+     
+        return view('livewire.job-admin');
     }
 }
