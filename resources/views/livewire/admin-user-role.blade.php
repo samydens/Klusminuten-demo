@@ -20,7 +20,7 @@
         @if ($newRole)
             <form wire:submit.prevent="submit" class="flex items-center justify-between">
                 <select wire:model="newRoleId" class="border border-gray-400 bg-gray-200 rounded w-11/12">
-                    <option value="">Selecteer een klusser</option>
+                    <option value="">Selecteer een rol</option>
                     @foreach ($allRoles as $role)
                         <option value="{{ $role->id }}">{{ $role->name }}</option>
                     @endforeach
