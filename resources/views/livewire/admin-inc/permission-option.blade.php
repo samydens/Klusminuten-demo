@@ -1,0 +1,1 @@
+<option value="{{ $permission->id }}">{{ $permission->name }}</option>

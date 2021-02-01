@@ -33,6 +33,7 @@ route::middleware('auth')->group( function() {
         Route::get('/admin/employee/{id}', App\Http\Livewire\ShowEmployeeAdmin::class); // Show employee admin page.
         Route::get('admin/client/{id}', App\Http\Livewire\ShowClientAdmin::class); // Show client admin.
         Route::get('admin/user/{id}', App\Http\Livewire\ShowUserAdmin::class); // Show user admin.
+        Route::get('admin/role/{id}', App\Http\Livewire\ShowRoleAdmin::class); // Show role admin.
     });
 
     Route::group(['middleware' => ['role:medewerker']], function () {
