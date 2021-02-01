@@ -24,6 +24,9 @@
             <div wire:click="$set('slide', 3)" class="text-center w-full py-2 {{ $slide == 3 ? 'border-b-2 border-orange-100 text-orange-100' : '' }}">
                 <p>Gebruikers</p>
             </div>
+            <div wire:click="$set('slide', 4)" class="text-center w-full py-2 {{ $slide == 4 ? 'border-b-2 border-orange-100 text-orange-100' : '' }}">
+                <p>Rollen</p>
+            </div>
         </div>
     
     </nav>
@@ -43,6 +46,9 @@
                 @break
             @case(3)
                 <livewire:user-admin />
+                @break
+            @case(4)
+                <livewire:role-admin />
                 @break
         @endswitch
     
