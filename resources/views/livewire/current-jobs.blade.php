@@ -1,5 +1,10 @@
 @section('title')
-    Dashboard
+    <div class="flex justify-between align-center mx-4">
+        <p class="font-bold text-white font-ubuntu text-2xl">Dashboard</p>
+        @can('access admin')
+            <a href="/admin" class="text-white">{!! file_get_contents('icons/admin.svg') !!}</a>
+        @endcan
+    </div>
 @endsection
 
 <div class="space-y-4 relative">
@@ -9,21 +14,6 @@
             {{ session('message') }}
         </x-message>
     @endif
-
-    @can('access admin')
-    <a href="/admin">
-        <x-widget>
-            <div class="flex items-center justify-between">
-                <p class="text-lg font-medium">Ga naar admin</p>
-                <div class="flex items-center">
-                        <div class="rounded-full bg-gradient-to-tr from-gray-600 to-gray-700 p-3 text-gray-300">
-                            {!! file_get_contents('icons/admin.svg') !!}
-                        </div>
-                    </div>
-                </div>
-            </x-widget>
-        </a>
-    @endcan
 
     @if ($activeJobs->isEmpty())
             {{-- Message for when the archive is empty --}}
@@ -58,8 +48,7 @@
             </div>
             <div class="my-6 items-center justify-between flex">
                 
-                {{-- title --}}
-                <p class="font-medium text-xl">Minuten</p>
+                <x-regheader>Minuten</x-regheader>
                 
                 {{-- button & minutes --}}
                 <div class="flex items-center">
@@ -75,8 +64,7 @@
             {{-- materiaalkosten --}}
             <div class="mt-3 items-center justify-between flex">
                 
-                {{-- title --}}
-                <p class="font-medium text-xl">Materiaalkosten</p>
+                <x-regheader>Materiaalkosten</x-regheader>
                 
                 {{-- button & cost in euro's --}}
                 <div class="flex items-center">
@@ -89,7 +77,7 @@
                 </div>
             </div>
             <div class="mt-6 text-white font-medium font-lg">
-                <button wire:click="completeJob({{$job->id}})" class="bg-gradient-to-tr from-orange-100 to-orange-200 rounded-xl shadow p-4 w-full">Project afronden</button>
+                <button wire:click="completeJob({{$job->id}})" class="bg-gradient-to-tr from-orange-100 to-orange-200 rounded-xl shadow p-4 w-full">Klus afronden</button>
             </div>
         </x-widget>
     @endforeach

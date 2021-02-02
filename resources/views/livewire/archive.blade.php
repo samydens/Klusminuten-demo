@@ -7,7 +7,7 @@
     </div>
 @endsection
 @section('content')
-    <div class="space-y-2 mt-4 w-80 mx-auto">
+    <div class="space-y-2 mt-4 mx-4">
         @if ($jobs->isEmpty())
             {{-- Message for when the archive is empty --}}
             <p class="w-full text-center mt-40 text-gray-300 text-xl">Geen klussen in archief <br /> :(</p>

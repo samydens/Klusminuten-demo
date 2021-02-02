@@ -47,24 +47,7 @@
     <p class="w-full text-center text-gray-300 text-sm my-2">of</p>
     <button wire:click.prevent="newClient" class="bg-orange-100 rounded text-white flex flex-row px-2 border-2 border-orange-100 w-full justify-center">nieuwe klant {!! file_get_contents('icons/plus.svg') !!} </button>
     
-    {{-- Choose customer
-    <div class="mt-8">
-        <label for="customer" class="text-sm text-gray-300">Klant:</label>
-        <select wire:model.lazy="job.client_id" id="customer" class="border border-gray-400 bg-gray-200 rounded w-full p-1 max-w-">
-            <option value="">Kies een klant:</option>
-            @foreach ($customerIndex as $customer)
-                <option value="{{$customer->id}}">{{$customer->full_name}}</option>
-            @endforeach
-        </select>
-        @error('job.client_id') <span class="text-sm text-red">{{$message}}</span> @enderror
-    </div>
-
-    {{-- Link to new customer form --}}
-    {{-- <div class="mt-4"> --}}
-        {{-- <button wire:click="newClient" class="text-orange-100 font-medium mt-4"><u>voeg een klant toe</u></button> --}}
-    {{-- </div> --}}
-
     {{-- Next & previous buttons --}}
-    @include('livewire.form-inc.next-back')
+    @include('inc.form.next-back')
     
 </x-widget>

@@ -48,6 +48,6 @@
     <button wire:click.prevent="newEmployee" class="bg-orange-100 rounded text-white flex flex-row px-2 border-2 border-orange-100 w-full justify-center">nieuwe klusser {!! file_get_contents('icons/plus.svg') !!} </button>
     
     {{-- Next and back buttons. --}}
-    @include('livewire.form-inc.next-back')
+    @include('inc.form.next-back')
 
     </x-widget>
