@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Admin\Job;
 use Livewire\Component;
 use App\Models\Job;
 use Illuminate\Support\Facades\File;
+use App\Models\Minute;
+use App\Models\Material;
 
 class AdminJobDelete extends Component
 {
@@ -34,6 +36,16 @@ class AdminJobDelete extends Component
             $photo = public_path($this->job->photo);
             File::delete($photo);
         }
+
+        foreach ($this->job->minutes as $record) {
+            $record->delete();
+        }
+
+        foreach ($this->job->materials as $record) {
+            $record->delete();
+        }
+
+
         
         $this->job->delete();
 
