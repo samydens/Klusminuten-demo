@@ -27,13 +27,13 @@ Route::get('/', function () {
 route::middleware('auth')->group( function() {
 
     Route::group(['middleware' => ['role:admin']], function () {
-        Route::get('/admin', App\Http\Livewire\Admin::class); // Admin panel
-        Route::get('/admin/job/{id}', App\Http\Livewire\ShowJobAdmin::class); // Show job admin.
-        Route::get('/admin/minmat/{id}', App\Http\Livewire\MinuteMaterial::class); // Show all minute & material records for job.
-        Route::get('/admin/employee/{id}', App\Http\Livewire\ShowEmployeeAdmin::class); // Show employee admin page.
-        Route::get('admin/client/{id}', App\Http\Livewire\ShowClientAdmin::class); // Show client admin.
-        Route::get('admin/user/{id}', App\Http\Livewire\ShowUserAdmin::class); // Show user admin.
-        Route::get('admin/role/{id}', App\Http\Livewire\ShowRoleAdmin::class); // Show role admin.
+        Route::get('/admin', App\Http\Livewire\Admin\Admin::class); // Admin panel
+        Route::get('/admin/job/{id}', App\Http\Livewire\Admin\Job\ShowJobAdmin::class); // Show job admin.
+        Route::get('/admin/minmat/{id}', App\Http\Livewire\Admin\MinuteMaterial::class); // Show all minute & material records for job.
+        Route::get('/admin/employee/{id}', App\Http\Livewire\Admin\Employee\ShowEmployeeAdmin::class); // Show employee admin page.
+        Route::get('admin/client/{id}', App\Http\Livewire\Admin\Client\ShowClientAdmin::class); // Show client admin.
+        Route::get('admin/user/{id}', App\Http\Livewire\Admin\User\ShowUserAdmin::class); // Show user admin.
+        Route::get('admin/role/{id}', App\Http\Livewire\Admin\Role\ShowRoleAdmin::class); // Show role admin.
     });
 
     Route::group(['middleware' => ['role:medewerker']], function () {
