@@ -1,5 +1,5 @@
 @section('title')
-    <div class="flex justify-between align-center mx-4">
+    <div class="flex justify-between mx-4">
         <p class="font-bold text-white font-ubuntu text-2xl">Dashboard</p>
         @can('access admin')
             <a href="/admin" class="text-white">{!! file_get_contents('icons/admin.svg') !!}</a>

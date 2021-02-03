@@ -29,7 +29,7 @@
      
         </div>
 
-        <div class="container mt-24 mb-40 mx-auto">
+        <div class="container mt-28 mb-40 mx-auto">
             @yield('content')
         </div>
 
