@@ -12,6 +12,6 @@ class Archive extends Component
         return view('livewire.archive', [
             'jobs' => Job::where('status', '>', 1)->get(),
         ])
-        ->extends('klusminuten.layout.app');
+        ->extends('layouts.main');
     }
 }

@@ -29,4 +29,14 @@ class Job extends Model
     {
         return $this->belongsToMany(Client::class);
     }
+
+    public function minutes()
+    {
+        return $this->hasMany(Minute::class);
+    }
+
+    public function materials()
+    {
+        return $this->hasMany(Material::class);
+    }
 }

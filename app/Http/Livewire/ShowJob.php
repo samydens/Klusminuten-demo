@@ -27,6 +27,6 @@ class ShowJob extends Component
     public function render()
     {
         return view('livewire.show-job')
-        ->extends('klusminuten.layout.app');
+        ->extends('layouts.main');
     }
 }
