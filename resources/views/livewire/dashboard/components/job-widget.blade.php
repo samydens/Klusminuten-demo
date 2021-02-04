@@ -32,7 +32,7 @@
             </div>
             
             {{-- More link --}}
-            <a href="#" class="font-bold text-orange-100 text-sm float-right mt-4"><u>Meer info</u></a>
+            <a href="/active/{{ $job->id }}" class="font-bold text-orange-100 text-sm float-right mt-4"><u>Meer info</u></a>
         </div>
     </div>
 </div> 

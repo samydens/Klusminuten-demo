@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// Jetstream zooi??
+// Jetstream zooi?
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () { 
     return view('dashboard');
 })->name('dashboard');
@@ -26,7 +26,7 @@ Route::get('/', function () {
 // Routes which require a logged in user.
 route::middleware('auth')->group( function() {
 
-    Route::group(['middleware' => ['role:admin']], function () {
+    Route::group(['middleware' => ['role:admin|eigenaar']], function () {
         Route::get('/admin', App\Http\Livewire\Admin\Admin::class); // Admin panel
         Route::get('/admin/job/{id}', App\Http\Livewire\Admin\Job\ShowJobAdmin::class); // Show job admin.
         Route::get('/admin/minmat/{id}', App\Http\Livewire\Admin\MinuteMaterial::class); // Show all minute & material records for job.
@@ -38,17 +38,12 @@ route::middleware('auth')->group( function() {
 
     Route::group(['middleware' => ['role:medewerker']], function () {
         Route::get('/toevoegen', App\Http\Livewire\NewJob::class); // Create a new job.
-        Route::get('/home', App\Http\Livewire\CurrentJobs::class); // Dashboard
         Route::get('/klusvijver', App\Http\Livewire\JobIndex::class); // Klusvijver
         Route::get('/klusvijver/{id}', App\Http\Livewire\showJob::class); // Show job
-        Route::get('/stopwatch/{id}', App\Http\Livewire\NewTimer::class); // Stopwatch
         Route::get('/materiaal/{id}', App\Http\Livewire\AddMaterial::class); // Materials
         Route::get('/archief', App\Http\Livewire\Archive::class); // Archive
         Route::get('/overview/{id}', App\Http\Livewire\JobOverview::class); // overview after completion
-        Route::get('/newdash', App\Http\Livewire\Dashboard\Dashboard::class); // new dashboard
+        Route::get('/home', App\Http\Livewire\Dashboard\Dashboard::class); // dashboard
+        Route::get('/active/{id}', App\Http\Livewire\Dashboard\ShowActiveJob::class); // Show active job
     });
-    // Route::get('/admin', App\Http\Livewire\Admin::class); // Admin panel
-    // Route::get('/admin/job/{id}', App\Http\Livewire\ShowJobAdmin::class); // Show Job
-    // Route::get('/admin/minmat/{id}', App\Http\Livewire\MinuteMaterial::class); // Show all minute & material records for job.
-    // Route::get('/admin/employee/{id}', App\Http\Livewire\ShowEmployeeAdmin::class); // Show employee admin page.
 });
