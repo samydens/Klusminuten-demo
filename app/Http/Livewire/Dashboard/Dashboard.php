@@ -11,7 +11,7 @@ class Dashboard extends Component
 
     public function mount()
     {
-        $this->jobs = Job::where('status', 1)->select('id')->get();
+        $this->jobs = Job::where('status', 1)->get();
     }
 
     public function render()

@@ -1,30 +1,38 @@
 <div class="bg-white rounded-xl mx-4 shadow">
-    <div class="flex space-x-4 space-y-4">
+    <div class="flex">
 
         {{-- image --}}
-        <div class="rounded-l-xl h-44 bg-center bg-cover w-32" style="background-image: url('/storage/{{ $job->photo }}')"></div>
+        <div class="rounded-l-xl bg-center bg-cover w-3/5" style="background-image: url('/storage/{{ $job->photo }}')"></div>
 
-        <div>
+        <div class="w-full p-4">
 
             {{-- title & location --}}
-            <x-regheader>{{ $job->title }}</x-regheader>
-            <p class="text-gray-300 text-sm">{{ $location }}</p>
+            <div class="mb-4">
+                <x-regheader>{{ $job->title }}</x-regheader>
+                <p class="text-gray-300 text-sm">{{ $location }}</p>
+            </div>
 
             {{-- Minutes --}}
-            <div class="flex items-center space-x-4 mt-4">
+            <div class="flex justify-between">
                 <div>
                     <p class="text-xs text-gray-300">Gekluste minuten</p>
-                    <p class="text-orange-100 font-bold">{{ $this->minutes() }}</p>
+                    <p wire:poll.1000ms class="text-orange-100 font-bold">{{ $this->getMinutes() }}</p>
                 </div>
 
-                <div class="bg-gradient-to-tr from-gray-600 to-gray-700 rounded-full w-12 h-12 flex items-center justify-center">
-                    <button class="text-orange-100">{!! file_get_contents('icons/play.svg') !!}</button>
-                </div>
+                {{-- button with background --}}
+                @if ($running)
+                    <button wire:click="stopTimer" class="bg-gradient-to-tr from-gray-600 to-gray-700 rounded-full w-12 h-12 focus:outline-none text-orange-100 flex justify-center items-center">
+                        <div>{!! file_get_contents('icons/pause.svg') !!}</div>
+                    </button>
+                @else
+                    <button wire:click="startTimer" class="bg-gradient-to-tr from-gray-600 to-gray-700 rounded-full w-12 h-12 focus:outline-none text-orange-100 flex justify-center items-center">
+                        <div>{!! file_get_contents('icons/play.svg') !!}</div>
+                    </button>
+                @endif
             </div>
             
             {{-- More link --}}
-            <a href="#" class="font-bold text-orange-100 float-right mt-4 text-sm"><u>Meer info</u></a>
+            <a href="#" class="font-bold text-orange-100 text-sm float-right mt-4"><u>Meer info</u></a>
         </div>
-
     </div>
 </div> 

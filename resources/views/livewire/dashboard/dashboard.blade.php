@@ -13,7 +13,7 @@
 <div class="space-y-4 relative">
    
     @foreach ($jobs as $job)  
-        <livewire:dashboard.components.job-widget :jobId="$job->id" /> 
+        <livewire:dashboard.components.job-widget :job="$job" :key="$job->id" /> 
     @endforeach
 
 </div>

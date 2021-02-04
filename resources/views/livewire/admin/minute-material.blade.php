@@ -23,7 +23,7 @@
                     
                     {{-- Loop trough records for that day. --}}
                     @foreach ($minute_list as $minute)
-                        <livewire:admin-minutes :recordId="$minute->id" :title="$title" />
+                        <livewire:admin.components.admin-minutes :recordId="$minute->id" :title="$title" />
                     @endforeach
                 </div>
 
@@ -49,7 +49,7 @@
                         
                     {{-- Loop trough records for that day. --}}
                     @foreach ($material_list as $material)
-                        <livewire:admin-materials :materialId="$material->id" :title="$title" />
+                        <livewire:admin.components.admin-materials :materialId="$material->id" :title="$title" />
                     @endforeach
                 </div>
             
