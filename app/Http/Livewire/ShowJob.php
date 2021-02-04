@@ -20,7 +20,7 @@ class ShowJob extends Component
         $activeJob->status = 1; // Set status to in progress
         $activeJob->save();
         
-        session()->flash('message', 'Uw klus is gestart!');
+        session()->flash('message', 'klus is aangenomen');
         return redirect()->to('/home');
     }
 

@@ -8,15 +8,17 @@
 @endsection
 <div>
     {{-- Add new material costs form --}}
-    <form wire:submit.prevent="addMaterial" class="flex flex-col mt-20 w-11/12 mx-auto space-y-4">
+    <form wire:submit.prevent="addMaterial" class="flex flex-col mt-20 mx-4 space-y-4">
+        
         {{-- Material title --}}
-        <label class="text-gray-300">Titel<input wire:model.lazy="mtrl.title" type="text" class="border border-gray-400 bg-gray-200 rounded w-full h-9 py-1 px-4"></label>
+        <x-input id="title" label="Titel:" type="text" prop="mtrl.title" placeholder="Typ hier een titel" />
         @error('mtrl.title') <span class="text-red text-xs">{{ $message }}</span><br> @enderror
+        
         {{-- Material amount --}}
-        <label class="text-gray-300">Bedrag<input wire:model.lazy="mtrl.amount" type="text" class="border border-gray-400 bg-gray-200 rounded w-full h-9 py-1 px-4"></label>
+        <x-input id="amount" label="Bedrag:" type="text" prop="mtrl.amount" placeholder="Typ hier het bedrag" />
         @error('mtrl.amount') <span class="text-red text-xs">{{ $message }}</span><br> @enderror
         {{-- Material description --}}
-        <label class="text-gray-300">Omschrijving<textarea wire:model.lazy="mtrl.desc" type="text" class="border border-gray-400 bg-gray-200 rounded w-full h-27 py-1 px-4"></textarea></label>
+        <label class="text-gray-300">Omschrijving<textarea wire:model.lazy="mtrl.desc" type="text" class="border border-gray-400 bg-gray-200 rounded w-full h-27 py-1 px-4" placeholder="Typ hier een beschrijving"></textarea></label>
         @error('mtrl.desc') <span class="text-red text-xs">{{ $message }}</span><br> @enderror
         {{-- Submit --}}
         <button type="submit" class="p-4 w-full bg-gradient-to-tr from-orange-100 to-orange-200 rounded shadow font-medium text-white">Kosten toevoegen</button>

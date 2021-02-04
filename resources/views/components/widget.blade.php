@@ -1,3 +1,6 @@
-<div class="bg-white shadow p-4 mx-4 mb-4 rounded-xl text-gray-500">
+<div {{ $attributes->merge(['class' => 'bg-white shadow p-4 rounded-xl']) }}>
+    @if ($attributes->has('title'))
+        <p class="font-bold text-lg">{{ $attributes->get('title') }}</p>
+    @endif
     {{ $slot }}
 </div>

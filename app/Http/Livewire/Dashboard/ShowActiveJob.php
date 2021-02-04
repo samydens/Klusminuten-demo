@@ -20,6 +20,16 @@ class ShowActiveJob extends Component
         }
     }
 
+    public function complete()
+    {
+        $this->job->status = 2;
+        $this->job->save();
+
+        session()->flash('message', 'Klus Afgerond!');
+
+        return redirect()->to('/home');
+    }
+
     public function render()
     {
         return view('livewire.dashboard.show-active-job')
