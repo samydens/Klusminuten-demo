@@ -130,7 +130,7 @@ class NewJob extends Component
             $this->job['agr_minutes'] = '';
         }
 
-        if (empty($this->job['agr_materials'])) {
+        if (empty($this->job['agr_material'])) {
             $this->job['agr_material'] = '';
         }
 

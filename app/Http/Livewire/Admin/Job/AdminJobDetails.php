@@ -17,10 +17,10 @@ class AdminJobDetails extends Component
         'job.title.max' => 'Titel is te lang',
     ];
 
-    public function mount($jobId)
+    public function mount($job)
     {
         // Find DB record with passed $jobId.
-        $this->jobRecord = Job::find($jobId);
+        $this->jobRecord = $job;
 
         $job = $this->jobRecord;
 

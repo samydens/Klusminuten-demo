@@ -39,4 +39,9 @@ class Job extends Model
     {
         return $this->hasMany(Material::class);
     }
+
+    public function companies()
+    {
+        return $this->BelongsToMany(Company::class);
+    }
 }

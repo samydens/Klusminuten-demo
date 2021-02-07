@@ -13,9 +13,9 @@ class AdminJobDelete extends Component
     public $job;
     public $confirm = False;
 
-    public function mount($jobId)
+    public function mount($job)
     {
-        $this->job = Job::find($jobId);
+        $this->job = $job;
     }
 
     public function submit()

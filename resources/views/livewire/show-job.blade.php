@@ -21,10 +21,6 @@
                 <p class="text-sm text-gray-300">Materiaal</p>
                 <p class="font-medium">{{$job->agr_material}}</p>
             </div>
-            <div class="flex-1 bg-gradient-to-tr from-gray-600 to-gray-700 px-2 py-1 rounded">
-                <p class="text-sm text-gray-300">Locatie</p>
-                <p class="font-medium">{{$job->location}}</p>
-            </div>
         </div>
         
     </x-widget>
@@ -34,5 +30,5 @@
         <p class="text-gray-300">{!! $job->desc !!}</p>
     </x-widget>
 
-    <x-inputs.button wire:click="setActive({{ $job->id }})" title="Klus Aannemen" />
+    <x-inputs.button wire:click="setActive({{ $job->id }})" title="Klus uitvoeren" />
 </div>

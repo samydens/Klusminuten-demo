@@ -24,7 +24,7 @@
         <button type="submit" class="p-4 w-full bg-gradient-to-tr from-orange-100 to-orange-200 rounded shadow font-medium text-white">Kosten toevoegen</button>
         {{-- Display messages --}}
         @if (session()->has('message'))
-            <div class="text-orange-100 text-center">{{session('message')}}</div>
+            <div class="text-orange-100 text-center">{{ session('message') }}</div>
         @endif
     </form>
 </div>

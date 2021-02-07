@@ -8,7 +8,7 @@
 
     {{-- Foreach with employees --}}
     <div class="flex flex-col space-y-2">
-        @each('livewire.admin-inc.clients', $clients, 'client', 'livewire.admin-inc.no-clients')
+        @each('livewire.admin-inc.clients', $job->clients, 'client', 'livewire.admin-inc.no-clients')
 
         {{-- If user clicked on '+' then show form where user can attach new employee to job --}}
         @if ($newClient)

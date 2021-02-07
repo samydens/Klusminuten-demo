@@ -12,19 +12,19 @@ class AdminJobMinutesMaterial extends Component
 {
     public $minutes;
     public $materials;
-    public $jobId;
+    public $job;
 
-    public function mount($jobId)
+    public function mount($job)
     {
 
         // Assign passed $jobId to public $jobId.
-        $this->jobId = $jobId;
+        $this->job = $job;
 
         // Set carbon language to nl.
         Carbon::setLocale('nl');
 
         // Get 2 minute records grouped by date.
-        $this->minutes = Minute::where('job_id', $jobId)
+        $this->minutes = Minute::where('job_id', $job->id)
             ->orderByDesc('created_at')
             ->take(2)
             ->get()
@@ -44,19 +44,22 @@ class AdminJobMinutesMaterial extends Component
             ->toBase();
 
             // Get 2 material records grouped by date.
-            $this->materials = Material::where('job_id', $jobId)
+            $this->materials = Material::where('job_id', $job->id)
                 ->orderByDesc('created_at')
                 ->take(2)
                 ->get()
                 ->groupBy(function($item) {
+                    
                     if ($item->created_at->isToday()) {
                         return 'Vandaag';
                     }
 
+                    
                     if ($item->created_at->isYesterday()) {
                         return 'Gisteren';
                     }
 
+                    
                     if (!$item->created_at->isToday() && !$item->created_at->isYesterday()) {
                         return $item->created_at->formatLocalized('%d %B %Y');
                     }

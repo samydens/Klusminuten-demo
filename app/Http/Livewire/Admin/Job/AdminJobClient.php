@@ -9,15 +9,13 @@ use App\Models\Client;
 class AdminJobClient extends Component
 {
     public $job;
-    public $clients;
     public $allClients;
     public $newClient = False;
     public $newClientId;
 
-    public function mount($jobId)
+    public function mount($job)
     {
-        $this->job = Job::find($jobId);
-        $this->clients = $this->job->clients;
+        $this->job = $job;
         $this->allClients = Client::all();
     }
 
@@ -28,18 +26,19 @@ class AdminJobClient extends Component
         $this->reset('newClientId');
         $this->reset('newClient');
 
-        $this->refreshClients();
+        $this->refresh();
     }
 
     public function detachClient($id)
     {
         $this->job->clients()->detach($id);
-        $this->refreshClients();
+
+        $this->refresh();
     }
 
-    public function refreshClients()
+    public function refresh()
     {
-        return $this->clients = Job::find($this->job->id)->clients;
+        return $this->job = Job::find($this->job->id);
     }
 
     public function render()

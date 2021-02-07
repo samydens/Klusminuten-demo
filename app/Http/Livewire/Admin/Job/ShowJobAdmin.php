@@ -7,11 +7,11 @@ use App\models\Job;
 
 class ShowJobAdmin extends Component
 {
-    public $jobId;
+    public $job;
 
     public function mount($id)
     {
-        $this->jobId = $id;
+        $this->job = Job::find($id);
     }
 
     public function render()

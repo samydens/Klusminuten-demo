@@ -14,13 +14,13 @@ class AdminJobEmployees extends Component
     public $newEmployee = False;
     public $newEmployeeId;
 
-    public function mount($jobId)
+    public function mount($job)
     {
         // Public $jobId is passed jobId.
-        $this->jobId = $jobId;
+        $this->jobId = $job;
         
         // Public employees is employees attached to job.
-        $this->employees = Job::find($jobId)->employees;
+        $this->employees = Job::find($job->id)->employees;
 
         // All employees
         $this->allEmployees = Employee::all();
