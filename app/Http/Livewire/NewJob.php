@@ -24,8 +24,8 @@ class NewJob extends Component
     public $customerIndex, $employeeIndex;
 
     private $stepActions = [
-        'submit0', // Title, desc & photo.
-        'submit1', // Client.
+        'submit0', // Title, desc & photo
+        'submit1', // Client
         'submit2', // Employee
         'submit3', // Agreements (submit job to DB)
         'submit4', // new client
@@ -155,6 +155,10 @@ class NewJob extends Component
         $this->reset(['job', 'photo', 'selectEmp']);
 
         $this->step = 0;
+
+        session()->flash('message', 'Klus toegevoegd aan klusvijver!');
+
+        return redirect('/klusvijver');
     }
 
     

@@ -6,6 +6,12 @@
         <p class="text-gray-300 mb-4">Hier kan je alle klussen bekijken.</p>
         <a href="/archief" class="underline font-medium text-orange-100 ">Bekijk archief</a>
     </x-widget>
+
+    @if (session()->has('message'))
+        <x-message>
+            {{ session('message') }}
+        </x-message>
+    @endif
     
     <div class="space-y-2">
         
