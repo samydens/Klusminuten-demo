@@ -11,9 +11,9 @@ class AdminJobStatus extends Component
     public $currentStatus; // Model propety for form.
     public $job; // DB record of job in question. 
 
-    public function mount($jobId)
+    public function mount($job)
     {
-        $this->job = Job::find($jobId);
+        $this->job = $job;
 
         // Set input model to jobs status.
         $this->currentStatus = $this->job->status;

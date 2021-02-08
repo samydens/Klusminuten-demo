@@ -22,18 +22,22 @@
     <body class="antialiased bg-gray-100 font-roboto text-gray-500">
 
         {{-- Header --}}
-        <div class="bg-gradient-to-tr from-orange-100 to-orange-200 h-1/5 w-full fixed top-0">
+        <div class="bg-gradient-to-tr from-orange-100 to-orange-200 h-1/5 w-full fixed top-0 text-white">
 
-            {{-- View title --}}
-            <p class="font-ubuntu text-2xl text-white font-bold container mx-8 mt-8">@yield('title')</p>
-     
+            <div class="mx-8 mt-8 flex flex-row justify-between items-center">
+                <p class="font-bold font-ubuntu text-2xl">@yield('title')</p>
+                <div>
+                    @yield('icon')
+                </div>
+            </div>
+            
         </div>
 
-        <div class="container mt-24 mb-40 mx-auto">
+        <div class="mx-4 mt-28 relative mb-28">
             @yield('content')
         </div>
 
-        @include('inc.nav')    
+        @include('inc.nav')
         
         @livewireScripts
     </body>

@@ -1,3 +1,3 @@
-<p class="font-medium text-l">
+<p class="font-bold text-lg">
     {{ $slot }}
 </p>

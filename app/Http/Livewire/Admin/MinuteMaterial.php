@@ -79,7 +79,7 @@ class MinuteMaterial extends Component
 
     public function render()
     {
-        return view('livewire.admin.minute-mateial')
+        return view('livewire.admin.minute-material')
         ->extends('layouts.show')
         ->section('content');
     }

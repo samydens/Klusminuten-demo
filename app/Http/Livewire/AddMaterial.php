@@ -53,7 +53,7 @@ class AddMaterial extends Component
     public function render()
     {
         return view('livewire.add-material')
-        ->extends('klusminuten.layout.timer')
+        ->extends('layouts.timer')
         ->section('content');
     }
 }
