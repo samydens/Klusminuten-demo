@@ -1,0 +1,1 @@
+<p class="text-gray-300">Gebruiker heeft geen bedrijven</p>

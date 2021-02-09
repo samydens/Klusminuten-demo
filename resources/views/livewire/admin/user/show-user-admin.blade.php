@@ -12,4 +12,6 @@
 
     <livewire:admin.user.admin-user-role :userId="$userId" />
 
+    <livewire:admin.user.admin-user-companies :userId="$userId" />
+
 </div>

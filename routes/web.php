@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,5 +46,7 @@ route::middleware('auth')->group( function() {
         Route::get('/overview/{id}', App\Http\Livewire\JobOverview::class); // overview after completion
         Route::get('/home', App\Http\Livewire\Dashboard\Dashboard::class); // dashboard
         Route::get('/active/{id}', App\Http\Livewire\Dashboard\ShowActiveJob::class); // Show active job
+    
     });
+
 });
