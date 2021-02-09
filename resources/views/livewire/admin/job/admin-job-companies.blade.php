@@ -1,23 +1,14 @@
 <div class="flex flex-col space-y-4">
-
-    {{-- Header --}}
-    <div class="flex justify-between items-center">
-        <x-regheader>Bedrijven</x-regheader>
-        <p wire:click="$set('newCompany', 'True')" class="text-orange-100">{!! file_get_contents('icons/plus.svg') !!}</p>
+    <x-regheader>Bedrijven</x-regheader>
+    <div class="flex items-center">
+        <p class="text-orange-100 mr-2">{!! file_get_contents('icons/business.svg') !!}</p>
+        <select wire:model="company">
+            @each('inc.admin.company-option', $companies, 'company', 'inc.empty')
+        </select>
     </div>
-
-    {{-- Foreach with companies --}}
-    @each('inc.admin.company', $job->companies, 'company', 'inc.empty')
-
-    {{-- If the user clicked on '+' then show form for adding new company to job. --}}
-    @if ($newCompany)
-        <form wire:submit.prevent="submit" class="flex items-center justify-between">
-            <select wire:model="newCompanyId" class="border border-gray-400 bg-gray-200 rounded w-11/12">
-                @each('inc.admin.company-option', $allCompanies, 'company')
-            </select>
-            <button type="submit" class="text-orange-100">{!! file_get_contents('icons/save.svg') !!}</button>
-        </form>
+    @error('company') <span class="text-red text-xs"> {{ $message }} </span> @enderror
+    @if (session()->has('message'))
+        <span class="text-orange-100 text-xs"> {{ session('message') }} </span>
     @endif
-
 </div>
 
