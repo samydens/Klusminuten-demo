@@ -7,7 +7,8 @@
         
         {{-- Select for company --}}
         <select wire:model="company">
-            @each('inc.admin.company-option', $companies, 'company', 'inc.empty')
+            <option value="">geen bedrijf</option>
+            @each('inc.admin.company-option', $companies, 'company')
         </select>
     </div>
 

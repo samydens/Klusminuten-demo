@@ -3,14 +3,15 @@
 namespace App\Http\Livewire\Admin\User;
 
 use Livewire\Component;
+use App\Models\User;
 
 class ShowUserAdmin extends Component
 {
-    public $userId;
+    public $user;
 
     public function mount($id)
     {
-        $this->userId = $id;
+        $this->user = User::find($id);
     }
 
     public function render()

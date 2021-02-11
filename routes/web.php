@@ -22,7 +22,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/', function () { 
     return view('welcome');
-}); 
+});
 
 // Routes which require a logged in user.
 route::middleware('auth')->group( function() {

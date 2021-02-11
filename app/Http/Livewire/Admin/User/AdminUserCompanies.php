@@ -8,43 +8,24 @@ use App\Models\Company;
 
 class AdminUserCompanies extends Component
 {
-    public $companies;
-    public $allCompanies;
-    public $newCompany = False;
-    public $newCompanyId;
-    public $userId;
+    public $user;
 
-    public function mount($userId)
+    protected $rules = [
+        'user.company_id' => 'numeric'
+    ];
+
+    public function updatedUser()
     {
-        $this->userId = $userId;
-        $this->companies = User::find($userId)->companies;
-        $this->allCompanies = Company::all();
-    }
-
-    public function submit()
-    {
-        $user = User::find($this->userId);
-        $user->companies()->attach($this->newCompanyId);
-
-        $this->reset('newCompanyId');
-        $this->reset('newCompany');
-
-        $this->refresh();
-    }
-
-    public function detach($id)
-    {
-        User::find($this->userId)->companies()->detach($id);
-        $this->refresh();
-    }
-
-    public function refresh()
-    {
-        $this->companies = User::find($this->userId)->companies;
+        $this->validate();
+        $this->user->save();
+        
+        session()->flash('message', 'Wijzigingen opgeslagen!');
     }
 
     public function render()
     {
-        return view('livewire.admin.user.admin-user-companies');
+        return view('livewire.admin.user.admin-user-companies', [
+            'companies' => Company::all(),
+        ]);
     }
 }

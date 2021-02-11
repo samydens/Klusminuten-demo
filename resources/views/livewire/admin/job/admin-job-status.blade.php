@@ -7,9 +7,8 @@
     <form wire:submit.prevent="submit" class="flex flex-row justify-between items-center">
 
         <select wire:model.lazy="currentStatus" class="border-b-2 border-orange-100 w-full">
-            <option value="0">nog niet begonnen</option>
-            <option value="1">in uitvoering</option>
-            <option value="2">archief</option>
+            <option value="0">nog niet afgerond</option>
+            <option value="1">afgerond (in archief)</option>
         </select>
         
         @if ($edited)

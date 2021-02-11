@@ -22,7 +22,7 @@ class ShowActiveJob extends Component
 
     public function complete()
     {
-        $this->job->status = 2;
+        $this->job->status = 1;
         $this->job->save();
 
         session()->flash('message', 'Klus Afgerond!');

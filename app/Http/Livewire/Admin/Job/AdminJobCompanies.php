@@ -23,7 +23,10 @@ class AdminJobCompanies extends Component
     {
         $this->job = $job;
         $this->companies = Company::all();
-        $this->company = $job->company;
+        
+        if (isset($job->company)) {
+            $this->company = $job->company->id;
+        }
     }
 
     public function updatedCompany()

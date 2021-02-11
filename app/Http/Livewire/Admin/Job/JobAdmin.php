@@ -10,9 +10,8 @@ class JobAdmin extends Component
     public $allJobs;
     
     public $statuses = [
-        0 => 'Klusvijver',
-        1 => 'In uitvoering',
-        2 => 'Archief'
+        0 => 'Nog niet afgerond',
+        1 => 'Afgerond'
     ];
 
     public function render()
