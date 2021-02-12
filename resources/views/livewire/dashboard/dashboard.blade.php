@@ -1,7 +1,9 @@
 @section('title', 'Dashboard')
 
 @section('icon')
-    <a href="/admin">{!! file_get_contents('icons/admin.svg') !!}</a>
+    @can('access admin')
+        <a href="/admin">{!! file_get_contents('icons/admin.svg') !!}</a>
+    @endcan
 @endsection
 
 <div class="space-y-4">
