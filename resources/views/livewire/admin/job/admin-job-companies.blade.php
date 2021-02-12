@@ -1,5 +1,5 @@
 <div class="flex flex-col space-y-4">
-    <x-regheader>Bedrijven</x-regheader>
+    <x-regheader>Bedrijf</x-regheader>
     
     {{-- Business icon and  --}}
     <div class="flex items-center">
