@@ -9,15 +9,10 @@ use App\Models\Client;
 class AdminJobClient extends Component
 {
     public $job;
-    public $allClients;
     public $newClient = False;
     public $newClientId;
 
-    public function mount($job)
-    {
-        $this->job = $job;
-        $this->allClients = Client::all();
-    }
+    public $listeners = ['refresh' => 'render'];
 
     public function submit()
     {
@@ -26,23 +21,19 @@ class AdminJobClient extends Component
         $this->reset('newClientId');
         $this->reset('newClient');
 
-        $this->refresh();
+        $this->emit('refresh');
     }
 
     public function detachClient($id)
     {
         $this->job->clients()->detach($id);
-
-        $this->refresh();
-    }
-
-    public function refresh()
-    {
-        return $this->job = Job::find($this->job->id);
+        $this->emit('refresh');
     }
 
     public function render()
     {
-        return view('livewire.admin.job.admin-job-client');
+        return view('livewire.admin.job.admin-job-client', [
+            'allClients' => Client::all(),
+        ]);
     }
 }

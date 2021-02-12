@@ -10,14 +10,8 @@ class AdminEmployeeDelete extends Component
     public $employee;
     public $confirm = False;
 
-    public function mount($employeeId)
-    {
-        $this->employee = Employee::find($employeeId);
-    }
-
     public function submit()
     {
-        // Detach jobs from employee.
         foreach($this->employee->jobs as $job) {
             $this->employee->jobs()->detach($job->id);
         }

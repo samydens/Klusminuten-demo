@@ -1,23 +1,15 @@
-{{-- New Employee --}}
-<x-widget>
-
-    {{-- Form title --}}
-    <p class="font-ubuntu font-bold text-xl">Nieuwe medewerker toevoegen</p>
+<x-widget title="Nieuwe medewerker toevoegen">
     
-    {{-- Step count --}}
-    <p class="text-gray-300">Stap {{$step - 2}}</p>
+    <p class="text-gray-300 text-sm">Stap {{$step - 2}}</p>
     
-    {{-- Employee name --}}
-    <x-input id="employee_name" label="naam:" type="text" prop="employee.name" placeholder="bijv. Frans Timmermans" />
+    <x-inputs.input wire:model="employee.name" id="employee_name" label="(verplicht) naam:" placeholder="bijv. Frans Timmermans" />
     @error('employee.name') <span class="text-sm text-red">{{$message}}</span> @enderror
 
-    {{-- Employee ID --}}
-    <x-input id="vakman_id" label="Vakman ID:" type="number" prop="employee.vakman_id" placeholder="bijv. 5" />
+    <x-inputs.input wire:model="employee.vakman_id" type="number" id="vakman_id" label="Vakman ID:" placeholder="bijv. 5" />
     @error('employee.vakman_id') <span class="text-sm text-red">{{$message}}</span> @enderror
 
-    {{-- Employee ID --}}
-    <x-input id="phone_number" label="Telefoonnummer:" type="number" prop="employee.employee_phone" placeholder="bijv. 0612345678" />
-    @error('employee.employee_phone') <span class="text-sm text-red">{{$message}}</span> @enderror
+    <x-inputs.input wire:model="employee.phone_number" type="number" id="phone_number" label="Telefoonnummer:" type="number" prop="employee.employee_phone" placeholder="bijv. 0612345678" />
+    @error('employee.phone_number') <span class="text-sm text-red">{{$message}}</span> @enderror
 
     {{-- Next & previous buttons --}}
     <div class="mt-4 flex flex-row space-x-4">

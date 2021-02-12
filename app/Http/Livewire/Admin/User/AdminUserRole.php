@@ -9,7 +9,7 @@ use App\Models\User;
 class AdminUserRole extends Component
 {
     public User $user;
-    public $newRoleId = '';
+    public $newRoleId;
     public $newRole = False;
 
     public function updatedNewRoleId()
@@ -23,12 +23,6 @@ class AdminUserRole extends Component
     public function removeRole($role)
     {
         $this->user->removeRole($role);
-    }
-
-    public function submit()
-    {
-        $this->user->assignRole($this->newRoleId);
-        $this->reset(['newRoleId', 'newRole']);
     }
 
     public function render()

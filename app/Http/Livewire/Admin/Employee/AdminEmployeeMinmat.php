@@ -11,21 +11,13 @@ use Carbon\CarbonPeriod;
 
 class AdminEmployeeMinmat extends Component
 {
+    public $employee;
     public $minutes;
     public $materials;
-    public $user_id;
 
-    public function mount($employeeId)
+    public function mount()
     {
-        $user_id = Employee::find($employeeId)->user->id;
-        $this->user_id = $user_id;
-
-
-        // Set carbon language to nl.
-        Carbon::setLocale('nl');
-
-        // Get 2 minute records grouped by date.
-        $this->minutes = Minute::where('user_id', $user_id)
+        $this->minutes = Minute::where('user_id', $this->employee->user_id)
             ->orderByDesc('created_at')
             ->take(2)
             ->get()
@@ -44,8 +36,7 @@ class AdminEmployeeMinmat extends Component
             })
             ->toBase();
 
-        // Get 2 minute records grouped by date.
-        $this->materials = Material::where('user_id', $user_id)
+        $this->materials = Material::where('user_id', $this->employee->user_id)
             ->orderByDesc('created_at')
             ->take(2)
             ->get()

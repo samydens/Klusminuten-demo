@@ -18,11 +18,11 @@
         <div class="mt-4">
 
             {{-- Label --}}
-            <label for="selectClient.{{$key}}" class="text-sm text-gray-300">Klant:<br /></label>
+            <label for="selectClient.{{ $key }}" class="text-sm text-gray-300">Klant:<br /></label>
             
             {{-- Select with values from selectEmp. When a key has no value, user can set it. --}}
             <div class="flex flex-row items-center">
-                <select wire:model.lazy="selectClient.{{$key}}" id="selectClient.{{$key}}" class="bg-gray-200 border border-gray-400 rounded w-11/12">
+                <select wire:model.lazy="selectClient.{{ $key }}" id="selectClient.{{ $key }}" class="bg-gray-200 border border-gray-400 rounded w-11/12">
                     
                     {{-- Standard option --}}
                     <option value="">Kies een klant</option>
