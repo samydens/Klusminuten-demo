@@ -48,9 +48,7 @@ route::middleware(['auth', 'company'])->group( function() {
         Route::get('/toevoegen', App\Http\Livewire\NewJob::class); // Create a new job.
         Route::get('/klusvijver', App\Http\Livewire\JobIndex::class); // Klusvijver
         Route::get('/klusvijver/{id}', App\Http\Livewire\ShowJob::class); // Show job
-        Route::get('/materiaal/{id}', App\Http\Livewire\AddMaterial::class); // Materials
         Route::get('/archief', App\Http\Livewire\Archive::class); // Archive
-        Route::get('/overview/{id}', App\Http\Livewire\JobOverview::class); // overview after completion
         Route::get('/home', App\Http\Livewire\Dashboard\Dashboard::class); // dashboard
         Route::get('/active/{id}', App\Http\Livewire\Dashboard\ShowActiveJob::class); // Show active job
     });
