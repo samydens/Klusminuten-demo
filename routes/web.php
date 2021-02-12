@@ -37,7 +37,7 @@ route::middleware('auth')->group( function() {
         Route::get('admin/role/{id}', App\Http\Livewire\Admin\Role\ShowRoleAdmin::class); // Show role admin.
     });
 
-    Route::group(['middleware' => ['role:medewerker']], function () {
+    Route::group(['middleware' => ['role:medewerker|admin|eigenaar']], function () {
         Route::get('/toevoegen', App\Http\Livewire\NewJob::class); // Create a new job.
         Route::get('/klusvijver', App\Http\Livewire\JobIndex::class); // Klusvijver
         Route::get('/klusvijver/{id}', App\Http\Livewire\showJob::class); // Show job
