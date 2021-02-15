@@ -1,4 +1,5 @@
 <div>
+    
     @if ($confirm)
         <p class="text-xl font-medium">Weet je het zeker?</p>
         <div class="flex flex-row space-x-2 w-full">
@@ -8,4 +9,5 @@
     @else
         <button wire:click="$toggle('confirm')" class="py-2 px-4 bg-red rounded text-white w-full">Klus verwijderen</button>
     @endif
+
 </div>

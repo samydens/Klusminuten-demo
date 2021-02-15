@@ -8,13 +8,13 @@
 
 <div class="mx-4 flex flex-col space-y-12 mb-8">
 
-    <livewire:admin.employee.admin-employee-details :employeeId="$employeeId" />
+    <livewire:admin.employee.admin-employee-details :employee="$employee" />
 
-    <livewire:admin.employee.admin-employee-user :employeeId="$employeeId" />
+    <livewire:admin.employee.admin-employee-user :employee="$employee" />
 
-    <livewire:admin.employee.admin-employee-jobs :employeeId="$employeeId" />
+    <livewire:admin.employee.admin-employee-jobs :employee="$employee" />
 
-    @if ($hasUser) <livewire:admin.employee.admin-employee-minmat :employeeId="$employeeId" /> @endif
+    @if ($hasUser) <livewire:admin.employee.admin-employee-minmat :employee="$employee" /> @endif
 
-    <livewire:admin.employee.admin-employee-delete :employeeId="$employeeId" />
+    <livewire:admin.employee.admin-employee-delete :employee="$employee" />
 </div>

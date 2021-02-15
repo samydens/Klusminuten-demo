@@ -14,25 +14,25 @@ class NewJob extends Component
     use WithFileUploads;
 
     public $employee = '';
-    public $client = '';
+    public $client = [];
     public $step = 0;
     public $job = '';
     public $photo = '';
     public $selectEmp = [];
     public $selectClient = [];
 
-    public $customerIndex, $employeeIndex;
 
     private $stepActions = [
-        'submit0', // Title, desc & photo
-        'submit1', // Client
-        'submit2', // Employee
-        'submit3', // Agreements (submit job to DB)
-        'submit4', // new client
-        'submit5', // new customer
+        'submit0',
+        'submit1',
+        'submit2',
+        'submit3', 
+        'submit4', 
+        'submit5',
     ];
 
     protected $messages = [
+        'job.title.required' => 'Vul een titel in',
         'required' => 'Dit veld is verplicht',
         'job.title.max' => 'Naam is te lang',
         'job.desc.max' => 'Omschrijving is te lang',
@@ -43,12 +43,6 @@ class NewJob extends Component
         'selectEmp.required' => 'Voeg een medewerker toe',
         'client.mail.unique' => 'Dit E-mail adres is al in gebruik' 
     ];
-
-    public function mount()
-    {
-        $this->customerIndex = Client::all();
-        $this->employeeIndex = Employee::all();
-    }
 
     public function submit()
     {
@@ -71,15 +65,15 @@ class NewJob extends Component
     public function submit0()
     {
         $this->validate([
-            'job.title' => 'max:255',
-            'job.desc' => 'max:500',
+            'job.title' => 'max:255|required',
+            'job.desc' => 'max:255|nullable',
             'photo' => 'max:2048|mimes:jpg,png,jpeg|nullable'
         ]);
 
         if ($this->photo) {
-            $this->job['photo_url'] = $this->photo->store('photos', 'public');
+            $this->job['photo'] = $this->photo->store('photos', 'public');
         } else {
-            $this->job['photo_url'] = 'photos/bathroom.jpg';
+            $this->job['photo'] = 'photos/bathroom.jpg';
         }
 
         $this->step++;
@@ -118,31 +112,14 @@ class NewJob extends Component
     public function submit3()
     {
         $this->validate([
-            'job.agr_minutes' => 'max:9999|integer',
-            'job.agr_material' => 'max:999999.99'
+            'job.agr_minutes' => 'max:9999|integer|nullable',
+            'job.agr_material' => 'max:999999.99|nullable'
         ]);
 
-        if (empty($this->job['desc'])) {
-            $this->job['desc'] = '';
-        }
+        $this->job['user_id'] = Auth()->id();
+        $this->job['location'] = 'locatie';
 
-        if (empty($this->job['agr_minutes'])) {
-            $this->job['agr_minutes'] = '';
-        }
-
-        if (empty($this->job['agr_material'])) {
-            $this->job['agr_material'] = '';
-        }
-
-        $job = Job::create([
-            'title' => $this->job['title'],
-            'desc' => $this->job['desc'],
-            'photo' => $this->job['photo_url'],
-            'location' => 'locatie',
-            'user_id' => Auth::id(),
-            'agr_minutes' => $this->job['agr_minutes'],
-            'agr_material' => $this->job['agr_material']
-        ]);
+        $job = Job::create($this->job);
 
         foreach($this->selectEmp as $employee) {
             $job->employees()->attach($employee);
@@ -164,45 +141,16 @@ class NewJob extends Component
     
     public function submit4()
     {
-        $client = $this->client;
-        
         $this->validate([
             'client.full_name' => 'required|max:255',
-            'client.adres' => 'max:255',
-            'client.zip' => 'max:255',
-            'client.city' => 'max:255',
-            'client.client_phone' => 'numeric', 
-            'client.mail' => 'email|max:255',
+            'client.adres' => 'max:255|required',
+            'client.zip' => 'max:255|nullable',
+            'client.city' => 'max:255|required',
+            'client.phone_number' => 'numeric|nullable', 
+            'client.mail' => 'max:255|email|required',
         ]);
 
-        if (empty($client['adres'])) {
-            $client['adres'] = '';
-        }
-
-        if (empty($client['zip'])) {
-            $client['zip'] = '';
-        }
-        
-        if (empty($client['city'])) {
-            $client['city'] = '';
-        }
-
-        if (empty($client['client_phone'])) {
-            $client['client_phone'] = '';
-        }
-
-        if (empty($client['mail'])) {
-            $client['mail'] = '';
-        }
-
-        $client = Client::create([
-            'full_name' => $client['full_name'],
-            'adres' => $client['adres'],
-            'zip' => $client['zip'],
-            'city' => $client['city'],
-            'phone_number' => $client['client_phone'],
-            'mail' => $client['mail'],
-        ]);
+        $client = Client::create($this->client);
         
         $this->customerIndex = Client::all();
         $this->selectClient[] = strval($client->id);
@@ -216,32 +164,18 @@ class NewJob extends Component
             
     public function submit5()
     {
-        $employee = $this->employee;
-        
         $this->validate([
             'employee.name' => 'required|max:255',
-            'employee.vakman_id' => 'numeric',
-            'employee.employee_phone' => 'numeric',
+            'employee.vakman_id' => 'numeric|nullable',
+            'employee.phone_number' => 'numeric|nullable',
         ]);
 
-        if (empty($employee['vakman_id'])) {
-            $employee['vakman_id'] = '';
-        }
-
-        if (empty($employee['employee_phone'])) {
-            $employee['employee_phone'] = '';
-        }
-            
-        $employee = Employee::create([
-            'name' => $employee['name'],
-            'vakman_id' => $employee['vakman_id'],
-            'phone_number' => $employee['employee_phone']
-        ]);
-                
-        $this->employeeIndex = Employee::all();
-        $this->selectEmp[] = strval($employee->id);
+        $employee = Employee::create($this->employee);
                 
         $this->reset('employee');
+        
+        $this->employeeIndex = Employee::all();
+        $this->selectEmp[] = strval($employee->id);
         
         $this->step = 2;
     }
@@ -263,7 +197,10 @@ class NewJob extends Component
 
     public function render()
     {
-        return view('livewire.new-job')
+        return view('livewire.new-job', [
+            'customerIndex' => Client::all(),
+            'employeeIndex' => Employee::all(),
+        ])
         ->extends('layouts.main');
     }
 }

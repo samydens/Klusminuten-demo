@@ -11,7 +11,9 @@
 
         <div class="mt-4 mb-8">
             <p class="font-bold text-xl">{{ $job->title }}</p>
-            <p class="text-gray-300 text-sm">{{ $location }}</p>
+            @if ($job->clients)
+                <p class="text-gray-300 text-sm">{{ $job->clients->first()->adres.', '.$job->clients->first()->city }}</p>
+            @endif
         </div>
 
         <div>

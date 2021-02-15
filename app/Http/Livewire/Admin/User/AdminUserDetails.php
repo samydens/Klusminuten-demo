@@ -7,31 +7,18 @@ use App\Models\User;
 
 class AdminUserDetails extends Component
 {
-    public $userRecord;
-    public $user = [];
-    public $showSubmit = False;
+    public $user;
 
-    public function mount($userId)
+    protected $rules = [
+        'user.name' => 'required',
+        'user.email' => 'required'
+    ];
+
+    public function updatedUser()
     {
-        $this->userRecord = User::find($userId);
-        $this->user['name'] = $this->userRecord->name;
-        $this->user['email']= $this->userRecord->email;
-    }
+        $this->user->save();
 
-    public function submit()
-    {
-        $this->userRecord->name = $this->user['name'];
-        $this->userRecord->email = $this->user['email'];
-        $this->userRecord->save();
-
-        $this->reset('showSubmit');
-
-        session()->flash('message', 'wijzigingen opgeslagen');
-    }
-
-    public function updateduser()
-    {
-        $this->showSubmit = True;
+        session()->flash('message', 'Wijzigingen opgeslagen!');
     }
 
     public function render()

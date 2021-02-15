@@ -8,8 +8,10 @@
 
 <div class="mx-4 flex flex-col space-y-12 mb-8">
 
-    <livewire:admin.user.admin-user-details :userId="$userId" />
+    <livewire:admin.user.admin-user-details :user="$user" />
 
-    <livewire:admin.user.admin-user-role :userId="$userId" />
+    <livewire:admin.user.admin-user-role :user="$user" />
+
+    <livewire:admin.user.admin-user-companies :user="$user" />
 
 </div>

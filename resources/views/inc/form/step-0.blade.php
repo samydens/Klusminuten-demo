@@ -7,8 +7,8 @@
     <p class="text-gray-300">Stap {{$step + 1}}</p>
 
     {{-- Job title --}}
-    <x-input id="title" label="titel:" type="text" prop="job.title" placeholder="typ hier de titel" />
-    @error('job.desc') <span class="text-sm text-red">{{$message}}</span> @enderror
+    <x-inputs.input wire:model="job.title" id="title" label="(verplicht) titel:" placeholder="typ hier de titel" />
+    @error('job.title') <span class="text-sm text-red"> {{ $message }} </span> @enderror
     
     {{-- Job description --}}
     <div class="mt-4">

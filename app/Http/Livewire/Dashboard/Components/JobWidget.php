@@ -20,13 +20,6 @@ class JobWidget extends Component
         // Assign passed job to public job.
         $this->job = $job;
 
-        // Check if job has clients.
-        if ($job->clients) {
-
-            // Assign location to adres and city of first client.
-            $this->location = $job->clients->first()->adres.', '.$job->clients->first()->city;
-        }
-
         // Try to resume timer.
         $min = Minute::where([['user_id', Auth::id()], ['running', 1], ['job_id', $job->id]])->first();
 

@@ -9,44 +9,24 @@ use App\Models\User;
 class AdminEmployeeUser extends Component
 {
     public $employee;
-    public $userId;
-    public $allUsers;
-    public $updated = False;
 
     protected $rules = [
-        'userId' => 'numeric',
+        'employee.user_id' => 'required',
     ];
 
-    public function mount($employeeId)
+    public function updatedEmployee()
     {
-        $this->employee = Employee::find($employeeId);
-        
-        // Public userId = user_id field of employee.
-        $this->userId = $this->employee->user_id;
-        $this->allUsers = User::all();
-    }
+        $this->validate();
 
-    public function submit()
-    {
-        // Update employees user id.
-        $this->employee->user_id = $this->userId;
         $this->employee->save();
 
-        // Update selected user's employee_id to employee.
-        $user = User::find($this->employee->user_id);
-        $user->employee_id = $this->employee->id;
-        $user->save();
-
-        $this->reset('updated');
-    }
-
-    public function updateduserId()
-    {
-        $this->updated = True;
+        session()->flash('message', 'Opgeslagen!');
     }
 
     public function render()
     {
-        return view('livewire.admin.employee.admin-employee-user');
+        return view('livewire.admin.employee.admin-employee-user', [
+            'users' => User::all(),
+        ]);
     }
 }

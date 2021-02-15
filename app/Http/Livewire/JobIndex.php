@@ -7,15 +7,10 @@ use App\Models\Job;
 
 class JobIndex extends Component
 {
-    public function redirectToArchive()
-    {
-        return redirect()->to('/archief');
-    }
-
     public function render()
     {
         return view('livewire.job-index', [
-            'jobs' => Job::where('status', '=', 0)->get()->sortByDesc('updated_at'),
+            'jobs' => Job::where('company_id', '=', 0)->get()->sortBy('created_at'),
             ])
             ->extends('layouts.main');
     }

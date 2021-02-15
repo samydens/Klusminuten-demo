@@ -3,14 +3,15 @@
 namespace App\Http\Livewire\Admin\Client;
 
 use Livewire\Component;
+use App\Models\Client;
 
 class ShowClientAdmin extends Component
 {
-    public $clientId;
+    public $client;
 
     public function mount($id)
     {
-        $this->clientId = $id;
+        $this->client = Client::find($id);
     }
 
     public function render()

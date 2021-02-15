@@ -3,20 +3,21 @@
 namespace App\Http\Livewire\Admin\User;
 
 use Livewire\Component;
-use App\Models\User;
 use Spatie\Permission\Models\Role;
+use App\Models\User;
 
 class AdminUserRole extends Component
 {
-    public $user;
+    public User $user;
+    public $newRoleId;
     public $newRole = False;
-    public $allRoles;
-    public $newRoleId = '';
 
-    public function mount($userId)
+    public function updatedNewRoleId()
     {
-        $this->user = User::find($userId);
-        $this->allRoles = Role::all();
+        $this->user->assignRole($this->newRoleId);
+        
+        session()->flash('message', 'Wijzigingen opgeslagen!');
+        $this->reset(['newRoleId', 'newRole']);
     }
 
     public function removeRole($role)
@@ -24,21 +25,10 @@ class AdminUserRole extends Component
         $this->user->removeRole($role);
     }
 
-    // public function assignRole($id)
-    // {
-    //     $this->user->assignRole($id);
-    //     $this->reset('newRoleId');
-    // }
-
-    public function submit()
-    {
-        $this->user->assignRole($this->newRoleId);
-        $this->reset('newRoleId');
-        $this->reset('newRole');
-    }
-
     public function render()
     {
-        return view('livewire.admin.user.admin-user-role');
+        return view('livewire.admin.user.admin-user-role', [
+            'roles' => Role::all(),
+        ]);
     }
 }

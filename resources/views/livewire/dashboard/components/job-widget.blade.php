@@ -8,7 +8,10 @@
         {{-- title & location --}}
         <div class="mb-4">
             <x-regheader>{{ $job->title }}</x-regheader>
-            <p class="text-gray-300 text-sm">{{ $location }}</p>
+            
+            @if ($job->clients->isNotEmpty())
+                <p class="text-gray-300 text-sm">{{ $job->clients->first()->adres.', '.$job->clients->first()->city }}</p>
+            @endif
         </div>
 
         {{-- Minutes --}}

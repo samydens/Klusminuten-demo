@@ -9,40 +9,29 @@ use Spatie\Permission\Models\Permission;
 class AdminRolePermission extends Component
 {
     public $role;
-    public $permissions;
     public $newPermission = False;
     public $newPermissionId;
-    public $allPermissions;
 
-    public function mount($roleId)
-    {
-        $this->role = Role::find($roleId);
-        $this->permissions = $this->role->permissions;
-        $this->allPermissions = Permission::all();
-    }
+    public $listeners = ['refresh' => 'render'];
 
     public function detachPermission($id)
     {
-        $this->role->revokePermissionTo(Permission::find($id));
-
-        $this->refresh();
+        $this->role->revokePermissionTo($id);
+        $this->emit('refresh');
     }
 
-    public function submit()
+    public function updatedNewpermissionid()
     {
-        $this->role->givePermissionTo(Permission::find($this->newPermissionId));
-        
+        $this->role->givePermissionTo($this->newPermissionId);
         $this->reset('newPermission');
-        $this->refresh();
-    }
-
-    public function refresh()
-    {
-        $this->permissions = Role::find($this->role->id)->permissions;
+        
+        $this->emit('refresh');
     }
 
     public function render()
     {
-        return view('livewire.admin.role.admin-role-permission');
+        return view('livewire.admin.role.admin-role-permission', [
+            'permissions' => Permission::all(),
+        ]);
     }
 }

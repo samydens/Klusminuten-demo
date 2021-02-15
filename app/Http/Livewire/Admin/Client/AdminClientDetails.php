@@ -7,43 +7,22 @@ use App\Models\Client;
 
 class AdminClientDetails extends Component
 {
-    public $clientRecord;
-    public $client = [];
-    public $showSubmit = False;
+    public $client;
 
-    public function mount($clientId)
-    {
-        $this->clientRecord = Client::find($clientId);
-        
-        $client = $this->clientRecord;
-
-        $this->client['full_name'] = $client->full_name;
-        $this->client['adres'] = $client->adres;
-        $this->client['zip'] = $client->zip;
-        $this->client['city'] = $client->city;
-        $this->client['phone_number'] = $client->phone_number;
-        $this->client['mail'] = $client->mail;
-    }
-
-    public function submit()
-    {
-        $this->clientRecord->full_name = $this->client['full_name'];
-        $this->clientRecord->adres = $this->client['adres'];
-        $this->clientRecord->zip = $this->client['zip'];
-        $this->clientRecord->city = $this->client['city'];
-        $this->clientRecord->phone_number = $this->client['phone_number'];
-        $this->clientRecord->mail = $this->client['mail'];
-
-        $this->clientRecord->save();
-
-        $this->reset('showSubmit');
-
-        session()->flash('message', 'wijzigingen opgeslagen');
-    }
+    protected $rules = [
+        'client.full_name' => 'required',
+        'client.adres' => 'required|string',
+        'client.zip' => 'nullable|max:10',
+        'client.city' => 'required|string',
+        'client.phone_number' => 'nullable',
+        'client.mail' => 'nullable|email'
+    ];
 
     public function updatedClient()
     {
-        $this->showSubmit = True;
+        $this->validate();
+        $this->client->save();
+        session()->flash('message', 'Opgeslagen!');
     }
 
     public function render()

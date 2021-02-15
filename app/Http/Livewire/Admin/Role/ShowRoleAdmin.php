@@ -3,14 +3,15 @@
 namespace App\Http\Livewire\Admin\Role;
 
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 class ShowRoleAdmin extends Component
 {
-    public $roleId;
+    public $role;
 
     public function mount($id)
     {
-        $this->roleId = $id;
+        $this->role = Role::find($id);
     }
 
     public function render()

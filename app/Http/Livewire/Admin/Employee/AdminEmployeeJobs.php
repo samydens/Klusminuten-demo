@@ -9,50 +9,31 @@ use App\Models\Job;
 class AdminEmployeeJobs extends Component
 {
     public $employee;
-    public $jobs;
-    public $allJobs;
     public $newJob = False;
     public $newJobId;
 
-    public function mount($employeeId)
-    {
-        // Public $employeeId is passed EmployeeId.
-        $employee = Employee::find($employeeId);
+    public $listeners = ['refresh' => 'render'];
 
-        // Public jobs is jobs attached to employee.
-        $this->jobs = $employee->jobs;
-
-        // All jobs.
-        $this->allJobs = Job::all();
-
-        $this->employee = $employee;
-    }
-
-    public function detachJob($id)
-    {
-        // Detach the job from the employee.
-        $this->employee->jobs()->detach($id);
-
-        $this->refreshJobs();
-    }
-
-    public function submit()
+    public function updatedNewJobId()
     {
         $this->employee->jobs()->attach($this->newJobId);
-        
-        $this->reset('newJob');
-        $this->reset('newJobId');
 
-        $this->refreshJobs();
+        session()->flash('message', 'Opgeslagen!');
+        $this->reset(['newJob', 'newJobId']);
+        $this->emit('refresh');
     }
-
-    public function refreshJobs()
+    
+    public function detachJob($id)
     {
-        $this->jobs = Employee::find($this->employee->id)->jobs;
+        $this->employee->jobs()->detach($id);
+        
+        $this->emit('refresh');
     }
 
     public function render()
     {
-        return view('livewire.admin.employee.admin-employee-jobs');
+        return view('livewire.admin.employee.admin-employee-jobs', [
+            'jobs' => Job::all(),
+        ]);
     }
 }

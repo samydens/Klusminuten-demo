@@ -4,40 +4,39 @@ namespace App\Http\Livewire\Admin\Job;
 
 use Livewire\Component;
 use App\Models\Company;
-use App\Models\Job;
 
 class AdminJobCompanies extends Component
 {
     public $job;
-    public $newCompanyId;
-    public $newCompany = False;
-    public $allCompanies;
+    public $companies;
+    public $company;
+
+    protected $messages = [
+        'required' => 'Dit veld is verplicht'
+    ];
+
+    protected $rules = [
+        'company' => 'required'
+    ];
 
     public function mount($job)
     {
         $this->job = $job;
-        $this->allCompanies = Company::all();
+        $this->companies = Company::all();
+        
+        if (isset($job->company)) {
+            $this->company = $job->company->id;
+        }
     }
 
-    public function submit()
+    public function updatedCompany()
     {
-        $this->job->companies()->attach($this->newCompanyId);
+        $this->validate();
 
-        $this->reset('newCompany');
-        $this->reset('newCompanyId');
+        $this->job->company_id = $this->company;
+        $this->job->save();
 
-        $this->refresh();
-    }
-
-    public function detachCompany($id)
-    {
-        $this->job->companies()->detach($id);
-        $this->refresh();
-    }
-
-    public function refresh()
-    {
-        $this->job = Job::find($this->job->id);
+        session()->flash('message', 'Opgeslagen!');
     }
 
     public function render()

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Job;
+use Illuminate\Support\Facades\Auth;
 
 class ShowJob extends Component
 {
@@ -14,13 +15,14 @@ class ShowJob extends Component
         $this->job = Job::find($id); 
     }
 
-    public function setActive($id) 
+    public function setActive() 
     {
-        $activeJob = Job::find($id);
-        $activeJob->status = 1; // Set status to in progress
-        $activeJob->save();
+        // Set company_id of job to company of user.
+        $this->job->company_id = Auth::user()->company->id;
+        $this->job->save();
         
         session()->flash('message', 'klus is aangenomen');
+        
         return redirect()->to('/home');
     }
 

@@ -7,15 +7,14 @@ use App\Models\Employee;
 
 class ShowEmployeeAdmin extends Component
 {
-    public $employeeId; // ID of employee.
-    public $hasUser = False;
+    public $employee;
+    public $hasUser;
 
     public function mount($id)
     {
-        // Assign passed $id to public $employeeId.
-        $this->employeeId = $id;
+        $this->employee = Employee::find($id);
 
-        if (Employee::find($id)->user) {
+        if ($this->employee->user) {
             $this->hasUser = True;
         }
     }

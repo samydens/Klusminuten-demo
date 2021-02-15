@@ -68,6 +68,6 @@ class User extends Authenticatable
 
     public function company()
     {
-        return $this->BelongsToMany(Company::class);
+        return $this->belongsTo(Company::class);
     }
 }

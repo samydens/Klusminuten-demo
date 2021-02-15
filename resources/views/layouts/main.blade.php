@@ -25,7 +25,10 @@
         <div class="bg-gradient-to-tr from-orange-100 to-orange-200 h-1/5 w-full fixed top-0 text-white">
 
             <div class="mx-8 mt-8 flex flex-row justify-between items-center">
-                <p class="font-bold font-ubuntu text-2xl">@yield('title')</p>
+                <div class="">
+                    <p class="font-bold font-ubuntu text-2xl">@yield('title')</p>
+                    <p class="text-sm opacity-50 flex items-center">{{ Auth()->user()->company->name }}</p>
+                </div>
                 <div>
                     @yield('icon')
                 </div>
