@@ -1,1 +1,0 @@
-<p class="text-gray-300">Geen klussers</p>

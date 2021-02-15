@@ -1,1 +1,0 @@
-<img class="w-52 mx-auto" src="/storage/logo/klusmin.png" alt="Logo klusminuten">

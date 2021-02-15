@@ -1,1 +1,0 @@
-<img class="w-36 p-4" src="/storage/logo/klusmin.png" alt="Logo klusminuten">

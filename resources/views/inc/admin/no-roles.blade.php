@@ -1,1 +1,0 @@
-<p class="text-gray-300 text-sm">Gebruiker heeft nog geen rollen, klik op '+' om gebruiker een rol te geven</p>
