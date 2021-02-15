@@ -12,9 +12,13 @@ class AdminClientDelete extends Component
 
     public function submit()
     {
-        foreach ($this->client->jobs as $job) {
-            $this->client->jobs()->detach($job->id);
-        }
+        // if ($this->client->jobs()->exists()) {
+            foreach ($this->client->jobs as $job) {
+                $this->client->jobs()->detach($job->id);
+            }
+        // }
+
+        // dd($this->client->jobs);
 
         $this->client->delete();
 

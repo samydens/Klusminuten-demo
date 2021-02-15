@@ -12,6 +12,6 @@
 
     <livewire:admin.client.admin-client-jobs :client="$client" />
 
-    <livewire:admin.client.admin-client-delete :clientId="$client" />
+    <livewire:admin.client.admin-client-delete :client="$client" />
     
 </div>
