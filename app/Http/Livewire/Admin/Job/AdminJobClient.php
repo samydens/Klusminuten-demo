@@ -14,13 +14,11 @@ class AdminJobClient extends Component
 
     public $listeners = ['refresh' => 'render'];
 
-    public function submit()
+    public function updatedNewClientId()
     {
         $this->job->clients()->attach($this->newClientId);
 
-        $this->reset('newClientId');
-        $this->reset('newClient');
-
+        $this->reset(['newClientId', 'newClient']);
         $this->emit('refresh');
     }
 
@@ -33,7 +31,7 @@ class AdminJobClient extends Component
     public function render()
     {
         return view('livewire.admin.job.admin-job-client', [
-            'allClients' => Client::all(),
+            'clients' => Client::all(),
         ]);
     }
 }

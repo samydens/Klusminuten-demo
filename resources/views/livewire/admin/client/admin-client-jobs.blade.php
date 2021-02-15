@@ -7,13 +7,20 @@
 
     <div class="flex flex-col space-y-2">
 
-        @each('livewire.admin-inc.jobs', $client->jobs, 'job', 'livewire.admin-inc.empty')
+        @each('inc.admin.jobs', $client->jobs, 'job', 'inc.admin.no-results')
 
         @if ($newJob)
+            
             <select wire:model="newJobId" class="border border-gray-400 bg-gray-200 rounded w-11/12">
+                
                 <option value="">Selecteer een klusser</option>
-                @each('livewire.admin-inc.job-option', $jobs, 'job', 'livewire.admin-inc.no-employee-option')
+                
+                @foreach ($jobs as $jobs)
+                    <option value="{{ $job->id }}">{{ $job->title }}</option>
+                @endforeach
+        
             </select>
+        
         @endif
     
     </div>

@@ -1,1 +1,0 @@
-<option value="{{ $employee->id }}">{{ $employee->name }}</option>

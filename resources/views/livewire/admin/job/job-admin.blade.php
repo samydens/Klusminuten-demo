@@ -1,4 +1,6 @@
 <div class="flex flex-col space-y-2 text-gray-500">
+
+    @include('inc.admin.search')
     
     <x-admin-message />
     
@@ -9,5 +11,5 @@
         </div>
     @endforeach --}}
 
-    @each('livewire.admin-inc.klus', $jobs, 'job', 'livewire.admin-inc.empty')
+    @each('inc.admin.klus', $jobs, 'job', 'inc.admin.no-results')
 </div>

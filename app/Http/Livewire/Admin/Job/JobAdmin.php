@@ -8,6 +8,7 @@ use App\Models\Job;
 
 class JobAdmin extends Component
 {
+    public $query;
     // public $allJobs;
     
     // public $statuses = [
@@ -20,9 +21,10 @@ class JobAdmin extends Component
         // $this->allJobs = DB::table('jobs')
         //     ->get()
         //     ->groupBy('status');
+        $query = '%'.$this->query.'%';
      
         return view('livewire.admin.job.job-admin', [
-            'jobs' => Job::all(),
+            'jobs' => Job::where('title', 'like', $query)->get(),
         ]);
     }
 }
